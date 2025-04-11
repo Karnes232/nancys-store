@@ -6,9 +6,11 @@ import { urlFor } from "@/sanity/lib/image"
 const Logo = async ({
   width = 200,
   height = 80,
+  className = "",
 }: {
   width?: number
   height?: number
+  className?: string
 }) => {
   const data = await client.fetch(`
         *[_type == "generalLayout"][0] {
@@ -30,56 +32,21 @@ const Logo = async ({
   const altText = data.logo.alt || data.companyName || "Company Logo"
 
   return (
-    <div className="flex items-center justify-center py-5">
+    <div className="flex items-center justify-center py-2">
       <Image
         src={imageUrl}
         alt={altText}
+        className={className}
         width={width}
         height={height}
         priority
-        sizes={`(max-width: 768px) ${width / 2}px, ${width}px`}
+        sizes="(max-width: 640px) 300px,
+               (max-width: 768px) 175px,
+               (max-width: 1024px) 200px,
+               250px"
       />
     </div>
   )
 }
 
 export default Logo
-
-// import { client } from '@/sanity/lib/client'
-// import React from 'react'
-// import imageUrlBuilder from '@sanity/image-url'
-// import { SanityImageSource } from '@sanity/image-url/lib/types/types'
-// export interface LogoData {
-//     logo: {
-//       _type: 'image'
-//       asset: {
-//         _ref: string
-//         _type: 'reference'
-//       }
-//       alt?: string
-//     }
-//   }
-
-//   const builder = imageUrlBuilder(client)
-
-//   const urlFor = (source: SanityImageSource) => {
-//     return builder.image(source)
-//   }
-
-// const Logo = async () => {
-//   const logo = await client.fetch<LogoData>(`
-//     *[_type == "generalLayout"][0] {
-//       logo
-//     }
-//   `)
-
-//   if (!logo) return null
-
-//   const imageUrl = urlFor(logo.logo).url()
-//   console.log(imageUrl)
-//   return (
-//     <div>Logo</div>
-//   )
-// }
-
-// export default Logo
