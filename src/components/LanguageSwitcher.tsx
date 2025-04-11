@@ -29,6 +29,7 @@ export default function LanguageSwitcher() {
     }
 
     const newPath = segments.join("/") || "/"
+    setIsOpen(false)
     router.push(newPath)
   }
 

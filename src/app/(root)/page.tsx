@@ -59,5 +59,5 @@ import HomePage from "./[lang]/page"
 
 export default async function RootPage() {
   // Reuse the same page component with the default language
-  return <HomePage params={{ lang: fallbackLng }} />
+  return <HomePage params={Promise.resolve({ lang: fallbackLng })} />
 }
