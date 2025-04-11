@@ -4,6 +4,8 @@ import { getTranslation } from "@/i18n"
 import { Metadata } from "next"
 import imageUrlBuilder from "@sanity/image-url"
 import { PageData } from "@/types/sanity.types"
+import BlockContent from "@/components/BlockContent/BlockContent"
+import { LocaleBlockContent } from "@/types/sanity.types"
 
 async function getHomePageContent() {
   const query = `
@@ -51,7 +53,7 @@ const HomePage = async ({ params }: PageProps) => {
     getHomePageContent(),
     getTranslation(lang),
   ])
-
+  console.log(pageData.content)
   return (
     <main>
       <HeroSwiper
@@ -73,7 +75,14 @@ const HomePage = async ({ params }: PageProps) => {
         className="hero-swiper"
       />
       <div className="bg-white dark:bg-black h-screen">
-        <h2>{t("common.welcome")}</h2>
+        <BlockContent
+          content={{
+            _type: "localeBlock",
+            en: pageData.content,
+            es: pageData.content,
+          }}
+          language={lang as "en" | "es"}
+        />
       </div>
     </main>
   )

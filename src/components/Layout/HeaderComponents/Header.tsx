@@ -6,7 +6,7 @@ import NavBar from "./NavBar"
 
 const Header = () => {
   return (
-    <nav className="bg-black/75 sticky top-0 z-50">
+    <nav className="bg-black/75 relative lg:sticky top-0 z-50">
       <div className="relative flex items-center justify-between bg-transparent max-w-screen-xl mx-auto px-4">
         <div className="hidden lg:block absolute left-4">
           <NavBar />

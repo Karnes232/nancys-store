@@ -26,3 +26,19 @@ export interface PageData {
     }
   }
 }
+
+export type LocaleBlockContent = Array<{
+  _type: string
+  _key: string
+  children: Array<{
+    _type: string
+    text: string
+    marks?: string[]
+  }>
+  markDefs?: Array<{
+    _type: string
+    _key: string
+    href?: string
+  }>
+  style?: string
+}>

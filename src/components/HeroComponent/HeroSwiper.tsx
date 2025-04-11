@@ -44,8 +44,8 @@ const HeroSwiper = ({
   heroSubheading: string
   className: string
 }) => {
-  const [mediaItems, setMediaItems] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  // const [mediaItems, setMediaItems] = useState<any[]>([])
+  // const [isLoading, setIsLoading] = useState(true)
   const [effectShapeBlack, setEffectShapeBlack] = useState({
     imageUrl: "",
     alt: "",
@@ -57,16 +57,21 @@ const HeroSwiper = ({
 
   useEffect(() => {
     const fetchMediaItems = async () => {
-      const media = await getMediaContent()
-      media.forEach((item: any) => {
-        if (item.title === "Effect Shape Black") {
-          setEffectShapeBlack(item)
-        } else if (item.title === "Effect Shape White") {
-          setEffectShapeWhite(item)
-        }
-      })
-      setMediaItems(media)
-      setIsLoading(false)
+      try {
+        const media = await getMediaContent()
+        media.forEach((item: any) => {
+          if (item.title === "Effect Shape Black") {
+            setEffectShapeBlack(item)
+          } else if (item.title === "Effect Shape White") {
+            setEffectShapeWhite(item)
+          }
+        })
+        // setMediaItems(media)
+        // setIsLoading(false)
+      } catch (error) {
+        console.error("Error fetching media items:", error)
+        // setIsLoading(false)
+      }
     }
     fetchMediaItems()
   }, [])
