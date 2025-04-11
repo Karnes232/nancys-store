@@ -16,7 +16,10 @@ interface HomePageData {
   }>
   heroHeading: { en: string; es: string }
   heroSubheading?: string
-  content?: any[]
+  content?: Array<{
+    _type: string
+    [key: string]: unknown
+  }>
   seo?: {
     metaTitle?: string
     metaDescription?: string
@@ -51,11 +54,11 @@ async function getHomePageContent() {
   return await client.fetch<HomePageData>(query)
 }
 
-export default async function HomePage({
+const HomePage = async ({
   params: { lang },
 }: {
   params: { lang: string }
-}) {
+}) => {
   const { t } = await useTranslation(lang)
   const pageData = await getHomePageContent()
 
@@ -76,3 +79,5 @@ export default async function HomePage({
     </>
   )
 }
+
+export default HomePage
