@@ -22,7 +22,7 @@ const Header = () => {
           <HamburgerMenu />
         </div>
       </div>
-      <div className="flex items-center justify-between bg-transparent max-w-screen-xl xl:mx-auto">
+      <div className="lg:hidden flex items-center justify-between bg-transparent max-w-screen-xl h-16 xl:mx-auto">
         <div className="block lg:hidden">
           <HamburgerMenu />
         </div>

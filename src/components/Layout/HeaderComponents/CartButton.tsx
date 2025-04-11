@@ -4,9 +4,8 @@ import { AiOutlineShoppingCart } from "react-icons/ai"
 const CartButton = () => {
   const [toggled, setToggled] = useState(false)
   return (
-    <div className="flex">
-      {/* <SideBarMenu toggled={toggled} setToggled={setToggled} /> */}
-      <main className="flex justify-center items-center p-3">
+    <div className="flex h-fit">
+      <div className="flex justify-center items-center h-fit p-3">
         <div>
           <button
             aria-label="Menu"
@@ -16,7 +15,7 @@ const CartButton = () => {
             <AiOutlineShoppingCart className={`h-7 w-7 md:h-9 text-white`} />
           </button>
         </div>
-      </main>
+      </div>
     </div>
   )
 }

@@ -1,5 +1,3 @@
-// import { client } from "@/sanity/lib/client"
-// import { headers } from "next/headers"
 import { fallbackLng } from "@/i18n/settings"
 import HomePage from "./[lang]/page"
 import { Metadata } from "next"

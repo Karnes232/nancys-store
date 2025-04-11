@@ -10,7 +10,7 @@ const HamburgerMenu = () => {
       <div className="hidden lg:block">
         <SideBarMenu toggled={toggled} setToggled={setToggled} />
       </div>
-      <main className="flex justify-center items-center p-3">
+      <div className="flex justify-center items-center p-3">
         <div>
           <button
             aria-label="Menu"
@@ -20,8 +20,8 @@ const HamburgerMenu = () => {
             <HiBars3 className={`h-7 w-7 md:h-9 text-white`} />
           </button>
         </div>
-      </main>
-      <div className="block lg:hidden">
+      </div>
+      <div className="block h-16 lg:hidden">
         <SideBarMenu toggled={toggled} setToggled={setToggled} />
       </div>
     </div>

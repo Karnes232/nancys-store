@@ -85,13 +85,12 @@ const HomePage = async ({ params }: PageProps) => {
       <HeroSwiper
         heroImages={pageData.heroImages}
         heroHeading={
-          pageData.heroHeading[lang as keyof typeof pageData.heroHeading] ||
-          pageData.heroHeading.en
+          pageData.heroHeading[lang as keyof typeof pageData.heroHeading] ?? ""
         }
         heroSubheading={
           pageData.heroSubheading[
             lang as keyof typeof pageData.heroSubheading
-          ] || ""
+          ] ?? ""
         }
         className="hero-swiper"
       />
