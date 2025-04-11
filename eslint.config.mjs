@@ -14,11 +14,16 @@ const eslintConfig = [
     extends: ['next'],
     rules: {
       "@typescript-eslint/no-unused-vars": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+      "@typescript-eslint/no-explicit-any": "off",
     },
   }),
+  {
+    rules: {
+      "@typescript-eslint/no-unused-vars": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
-  
 ];
 
 export default eslintConfig;
