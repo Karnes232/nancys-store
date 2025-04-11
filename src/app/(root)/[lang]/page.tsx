@@ -1,6 +1,6 @@
 import HeroSwiper from "@/components/HeroComponent/HeroSwiper"
 import { client } from "@/sanity/lib/client"
-import { useTranslation } from "@/i18n"
+import { getTranslation } from "@/i18n"
 
 interface HomePageData {
   title: string
@@ -54,13 +54,19 @@ async function getHomePageContent() {
   return await client.fetch<HomePageData>(query)
 }
 
-const HomePage = async ({
-  params: { lang },
-}: {
-  params: { lang: string }
-}) => {
-  const { t } = await useTranslation(lang)
-  const pageData = await getHomePageContent()
+interface PageProps {
+  params: Promise<{ lang: string }>
+}
+
+const HomePage = async ({ params }: PageProps) => {
+  // Await the params first
+  const { lang } = await params
+  
+  // Then use the resolved lang parameter
+  const [pageData, { t }] = await Promise.all([
+    getHomePageContent(),
+    getTranslation(lang),
+  ])
 
   return (
     <>
