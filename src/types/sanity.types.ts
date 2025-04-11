@@ -1,0 +1,28 @@
+export interface PageData {
+  title: string
+  heroImages: Array<{
+    _key: string
+    _type: "image"
+    asset: {
+      _ref: string
+      _type: "reference"
+    }
+    alt: string
+    caption?: string
+  }>
+  heroHeading: { en: string; es: string }
+  heroSubheading?: { en: string; es: string }
+  content?: Array<{
+    _type: string
+    [key: string]: unknown
+  }>
+  seo?: {
+    metaTitle?: { en: string; es: string }
+    metaDescription?: { en: string; es: string }
+    openGraphImage?: {
+      asset: {
+        _ref: string
+      }
+    }
+  }
+}

@@ -2,35 +2,9 @@ import { client } from "@/sanity/lib/client"
 import React from "react"
 import { getTranslation } from "@/i18n"
 import HeroSwiper from "@/components/HeroComponent/HeroSwiper"
-
-interface ContactPageData {
-  title: string
-  heroImages: Array<{
-    _key: string
-    _type: "image"
-    asset: {
-      _ref: string
-      _type: "reference"
-    }
-    alt: string
-    caption?: string
-  }>
-  heroHeading: { en: string; es: string }
-  heroSubheading?: { en: string; es: string }
-  content?: Array<{
-    _type: string
-    [key: string]: unknown
-  }>
-  seo?: {
-    metaTitle?: { en: string; es: string }
-    metaDescription?: { en: string; es: string }
-    openGraphImage?: {
-      asset: {
-        _ref: string
-      }
-    }
-  }
-}
+import { Metadata } from "next"
+import imageUrlBuilder from "@sanity/image-url"
+import { PageData } from "@/types/sanity.types"
 
 async function getContactPageContent() {
   const query = `
@@ -62,7 +36,7 @@ async function getContactPageContent() {
         }
       `
 
-  return await client.fetch<ContactPageData>(query)
+  return await client.fetch<PageData>(query)
 }
 
 interface PageProps {
@@ -85,12 +59,18 @@ const ContactPage = async ({ params }: PageProps) => {
       <HeroSwiper
         heroImages={pageData.heroImages}
         heroHeading={
-          pageData.heroHeading[lang as keyof typeof pageData.heroHeading] ?? ""
+          pageData.heroHeading
+            ? (pageData.heroHeading[
+                lang as keyof typeof pageData.heroHeading
+              ] ?? "")
+            : ""
         }
         heroSubheading={
-          pageData.heroSubheading?.[
-            lang as keyof typeof pageData.heroSubheading
-          ] ?? ""
+          pageData.heroSubheading
+            ? (pageData.heroSubheading[
+                lang as keyof typeof pageData.heroSubheading
+              ] ?? "")
+            : ""
         }
         className="hero-swiper"
       />
@@ -99,6 +79,47 @@ const ContactPage = async ({ params }: PageProps) => {
       </div>
     </main>
   )
+}
+
+// Add metadata generation function
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { lang } = await params
+  const pageData = await getContactPageContent()
+
+  const builder = imageUrlBuilder(client)
+  const ogImage = pageData.seo?.openGraphImage?.asset?._ref
+    ? builder.image(pageData.seo.openGraphImage.asset._ref).url()
+    : undefined
+
+  // Handle localized meta title and description
+  const metaTitle =
+    pageData.seo?.metaTitle?.[lang as keyof typeof pageData.seo.metaTitle] ||
+    pageData.seo?.metaTitle?.en ||
+    pageData.title
+
+  const metaDescription =
+    pageData.seo?.metaDescription?.[
+      lang as keyof typeof pageData.seo.metaDescription
+    ] || pageData.seo?.metaDescription?.en
+
+  return {
+    title: metaTitle,
+    description: metaDescription,
+    openGraph: {
+      title: metaTitle,
+      description: metaDescription,
+      images: ogImage ? [{ url: ogImage }] : undefined,
+    },
+    alternates: {
+      canonical: `/${lang}`,
+      languages: {
+        en: "/en",
+        es: "/es",
+      },
+    },
+  }
 }
 
 export default ContactPage

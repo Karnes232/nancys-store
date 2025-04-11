@@ -3,35 +3,7 @@ import { client } from "@/sanity/lib/client"
 import { getTranslation } from "@/i18n"
 import { Metadata } from "next"
 import imageUrlBuilder from "@sanity/image-url"
-
-interface HomePageData {
-  title: string
-  heroImages: Array<{
-    _key: string
-    _type: "image"
-    asset: {
-      _ref: string
-      _type: "reference"
-    }
-    alt: string
-    caption?: string
-  }>
-  heroHeading: { en: string; es: string }
-  heroSubheading?: { en: string; es: string }
-  content?: Array<{
-    _type: string
-    [key: string]: unknown
-  }>
-  seo?: {
-    metaTitle?: { en: string; es: string }
-    metaDescription?: { en: string; es: string }
-    openGraphImage?: {
-      asset: {
-        _ref: string
-      }
-    }
-  }
-}
+import { PageData } from "@/types/sanity.types"
 
 async function getHomePageContent() {
   const query = `
@@ -63,7 +35,7 @@ async function getHomePageContent() {
       }
     `
 
-  return await client.fetch<HomePageData>(query)
+  return await client.fetch<PageData>(query)
 }
 
 interface PageProps {
@@ -85,12 +57,18 @@ const HomePage = async ({ params }: PageProps) => {
       <HeroSwiper
         heroImages={pageData.heroImages}
         heroHeading={
-          pageData.heroHeading[lang as keyof typeof pageData.heroHeading] ?? ""
+          pageData.heroHeading
+            ? (pageData.heroHeading[
+                lang as keyof typeof pageData.heroHeading
+              ] ?? "")
+            : ""
         }
         heroSubheading={
-          pageData.heroSubheading[
-            lang as keyof typeof pageData.heroSubheading
-          ] ?? ""
+          pageData.heroSubheading
+            ? (pageData.heroSubheading[
+                lang as keyof typeof pageData.heroSubheading
+              ] ?? "")
+            : ""
         }
         className="hero-swiper"
       />
