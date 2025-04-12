@@ -26,6 +26,7 @@ async function getCartPageContent() {
             seo{
               metaTitle,
               metaDescription,
+              keywords,
               openGraphImage{
                 asset->{
                   _ref,
@@ -101,9 +102,15 @@ export async function generateMetadata({
       lang as keyof typeof pageData.seo.metaDescription
     ] || pageData.seo?.metaDescription?.en
 
+  const keywords =
+    pageData.seo?.keywords?.[lang as keyof typeof pageData.seo.keywords] ||
+    pageData.seo?.keywords?.en ||
+    []
+
   return {
     title: metaTitle,
     description: metaDescription,
+    keywords: keywords,
     openGraph: {
       title: metaTitle,
       description: metaDescription,

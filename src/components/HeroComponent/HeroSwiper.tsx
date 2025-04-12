@@ -8,6 +8,7 @@ import "swiper/css/effect-fade"
 import { Autoplay, EffectFade } from "swiper/modules"
 import Image from "next/image"
 import { client } from "@/sanity/lib/client"
+import TextComponentHeading from "../BlockContent/TextComponentHeading"
 
 const getMediaContent = async () => {
   try {
@@ -88,7 +89,7 @@ const HeroSwiper = ({
   }
 
   const height = "h-screen"
-  const blankDivHeight = "h-[73vh]"
+  const blankDivHeight = "h-[73vh] lg:h-[80vh] xl:h-[85vh]"
   const translatePosition = "-translate-y-2/3"
 
   return (
@@ -97,10 +98,10 @@ const HeroSwiper = ({
         <Swiper
           effect={"fade"}
           loop={true}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-          }}
+          // autoplay={{
+          //   delay: 3000,
+          //   disableOnInteraction: false,
+          // }}
           modules={[Autoplay, EffectFade]}
           className={`mySwiper  ${className}`}
         >
@@ -119,23 +120,21 @@ const HeroSwiper = ({
                 />
                 <div className="absolute inset-0" style={HeroStyles}>
                   <div
-                    className={`relative max-w-xs lg:max-w-4xl inline-block z-10 top-[60%] md:top-[70%] lg:top-[70%] left-1/2 transform -translate-x-1/2  text-center ${translatePosition}`}
+                    className={`relative max-w-xs lg:max-w-4xl inline-block z-10 top-[60%] md:top-[70%] xl:top-[60%] left-1/2 transform -translate-x-1/2  text-center ${translatePosition}`}
                   >
                     {heroHeading && (
-                      <h1
-                        translate="no"
-                        className={`${playfairDisplay.className} text-white tracking-wider text-4xl md:text-5xl lg:text-6xl text-center `}
-                      >
-                        {heroHeading}
-                      </h1>
+                      <TextComponentHeading
+                        heading={heroHeading}
+                        headingNumber="h1"
+                        HeadingClassName={`${playfairDisplay.className} text-white tracking-wider text-4xl md:text-5xl lg:text-6xl text-center 2xl:mb-0 2xl:mt-0`}
+                      />
                     )}
                     {heroSubheading && (
-                      <h2
-                        translate="no"
-                        className={`${playfairDisplay.className} text-white tracking-wider text-xl md:text-2xl lg:text-3xl mt-5`}
-                      >
-                        {heroSubheading}
-                      </h2>
+                      <TextComponentHeading
+                        heading={heroSubheading}
+                        headingNumber="h2"
+                        HeadingClassName={`${playfairDisplay.className} text-white tracking-wider text-xl md:text-2xl lg:text-3xl 2xl:mb-2 2xl:mt-5!`}
+                      />
                     )}
                   </div>
                 </div>
@@ -163,7 +162,7 @@ const HeroSwiper = ({
         </Swiper>
       </div>
 
-      <div className={`${blankDivHeight} bg-white dark:bg-black`}></div>
+      <div className={`${blankDivHeight}`}></div>
     </>
   )
 }

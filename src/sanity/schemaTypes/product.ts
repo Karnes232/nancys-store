@@ -1,40 +1,75 @@
-// schemas/page.ts
-import { defineField, defineType } from "sanity"
+// product.ts
+import { defineType, defineField } from "sanity"
 
 export default defineType({
-  name: "page",
-  title: "Page",
+  name: "product",
+  title: "Product",
   type: "document",
   fields: [
     defineField({
-      name: "title",
-      title: "Page Title",
-      type: "string",
-      validation: Rule => Rule.required(),
-      description: "Title of the page for internal reference",
+      name: "name",
+      title: "Name",
+      type: "object",
+      fields: [
+        defineField({
+          name: "en",
+          title: "English",
+          type: "string",
+          validation: Rule => Rule.required(),
+        }),
+        defineField({
+          name: "es",
+          title: "Spanish",
+          type: "string",
+          validation: Rule => Rule.required(),
+        }),
+      ],
     }),
     defineField({
-      name: "slug",
-      title: "Slug",
-      type: "slug",
+      name: "category",
+      title: "Category",
+      type: "reference",
+      to: [{ type: "productCategory" }],
+      validation: Rule => Rule.required(),
+    }),
+    defineField({
+      name: "price",
+      title: "Price",
+      type: "number",
+      validation: Rule => Rule.required().precision(2),
+    }),
+    defineField({
+      name: "mainImage",
+      title: "Main Image",
+      type: "image",
       options: {
-        source: "title",
-        maxLength: 96,
+        hotspot: true,
       },
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Alternative Text",
+          type: "string",
+          validation: Rule => Rule.required(),
+          description: "Important for SEO and accessibility",
+        }),
+      ],
       validation: Rule => Rule.required(),
-      description: 'The URL path for this page (e.g., "about-us")',
     }),
     defineField({
-      name: "heroImages",
-      title: "Hero Images",
+      name: "images",
+      title: "Images",
       type: "array",
       of: [
         {
-          type: "image",
-          options: {
-            hotspot: true,
-          },
+          type: "object",
           fields: [
+            defineField({
+              name: "image",
+              type: "image",
+              title: "Image",
+              options: { hotspot: true },
+            }),
             defineField({
               name: "alt",
               title: "Alternative Text",
@@ -42,35 +77,15 @@ export default defineType({
               validation: Rule => Rule.required(),
               description: "Important for SEO and accessibility",
             }),
-            defineField({
-              name: "caption",
-              title: "Caption",
-              type: "string",
-              description: "Optional caption for the image",
-            }),
           ],
         },
       ],
-      description: "Images to display in the hero section",
-    }),
-    defineField({
-      name: "heroHeading",
-      title: "Hero Heading",
-      type: "localeString",
-      description: "Main heading text that appears in the hero section",
     }),
 
     defineField({
-      name: "heroSubheading",
-      title: "Hero Subheading",
-      type: "localeString",
-      description: "Optional subheading text for the hero section",
-    }),
-    defineField({
-      name: "content",
-      title: "Page Content",
+      name: "shortDescription",
+      title: "Short Description",
       type: "localeBlockContent",
-      description: "Main content of the page",
     }),
     defineField({
       name: "seo",
@@ -108,16 +123,9 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: "title",
-      subtitle: "slug.current",
-      media: "heroImages.0",
-    },
-    prepare({ title, subtitle, media }) {
-      return {
-        title,
-        subtitle: `/${subtitle}`,
-        media,
-      }
+      title: "name.en",
+      subtitle: "name.es",
+      media: "mainImage",
     },
   },
 })

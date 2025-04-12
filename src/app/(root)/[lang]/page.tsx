@@ -27,6 +27,7 @@ async function getHomePageContent() {
         seo{
           metaTitle,
           metaDescription,
+          keywords,
           openGraphImage{
             asset->{
               _ref,
@@ -73,7 +74,7 @@ const HomePage = async ({ params }: PageProps) => {
         }
         className="hero-swiper"
       />
-      <div className="bg-white dark:bg-black h-screen">
+      <div className=" h-screen">
         <BlockContent
           content={{
             _type: "localeBlock",
@@ -93,7 +94,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { lang } = await params
   const pageData = await getHomePageContent()
-
+  console.log(pageData.seo?.keywords)
   const builder = imageUrlBuilder(client)
   const ogImage = pageData.seo?.openGraphImage?.asset?._ref
     ? builder.image(pageData.seo.openGraphImage.asset._ref).url()
@@ -110,9 +111,16 @@ export async function generateMetadata({
       lang as keyof typeof pageData.seo.metaDescription
     ] || pageData.seo?.metaDescription?.en
 
+  // Get language-specific keywords or fallback to English
+  const keywords =
+    pageData.seo?.keywords?.[lang as keyof typeof pageData.seo.keywords] ||
+    pageData.seo?.keywords?.en ||
+    []
+
   return {
     title: metaTitle,
     description: metaDescription,
+    keywords: keywords,
     openGraph: {
       title: metaTitle,
       description: metaDescription,

@@ -6,6 +6,9 @@ import page from "./page"
 import imageType from "./imageType"
 import { localeString } from "./localeStringType"
 import localeBlockContent from "./localeBlockContent"
+import productCategory from "./productCategory"
+import product from "./product"
+import localeArray from "./localeArray"
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     blockContentType,
@@ -13,6 +16,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     page,
     imageType,
     localeString,
+    localeArray,
     localeBlockContent,
+    productCategory,
+    product,
   ],
 }

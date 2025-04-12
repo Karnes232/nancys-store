@@ -1,15 +1,57 @@
-// import type {StructureResolver} from 'sanity/structure'
+// structure.ts
+import type { StructureBuilder } from "sanity/structure"
 
-// // https://www.sanity.io/docs/structure-builder-cheat-sheet
-// export const structure: StructureResolver = (S) =>
-//   S.list()
-//     .title('Blog')
-//     .items([
-//       S.documentTypeListItem('post').title('Posts'),
-//       S.documentTypeListItem('category').title('Categories'),
-//       S.documentTypeListItem('author').title('Authors'),
-//       S.divider(),
-//       ...S.documentTypeListItems().filter(
-//         (item) => item.getId() && !['post', 'category', 'author'].includes(item.getId()!),
-//       ),
-//     ])
+export const myStructure = (S: StructureBuilder) =>
+  S.list()
+    .title("Content")
+    .items([
+      // Pages group
+      S.listItem()
+        .title("Pages")
+        .child(
+          S.list()
+            .title("Pages")
+            .items([
+              S.documentTypeListItem("page").title("Pages"),
+              S.documentTypeListItem("generalLayout").title("General Layout"),
+            ]),
+        ),
+
+      // Products group
+      S.listItem()
+        .title("Products")
+        .child(
+          S.list()
+            .title("Products")
+            .items([
+              S.documentTypeListItem("product").title("Products"),
+              S.documentTypeListItem("productCategory").title(
+                "Product Categories",
+              ),
+            ]),
+        ),
+
+      S.listItem()
+        .title("Media")
+        .child(
+          S.list()
+            .title("Media")
+            .items([S.documentTypeListItem("media").title("Media")]),
+        ),
+
+      // Object types group (optional - for reference)
+      S.listItem()
+        .title("Schema Types")
+        .child(
+          S.list()
+            .title("Schema Types")
+            .items([
+              //   S.documentTypeListItem('blockContentType').title('Block Content'),
+              //   S.documentTypeListItem('imageType').title('Images'),
+              S.documentTypeListItem("localeString").title("Localized Strings"),
+              S.documentTypeListItem("localeBlockContent").title(
+                "Localized Content Blocks",
+              ),
+            ]),
+        ),
+    ])

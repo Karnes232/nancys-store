@@ -19,6 +19,7 @@ export interface PageData {
   seo?: {
     metaTitle?: { en: string; es: string }
     metaDescription?: { en: string; es: string }
+    keywords?: { en: string[]; es: string[] }
     openGraphImage?: {
       asset: {
         _ref: string
