@@ -6,6 +6,7 @@ import imageUrlBuilder from "@sanity/image-url"
 import { PageData } from "@/types/sanity.types"
 import BlockContent from "@/components/BlockContent/BlockContent"
 import { LocaleBlockContent } from "@/types/sanity.types"
+import ProductsDisplay from "@/components/ProductsComponents/ProductsDisplay"
 
 async function getHomePageContent() {
   const query = `
@@ -74,7 +75,7 @@ const HomePage = async ({ params }: PageProps) => {
         }
         className="hero-swiper"
       />
-      <div className=" h-screen">
+      <div className="my-5">
         <BlockContent
           content={{
             _type: "localeBlock",
@@ -83,6 +84,9 @@ const HomePage = async ({ params }: PageProps) => {
           }}
           language={lang as "en" | "es"}
         />
+      </div>
+      <div>
+        <ProductsDisplay lang={lang} />
       </div>
     </main>
   )
@@ -94,7 +98,6 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { lang } = await params
   const pageData = await getHomePageContent()
-  console.log(pageData.seo?.keywords)
   const builder = imageUrlBuilder(client)
   const ogImage = pageData.seo?.openGraphImage?.asset?._ref
     ? builder.image(pageData.seo.openGraphImage.asset._ref).url()

@@ -1,6 +1,7 @@
 {
   "common": {
     "welcome": "Bienvenidos",
-    "heroSubheading": "Descubre nuestra historia"
+    "heroSubheading": "Descubre nuestra historia",
+    "all": "Todos"
   }
 }

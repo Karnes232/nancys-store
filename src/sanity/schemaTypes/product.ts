@@ -57,7 +57,7 @@ export default defineType({
       validation: Rule => Rule.required(),
     }),
     defineField({
-      name: "images",
+      name: "imagesList",
       title: "Images",
       type: "array",
       of: [
@@ -85,7 +85,7 @@ export default defineType({
     defineField({
       name: "shortDescription",
       title: "Short Description",
-      type: "localeBlockContent",
+      type: "localeString",
     }),
     defineField({
       name: "seo",
