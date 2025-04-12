@@ -23,7 +23,7 @@ const SideBarInside = ({ footer, setToggled }) => {
 
   return (
     <>
-      <Menu className="ml-0 h-full flex flex-col justify-center items-center overflow-hidden">
+      <Menu className="ml-0 h-full flex flex-col justify-center items-center overflow-hidden text-black">
         <MenuItem
           component={
             <Link
