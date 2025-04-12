@@ -53,7 +53,6 @@ const HomePage = async ({ params }: PageProps) => {
     getHomePageContent(),
     getTranslation(lang),
   ])
-  console.log(pageData.content)
   return (
     <main>
       <HeroSwiper

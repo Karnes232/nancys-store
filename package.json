@@ -17,6 +17,7 @@
     "@sanity/vision": "^3.83.0",
     "i18next": "^24.2.3",
     "i18next-resources-to-backend": "^1.2.1",
+    "motion": "^12.6.5",
     "next": "15.2.5",
     "next-i18next": "^15.4.2",
     "next-sanity": "^9.9.9",

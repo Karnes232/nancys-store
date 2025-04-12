@@ -53,7 +53,6 @@ const ContactPage = async ({ params }: PageProps) => {
     getTranslation(lang),
   ])
 
-  console.log(pageData)
   return (
     <main>
       <HeroSwiper

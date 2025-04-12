@@ -1,6 +1,8 @@
 import { client } from "@/sanity/lib/client"
 import { PortableText } from "@portabletext/react"
 import imageUrlBuilder from "@sanity/image-url"
+import TextComponentParagraph from "./TextComponentParagraph"
+import TextComponentHeading from "./TextComponentHeading"
 interface LocaleBlockContent {
   _type: string
   en: any[]
@@ -16,7 +18,7 @@ const components = {
   types: {
     image: ({ value }: any) => {
       const imageUrl = builder.image(value).url()
-      console.log(value)
+
       // Sanity images usually need to be accessed via .asset.url
 
       return (
@@ -50,15 +52,51 @@ const components = {
     },
   },
   block: {
-    normal: ({ children }: any) => <p className="mb-4">{children}</p>,
+    // normal: ({ children }: any) => <p className="mb-4">{children}</p>,
+    normal: ({ children }: any) => (
+      <TextComponentParagraph paragraph={children} ParagraphClassName="mb-4" />
+    ),
     h1: ({ children }: any) => (
-      <h1 className="text-4xl font-bold mb-4 mt-8">{children}</h1>
+      <TextComponentHeading
+        heading={children}
+        headingNumber="h1"
+        HeadingClassName="mb-4 mt-8"
+      />
     ),
     h2: ({ children }: any) => (
-      <h2 className="text-3xl font-bold mb-3 mt-6">{children}</h2>
+      <TextComponentHeading
+        heading={children}
+        headingNumber="h2"
+        HeadingClassName="mb-4 mt-8"
+      />
     ),
     h3: ({ children }: any) => (
-      <h3 className="text-2xl font-bold mb-3 mt-6">{children}</h3>
+      <TextComponentHeading
+        heading={children}
+        headingNumber="h3"
+        HeadingClassName="mb-4 mt-8"
+      />
+    ),
+    h4: ({ children }: any) => (
+      <TextComponentHeading
+        heading={children}
+        headingNumber="h4"
+        HeadingClassName="mb-4 mt-8"
+      />
+    ),
+    h5: ({ children }: any) => (
+      <TextComponentHeading
+        heading={children}
+        headingNumber="h5"
+        HeadingClassName="mb-4 mt-8"
+      />
+    ),
+    h6: ({ children }: any) => (
+      <TextComponentHeading
+        heading={children}
+        headingNumber="h6"
+        HeadingClassName="mb-4 mt-8"
+      />
     ),
   },
 }
@@ -68,8 +106,13 @@ const BlockContent: React.FC<Props> = ({ content, language = "en" }) => {
     return null
   }
   const blockContent = content[language][language]
-  console.log("BlockContent received:", { content, language })
-  return <PortableText value={blockContent} components={components} />
+  return (
+    <>
+      <div className="flex flex-col max-w-5xl mx-5 lg:p-2 xl:mx-auto">
+        <PortableText value={blockContent} components={components} />
+      </div>
+    </>
+  )
 }
 
 export default BlockContent

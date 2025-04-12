@@ -88,6 +88,7 @@ const HeroSwiper = ({
   }
 
   const height = "h-screen"
+  const blankDivHeight = "h-[73vh]"
   const translatePosition = "-translate-y-2/3"
 
   return (
@@ -162,7 +163,7 @@ const HeroSwiper = ({
         </Swiper>
       </div>
 
-      <div className={`${height}`}></div>
+      <div className={`${blankDivHeight} bg-white dark:bg-black`}></div>
     </>
   )
 }
