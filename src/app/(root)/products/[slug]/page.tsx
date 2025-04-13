@@ -21,6 +21,11 @@ interface RootPageProps {
 }
 
 export default async function RootPage({ params }: RootPageProps) {
-  // Pass the actual slug from the URL parameters
-  return <ProductPage params={Promise.resolve({ lang: fallbackLng, slug: params.slug })} />
+  // Create an object with both lang and slug, then wrap it in a Promise
+  const pageParams = {
+    lang: fallbackLng,
+    slug: params.slug
+  }
+  
+  return <ProductPage params={Promise.resolve(pageParams)} />
 }
