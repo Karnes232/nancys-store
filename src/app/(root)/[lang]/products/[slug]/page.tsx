@@ -43,6 +43,14 @@ const ProductPage = async ({ params }: PageProps) => {
     getProduct(slug),
   ])
 
+  if (!product || product.length === 0) {
+    return (
+      <main>
+        <h1>Product not found</h1>
+      </main>
+    )
+  }
+
   console.log(product[0].imagesList)
   return (
     <main>
