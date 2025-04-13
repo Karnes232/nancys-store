@@ -4,7 +4,7 @@ import { client } from "@/sanity/lib/client"
 import React from "react"
 
 interface PageProps {
-  params: { lang: string; slug: string }
+  params: Promise<{ lang: string; slug: string }>
 }
 
 async function getProduct(slug: string) {

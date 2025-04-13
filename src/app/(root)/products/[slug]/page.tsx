@@ -16,5 +16,5 @@ import ProductPage from "../../[lang]/products/[slug]/page"
 
 export default async function RootPage() {
   // Reuse the same page component with the default language
-  return <ProductPage params={{ lang: fallbackLng, slug: "test" }} />
+  return <ProductPage params={Promise.resolve({ lang: fallbackLng, slug: "test" })} />
 }
