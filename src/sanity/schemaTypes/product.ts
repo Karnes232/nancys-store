@@ -26,6 +26,17 @@ export default defineType({
       ],
     }),
     defineField({
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "name.en",
+        maxLength: 96,
+      },
+      validation: Rule => Rule.required(),
+      description: 'The URL path for this page (e.g., "about-us")',
+    }),
+    defineField({
       name: "category",
       title: "Category",
       type: "reference",

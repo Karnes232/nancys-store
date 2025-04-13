@@ -6,11 +6,14 @@ export type Category = {
   }
 }
 
-export type Product = {
+export interface Product {
   _id: string
   name: {
     en: string
     es: string
+  }
+  slug: {
+    current: string
   }
   price: number
   category: Category

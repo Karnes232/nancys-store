@@ -1,25 +1,23 @@
 "use client"
 import React, { useEffect, useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Playfair_Display } from "next/font/google"
 // Import Swiper styles
 import "swiper/css"
 import "swiper/css/effect-fade"
 import { Autoplay, EffectFade } from "swiper/modules"
 import Image from "next/image"
 import { client } from "@/sanity/lib/client"
-import TextComponentHeading from "../BlockContent/TextComponentHeading"
 
 const getMediaContent = async () => {
   try {
     const titles = ["Effect Shape Black", "Effect Shape White"]
 
     const query = `*[_type == "media" && title in $titles] {
-      _id,
-      title,
-      "imageUrl": image.asset->url,
-      "alt": image.alt
-    }`
+        _id,
+        title,
+        "imageUrl": image.asset->url,
+        "alt": image.alt
+      }`
 
     const result = await client.fetch(query, { titles })
     return result
@@ -29,24 +27,13 @@ const getMediaContent = async () => {
   }
 }
 
-const playfairDisplay = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-})
-
-const HeroSwiper = ({
-  heroImages,
-  heroHeading,
-  heroSubheading,
-  className,
+const ProductHeroSwiper = ({
+  images,
+  mainImage,
 }: {
-  heroImages: any
-  heroHeading: string
-  heroSubheading: string
-  className: string
+  images: any
+  mainImage: any
 }) => {
-  // const [mediaItems, setMediaItems] = useState<any[]>([])
-  // const [isLoading, setIsLoading] = useState(true)
   const [effectShapeBlack, setEffectShapeBlack] = useState({
     imageUrl: "",
     alt: "",
@@ -55,7 +42,6 @@ const HeroSwiper = ({
     imageUrl: "",
     alt: "",
   })
-
   useEffect(() => {
     const fetchMediaItems = async () => {
       try {
@@ -74,21 +60,18 @@ const HeroSwiper = ({
     fetchMediaItems()
   }, [])
 
-  const photoListEdited = heroImages.map((image: any) => {
-    return {
-      title: image.alt,
-      image: image.asset.url,
-    }
+  let photoListEdited = [{ title: mainImage.alt, image: mainImage.asset.url }]
+  images.forEach((image: any) => {
+    photoListEdited.push({ title: image.alt, image: image.image.url })
   })
   let HeroStyles = {
     backgroundImage:
-      "linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2))",
+      "linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8))",
   }
 
-  const height = "h-screen"
+  const height = "h-[70vh]"
   const blankDivHeight = "h-[73vh] lg:h-[80vh] xl:h-[85vh]"
   const translatePosition = "-translate-y-2/3"
-
   return (
     <>
       <div className={`absolute top-0 w-full ${height}`}>
@@ -100,7 +83,7 @@ const HeroSwiper = ({
             disableOnInteraction: false,
           }}
           modules={[Autoplay, EffectFade]}
-          className={`mySwiper  ${className}`}
+          className={`mySwiper`}
         >
           {photoListEdited.map((image: any, index: any) => {
             return (
@@ -113,28 +96,29 @@ const HeroSwiper = ({
                   alt={image.title}
                   width={1000}
                   height={1000}
+                  
                   className={`w-full object-cover object-center ${height}`}
                 />
-                <div className="absolute inset-0" style={HeroStyles}>
-                  <div
-                    className={`relative max-w-xs lg:max-w-4xl inline-block z-10 top-[60%] md:top-[70%] xl:top-[60%] left-1/2 transform -translate-x-1/2  text-center ${translatePosition}`}
-                  >
-                    {heroHeading && (
-                      <TextComponentHeading
-                        heading={heroHeading}
-                        headingNumber="h1"
-                        HeadingClassName={`${playfairDisplay.className} text-white tracking-wider text-4xl md:text-5xl lg:text-6xl text-center 2xl:mb-0 2xl:mt-0`}
-                      />
-                    )}
-                    {heroSubheading && (
-                      <TextComponentHeading
-                        heading={heroSubheading}
-                        headingNumber="h2"
-                        HeadingClassName={`${playfairDisplay.className} text-white tracking-wider text-xl md:text-2xl lg:text-3xl 2xl:mb-2 2xl:mt-5!`}
-                      />
-                    )}
-                  </div>
-                </div>
+               <div className="absolute inset-0" style={HeroStyles}>
+                 {/* <div
+                  className={`relative max-w-xs lg:max-w-4xl inline-block z-10 top-[60%] md:top-[70%] xl:top-[60%] left-1/2 transform -translate-x-1/2  text-center ${translatePosition}`}
+                >
+                  {heroHeading && (
+                    <TextComponentHeading
+                      heading={heroHeading}
+                      headingNumber="h1"
+                      HeadingClassName={`${playfairDisplay.className} text-white tracking-wider text-4xl md:text-5xl lg:text-6xl text-center 2xl:mb-0 2xl:mt-0`}
+                    />
+                  )}
+                  {heroSubheading && (
+                    <TextComponentHeading
+                      heading={heroSubheading}
+                      headingNumber="h2"
+                      HeadingClassName={`${playfairDisplay.className} text-white tracking-wider text-xl md:text-2xl lg:text-3xl 2xl:mb-2 2xl:mt-5!`}
+                    />
+                  )}
+                </div>*/}
+              </div> 
               </SwiperSlide>
             )
           })}
@@ -164,4 +148,4 @@ const HeroSwiper = ({
   )
 }
 
-export default HeroSwiper
+export default ProductHeroSwiper

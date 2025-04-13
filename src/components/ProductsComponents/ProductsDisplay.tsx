@@ -5,7 +5,9 @@ import { ProductsFilter } from "./ProductsFilter"
 async function getProducts() {
   const query = `
     *[_type == "product"] {
+      _id,
       name,
+      slug,
       "category": category->{
         _id,
         name
