@@ -4,7 +4,10 @@ import { client } from "@/sanity/lib/client"
 import React from "react"
 
 interface PageProps {
-  params: Promise<{ lang: string; slug: string }>
+  params: {
+    lang: string;
+    slug: string;
+  }
 }
 
 async function getProduct(slug: string) {
@@ -39,7 +42,7 @@ async function getProduct(slug: string) {
 }
 
 const ProductPage = async ({ params }: PageProps) => {
-  const { lang, slug } = await params
+  const { lang, slug } = params
   console.log("Received params:", { lang, slug })
   
   const [{ t }, product] = await Promise.all([
