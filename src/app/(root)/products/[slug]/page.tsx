@@ -14,7 +14,13 @@ import ProductPage from "../../[lang]/products/[slug]/page"
 //   })
 // }
 
-export default async function RootPage() {
-  // Reuse the same page component with the default language
-  return <ProductPage params={Promise.resolve({ lang: fallbackLng, slug: "test" })} />
+interface RootPageProps {
+  params: {
+    slug: string
+  }
+}
+
+export default async function RootPage({ params }: RootPageProps) {
+  // Pass the actual slug from the URL parameters
+  return <ProductPage params={Promise.resolve({ lang: fallbackLng, slug: params.slug })} />
 }
