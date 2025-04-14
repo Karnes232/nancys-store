@@ -1,23 +1,24 @@
+"use client"
+
 import React from "react"
 import { Menu, MenuItem } from "react-pro-sidebar"
 import Link from "next/link"
-import { Trans } from "react-i18next"
 import { usePathname } from "next/navigation"
 import { languages, fallbackLng } from "@/i18n/settings"
+import useTranslations from "@/i18n/useTranslations"
 
 const SideBarInside = ({ footer, setToggled }) => {
   const pathname = usePathname()
 
   const getCurrentLocale = () => {
     const segments = pathname.split("/")
-    if (languages.includes(segments[1])) {
-      return segments[1]
-    }
-    return fallbackLng
+    return languages.includes(segments[1]) ? segments[1] : fallbackLng
   }
 
+  const currentLocale = getCurrentLocale()
+  const t = useTranslations(currentLocale)
+
   const getLocalizedPath = (path: string) => {
-    const currentLocale = getCurrentLocale()
     return currentLocale === fallbackLng ? path : `/${currentLocale}${path}`
   }
 
@@ -36,7 +37,7 @@ const SideBarInside = ({ footer, setToggled }) => {
           <p
             className={`${footer ? "hamburgerSmall" : "hamburger"} relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-current hover:after:w-full after:transition-all after:duration-300`}
           >
-            <Trans>Home</Trans>
+            {t("Home")}
           </p>
         </MenuItem>
         <MenuItem
@@ -51,7 +52,7 @@ const SideBarInside = ({ footer, setToggled }) => {
           <p
             className={`${footer ? "hamburgerSmall" : "hamburger"} relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-current hover:after:w-full after:transition-all after:duration-300`}
           >
-            <Trans>Cart</Trans>
+            {t("Cart")}
           </p>
         </MenuItem>
         <MenuItem
@@ -66,7 +67,7 @@ const SideBarInside = ({ footer, setToggled }) => {
           <p
             className={`${footer ? "hamburgerSmall" : "hamburger"} relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-current hover:after:w-full after:transition-all after:duration-300`}
           >
-            <Trans>Contact</Trans>
+            {t("Contact")}
           </p>
         </MenuItem>
       </Menu>

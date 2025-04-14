@@ -1,7 +1,13 @@
 {
+  "Home": "Inicio",
+  "Cart": "Carrito",
+  "Contact": "Contacto",
   "common": {
     "welcome": "Bienvenidos",
     "heroSubheading": "Descubre nuestra historia",
     "all": "Todos"
+  },
+  "search": {
+    "products": "Buscar Productos..."
   }
 }

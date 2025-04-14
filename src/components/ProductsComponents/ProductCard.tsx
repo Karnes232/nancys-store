@@ -16,7 +16,6 @@ const ProductCard = ({
   product: Product
   selectedLang: string
 }) => {
-  console.log(product)
   return (
     <Link href={`/${selectedLang}/products/${product.slug.current}`}>
       <div className="max-w-sm min-w-[20rem] xl:max-w-xs my-5 mx-2 rounded-lg overflow-hidden shadow-lg dark:shadow-slate-900">

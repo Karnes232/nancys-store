@@ -2,6 +2,7 @@
 import { useState } from "react"
 import ProductCard from "./ProductCard"
 import { Product, Category } from "@/types/product"
+import ProductSearch from "./ProductSearch"
 
 type ProductsFilterProps = {
   products: Product[]
@@ -19,6 +20,7 @@ export function ProductsFilter({
   translations,
 }: ProductsFilterProps) {
   const [selectedCategory, setSelectedCategory] = useState("All")
+  const [searchFilteredProducts, setSearchFilteredProducts] = useState(products)
 
   const handleCategoryFilter = (e: React.MouseEvent<HTMLButtonElement>) => {
     setSelectedCategory(e.currentTarget.value)
@@ -26,8 +28,10 @@ export function ProductsFilter({
 
   const filteredProducts =
     selectedCategory === "All"
-      ? products
-      : products.filter(product => product.category._id === selectedCategory)
+      ? searchFilteredProducts
+      : searchFilteredProducts.filter(
+          product => product.category._id === selectedCategory,
+        )
 
   return (
     <div>
@@ -54,6 +58,11 @@ export function ProductsFilter({
           </button>
         ))}
       </nav>
+      <ProductSearch
+        onSearch={setSearchFilteredProducts}
+        products={products}
+        selectedLang={lang}
+      />
       <div className="flex flex-col justify-center items-center md:flex-row md:flex-wrap md:justify-evenly max-w-5xl xl:max-w-6xl mx-auto">
         {filteredProducts.map(product => {
           return (

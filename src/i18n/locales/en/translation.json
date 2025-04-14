@@ -1,7 +1,13 @@
 {
+  "Home": "Home",
+  "Cart": "Cart",
+  "Contact": "Contact",
   "common": {
     "welcome": "Welcome",
     "heroSubheading": "Discover our story",
     "all": "All"
+  },
+  "search": {
+    "products": "Search Products..."
   }
 }
