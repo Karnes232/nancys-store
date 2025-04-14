@@ -21,8 +21,8 @@ export default async function RootPage({ params }: RootPageProps) {
   const { slug } = await params
   const pageParams = {
     lang: fallbackLng,
-    slug: slug
+    slug: slug,
   }
-  
+
   return <ProductPage params={Promise.resolve(pageParams)} />
 }

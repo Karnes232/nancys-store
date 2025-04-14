@@ -96,11 +96,10 @@ const ProductHeroSwiper = ({
                   alt={image.title}
                   width={1000}
                   height={1000}
-                  
                   className={`w-full object-cover object-center ${height}`}
                 />
-               <div className="absolute inset-0" style={HeroStyles}>
-                 {/* <div
+                <div className="absolute inset-0" style={HeroStyles}>
+                  {/* <div
                   className={`relative max-w-xs lg:max-w-4xl inline-block z-10 top-[60%] md:top-[70%] xl:top-[60%] left-1/2 transform -translate-x-1/2  text-center ${translatePosition}`}
                 >
                   {heroHeading && (
@@ -118,7 +117,7 @@ const ProductHeroSwiper = ({
                     />
                   )}
                 </div>*/}
-              </div> 
+                </div>
               </SwiperSlide>
             )
           })}
