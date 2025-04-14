@@ -3,7 +3,7 @@ import { getTranslation } from "@/i18n"
 import { client } from "@/sanity/lib/client"
 import React from "react"
 
-interface PageProps {
+export interface PageProps {
   params: Promise<{
     lang: string;
     slug: string;

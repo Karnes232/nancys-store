@@ -1,8 +1,5 @@
 import { fallbackLng } from "@/i18n/settings"
-
-import { Metadata } from "next"
-// import ContactPage from "../[lang]/contact/page
-import ProductPage from "../../[lang]/products/[slug]/page"
+import ProductPage, { PageProps } from "../../[lang]/products/[slug]/page"
 
 // export const generateMetadata = async (): Promise<Metadata> => {
 //   // Reuse the same metadata generation from [lang]/page.tsx
@@ -15,15 +12,16 @@ import ProductPage from "../../[lang]/products/[slug]/page"
 // }
 
 interface RootPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export default async function RootPage({ params }: RootPageProps) {
+  const { slug } = await params
   const pageParams = {
     lang: fallbackLng,
-    slug: params.slug
+    slug: slug
   }
   
   return <ProductPage params={Promise.resolve(pageParams)} />
