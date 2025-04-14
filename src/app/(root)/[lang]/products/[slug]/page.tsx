@@ -41,9 +41,15 @@ async function getProduct(slug: string) {
   return result
 }
 
+interface PageProps {
+  params: {
+    lang: string;
+    slug: string;
+  }
+}
+
 const ProductPage = async ({ params }: PageProps) => {
-  const { lang, slug } = params
-  console.log("Received params:", { lang, slug })
+  const { lang, slug } = params  // Remove the await here since params is no longer a Promise
   
   const [{ t }, product] = await Promise.all([
     getTranslation(lang),
