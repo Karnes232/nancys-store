@@ -86,7 +86,7 @@ const HeroSwiper = ({
   }
 
   const height = "h-screen"
-  const blankDivHeight = "h-[73vh] lg:h-[80vh] xl:h-[85vh]"
+  const blankDivHeight = "h-[73vh] lg:h-[80vh] xl:h-[85vh] 2xl:h-[90vh]"
   const translatePosition = "-translate-y-2/3"
 
   return (

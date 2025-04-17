@@ -5,6 +5,7 @@ import HeroSwiper from "@/components/HeroComponent/HeroSwiper"
 import { Metadata } from "next"
 import imageUrlBuilder from "@sanity/image-url"
 import { PageData } from "@/types/sanity.types"
+import ContactForm from "@/components/ContactFormComponents/ContactForm"
 
 async function getContactPageContent() {
   const query = `
@@ -75,7 +76,7 @@ const ContactPage = async ({ params }: PageProps) => {
         className="hero-swiper"
       />
       <div className="bg-white dark:bg-black h-screen">
-        <h2>{t("common.welcome")}</h2>
+        <ContactForm />
       </div>
     </main>
   )
