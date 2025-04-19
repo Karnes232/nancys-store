@@ -10,7 +10,6 @@ const playfairDisplay = Playfair_Display({
 })
 
 const ProductPageCard = ({ product, lang }: { product: any; lang: string }) => {
-  console.log(product.mainImage.alt)
   return (
     <section>
       <div className="flex flex-col lg:flex-row gap-4 2xl:gap-20 xl:max-w-6xl 2xl:max-w-7xl  lg:mx-auto mx-5">
@@ -43,7 +42,7 @@ const ProductPageCard = ({ product, lang }: { product: any; lang: string }) => {
           >
             {product.shortDescription[lang]}
           </div>
-          <div className="flex justify-center mt-auto">
+          <div className="flex justify-center mt-10 lg:mt-auto">
             <AddToCartButton
               text="Add to cart"
               buttonClassName="bg-gray-500 text-white px-4 py-2 rounded-md"
