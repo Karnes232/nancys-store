@@ -50,12 +50,12 @@ async function getCompanyEmail() {
 }
 
 interface PageProps {
-  params: { lang: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: Promise<{ lang: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 const ThankYouPage = async ({ params, searchParams }: PageProps) => {
-  const { lang } = params
-  const { name } = searchParams
+  const { lang } = await params
+  const { name } = await searchParams
   const [pageData, { t }, email] = await Promise.all([
     getContactPageContent(),
     getTranslation(lang),
@@ -111,7 +111,7 @@ const ThankYouPage = async ({ params, searchParams }: PageProps) => {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { lang } = params
+  const { lang } = await params
   const pageData = await getContactPageContent()
   const builder = imageUrlBuilder(client)
   const ogImage = pageData.seo?.openGraphImage?.asset?._ref
