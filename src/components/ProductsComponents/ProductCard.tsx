@@ -33,7 +33,9 @@ const ProductCard = ({
             </div>
 
             <div className="text-gray-500 text-sm flex items-center justify-center">
-              <span className="mr-1 mt-0.5">DOP</span>
+              <span className="mr-1 mt-0.5" translate="no">
+                DOP
+              </span>
               {product.price}
             </div>
           </div>

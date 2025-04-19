@@ -42,7 +42,7 @@ const ProductPageCard = ({ product, lang }: { product: any; lang: string }) => {
             {product.shortDescription[lang]}
           </div>
           <div className="flex justify-center mt-10 lg:mt-auto">
-            <AddToCartButton product={product} />
+            <AddToCartButton product={product} selectedLang={lang} />
           </div>
         </div>
       </div>

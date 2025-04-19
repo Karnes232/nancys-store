@@ -2,6 +2,7 @@
 import React, { useContext } from "react"
 import { CartContext } from "../../context/cart"
 import { ToastContainer, toast } from "react-toastify"
+import useTranslations from "@/i18n/useTranslations"
 
 // const notifyAddedToCart = (product) =>
 //     toast.success(`${product.rentalItem} added to cart!`, {
@@ -48,8 +49,16 @@ import { ToastContainer, toast } from "react-toastify"
 //       },
 //     });
 
-const AddToCartButton = ({ product }: { product: any }) => {
+const AddToCartButton = ({
+  product,
+  selectedLang,
+}: {
+  product: any
+  selectedLang: string
+}) => {
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext)
+  const t = useTranslations(selectedLang)
+
   function handleClick(e) {
     e.preventDefault()
 
@@ -72,7 +81,7 @@ const AddToCartButton = ({ product }: { product: any }) => {
           onClick={handleClick}
           className={`bg-black/75 hover:bg-black/50 text-white font-bold py-1 px-4 rounded `}
         >
-          Add to Cart
+          {t("addToCart")}
         </button>
       ) : (
         <div className="flex gap-4">

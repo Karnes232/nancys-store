@@ -3,6 +3,7 @@
   "Cart": "Carrito",
   "Contact": "Contacto",
   "copyright": "Todos los derechos reservados",
+  "addToCart": "Agregar al Carrito",
   "ThankYouPage": {
     "thank_you_message": "¡Gracias {{name}}, nuestro equipo se pondrá en contacto contigo pronto!",
     "contact_follow_up": "No dudes en",

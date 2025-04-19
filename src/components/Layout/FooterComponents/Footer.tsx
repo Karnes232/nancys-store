@@ -18,9 +18,7 @@ const Footer = async () => {
   `)
 
   if (!data) return null
-  console.log(data.instagram)
   const instatag = data.instagram.split("/")[3]
-  console.log(instatag)
   return (
     <div className="flex flex-col xl:max-w-6xl xl:w-full xl:mx-auto justify-between py-10 mx-8 md:mx-10">
       <div className="flex justify-center items-center">
