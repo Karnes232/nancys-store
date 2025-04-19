@@ -2,6 +2,12 @@
   "Home": "Inicio",
   "Cart": "Carrito",
   "Contact": "Contacto",
+  "ThankYouPage": {
+    "thank_you_message": "¡Gracias {{name}}, nuestro equipo se pondrá en contacto contigo pronto!",
+    "contact_follow_up": "No dudes en",
+    "contact_us": "contactarnos",
+    "with_questions": "si tienes alguna pregunta o inquietud."
+  },
   "common": {
     "welcome": "Bienvenidos",
     "heroSubheading": "Descubre nuestra historia",

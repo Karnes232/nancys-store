@@ -2,6 +2,12 @@
   "Home": "Home",
   "Cart": "Cart",
   "Contact": "Contact",
+  "ThankYouPage": {
+    "thank_you_message": "Thank you {{name}}, our team will reach out to you shortly!",
+    "contact_follow_up": "Please feel free to",
+    "contact_us": "contact us",
+    "with_questions": "with any questions or concerns."
+  },
   "common": {
     "welcome": "Welcome",
     "heroSubheading": "Discover our story",

@@ -1,8 +1,10 @@
 "use client"
 
 import React from "react"
+import { useRouter } from "next/navigation"
 
 const ContactForm = () => {
+  const router = useRouter()
   const handleSubmit = async (formData: FormData) => {
     const name = formData.get("name")
     const email = formData.get("email")
@@ -23,6 +25,11 @@ const ContactForm = () => {
           ]),
         ).toString(),
       })
+      if (response.ok) {
+        router.push(`/thankyou/?name=${name}`)
+      } else {
+        // Handle error
+      }
     } catch (error) {
       console.error("Submission error:", error)
     }
@@ -65,13 +72,13 @@ const ContactForm = () => {
           type="text"
           name="name"
           id="name"
-          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer dark:text-white"
+          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer dark:bg-black dark:text-white dark:border-gray-600"
           placeholder=" "
           required
         />
         <label
           htmlFor="name"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-200 duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 dark:peer-focus:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
         >
           Full Name
         </label>
@@ -81,13 +88,13 @@ const ContactForm = () => {
           type="email"
           name="email"
           id="email"
-          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer dark:bg-black dark:text-white dark:border-gray-600"
           placeholder=" "
           required
         />
         <label
           htmlFor="email"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-200 duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 dark:peer-focus:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
         >
           Email Address
         </label>
@@ -98,13 +105,13 @@ const ContactForm = () => {
           type="tel"
           name="telephone"
           id="telephone"
-          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer dark:bg-black dark:text-white dark:border-gray-600"
           placeholder=" "
           required
         />
         <label
           htmlFor="telephone"
-          className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-200 duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 dark:peer-focus:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
         >
           Telephone
         </label>
@@ -113,7 +120,7 @@ const ContactForm = () => {
       <div className="relative z-0 mb-6 w-full group">
         <label
           htmlFor="message"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-500"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-200"
         >
           Your message
         </label>
@@ -121,14 +128,14 @@ const ContactForm = () => {
           id="message"
           name="message"
           rows={4}
-          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:text-white dark:bg-black"
+          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-black dark:text-white dark:placeholder:text-gray-200"
           placeholder="Leave a comment..."
         ></textarea>
       </div>
 
       <button
         type="submit"
-        className="text-white bg-black/75 hover:bg-black/50 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-white/75 dark:hover:bg-white/50 dark:focus:ring-blue-800"
+        className="text-white bg-black/75 hover:bg-black/50 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-white/50 dark:text-white dark:hover:bg-white/25"
       >
         Submit
       </button>

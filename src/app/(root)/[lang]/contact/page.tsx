@@ -120,10 +120,10 @@ export async function generateMetadata({
       images: ogImage ? [{ url: ogImage }] : undefined,
     },
     alternates: {
-      canonical: `/${lang}`,
+      canonical: lang === "en" ? "/contact" : `/${lang}/contact`,
       languages: {
-        en: "/en",
-        es: "/es",
+        en: "/contact",
+        es: "/es/contact",
       },
     },
   }
