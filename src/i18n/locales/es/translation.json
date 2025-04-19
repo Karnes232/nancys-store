@@ -2,6 +2,7 @@
   "Home": "Inicio",
   "Cart": "Carrito",
   "Contact": "Contacto",
+  "copyright": "Todos los derechos reservados",
   "ThankYouPage": {
     "thank_you_message": "¡Gracias {{name}}, nuestro equipo se pondrá en contacto contigo pronto!",
     "contact_follow_up": "No dudes en",

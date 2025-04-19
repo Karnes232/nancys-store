@@ -41,17 +41,18 @@ const ProductCardSwiper = ({
       <Swiper
         effect={"fade"}
         loop={true}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
+        // autoplay={{
+        //   delay: 5000,
+        //   disableOnInteraction: false,
+        // }}
         modules={[Autoplay, EffectFade]}
         className={`mySwiper`}
+        fadeEffect={{ crossFade: true }}
       >
         {photoListEdited.map((image, index) => {
           return (
             <SwiperSlide
-              className={`w-full object-cover ${swiperClassName} rounded-t-lg overflow-hidden`}
+              className={`w-full object-cover ${swiperClassName} rounded-t-lg overflow-hidden [&:not(.swiper-slide-active)]:opacity-0!`}
               key={index}
             >
               <Image

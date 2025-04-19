@@ -69,8 +69,8 @@ const ProductHeroSwiper = ({
       "linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8))",
   }
 
-  const height = "h-[70vh]"
-  const blankDivHeight = "h-[43vh] lg:h-[65vh] xl:h-[65vh]"
+  const height = "h-[70vh] xl:h-[69vh] 2xl:h-[70vh]"
+  const blankDivHeight = "h-[43vh] lg:h-[65vh] xl:h-[65vh] 2xl:h-[65vh]"
   const translatePosition = "-translate-y-2/3"
   return (
     <>
@@ -127,7 +127,7 @@ const ProductHeroSwiper = ({
               alt={effectShapeWhite.alt}
               width={1000}
               height={1000}
-              className={`z-50 !absolute -bottom-[1px] w-screen dark:hidden`}
+              className={`z-50 !absolute -bottom-[1px] xl:-bottom-[.2rem] 2xl:-bottom-[0.5rem] w-screen dark:hidden`}
             />
           )}
           {effectShapeBlack.imageUrl && (

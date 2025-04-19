@@ -10,7 +10,6 @@ const ContactForm = () => {
     const email = formData.get("email")
     const telephone = formData.get("telephone")
     const message = formData.get("message")
-    console.log(name, email, telephone, message)
 
     try {
       const response = await fetch("/__forms.html", {

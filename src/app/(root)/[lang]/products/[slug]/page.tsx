@@ -57,7 +57,7 @@ const ProductPage = async ({ params }: PageProps) => {
       </main>
     )
   }
-  console.log(product[0])
+
   return (
     <main>
       <ProductHeroSwiper
