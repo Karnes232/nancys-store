@@ -1,4 +1,5 @@
 import ProductHeroSwiper from "@/components/HeroComponent/ProductHeroSwiper"
+import ProductPageCard from "@/components/ProductsComponents/ProductPageCard"
 import { getTranslation } from "@/i18n"
 import { client } from "@/sanity/lib/client"
 import React from "react"
@@ -54,13 +55,16 @@ const ProductPage = async ({ params }: PageProps) => {
       </main>
     )
   }
-
+  console.log(product[0])
   return (
     <main>
       <ProductHeroSwiper
         images={product[0].imagesList}
         mainImage={product[0].mainImage}
       />
+      <div className="my-5 md:my-20 lg:my-5">
+        <ProductPageCard product={product[0]} lang={lang} />
+      </div>
     </main>
   )
 }

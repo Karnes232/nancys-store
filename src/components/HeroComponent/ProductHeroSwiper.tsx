@@ -70,7 +70,7 @@ const ProductHeroSwiper = ({
   }
 
   const height = "h-[70vh]"
-  const blankDivHeight = "h-[73vh] lg:h-[80vh] xl:h-[85vh]"
+  const blankDivHeight = "h-[43vh] lg:h-[65vh] xl:h-[65vh]"
   const translatePosition = "-translate-y-2/3"
   return (
     <>

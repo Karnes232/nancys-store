@@ -1,9 +1,11 @@
+"use client"
 import React from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 
 // Import Swiper styles
 import "swiper/css"
 import "swiper/css/effect-fade"
+
 import { Autoplay, EffectFade } from "swiper/modules"
 import Image from "next/image"
 type ProductCardSwiperProps = {
@@ -21,9 +23,14 @@ type ProductCardSwiperProps = {
     }
     alt: string
   }
+  swiperClassName?: string
 }
 
-const ProductCardSwiper = ({ images, mainImage }: ProductCardSwiperProps) => {
+const ProductCardSwiper = ({
+  images,
+  mainImage,
+  swiperClassName,
+}: ProductCardSwiperProps) => {
   let photoListEdited = [{ url: mainImage.asset.url, alt: mainImage.alt }]
   images.forEach(image => {
     photoListEdited.push({ url: image.image.url, alt: image.alt })
@@ -44,7 +51,7 @@ const ProductCardSwiper = ({ images, mainImage }: ProductCardSwiperProps) => {
         {photoListEdited.map((image, index) => {
           return (
             <SwiperSlide
-              className={`w-full object-cover h-64 lg:h-60`}
+              className={`w-full object-cover ${swiperClassName} rounded-t-lg overflow-hidden`}
               key={index}
             >
               <Image
@@ -52,7 +59,7 @@ const ProductCardSwiper = ({ images, mainImage }: ProductCardSwiperProps) => {
                 alt={image.alt}
                 width={400}
                 height={400}
-                className={`w-full object-cover h-64 lg:h-60`}
+                className={`w-full object-cover ${swiperClassName}`}
               />
             </SwiperSlide>
           )

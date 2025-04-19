@@ -3,6 +3,7 @@ import { PortableText } from "@portabletext/react"
 import imageUrlBuilder from "@sanity/image-url"
 import TextComponentParagraph from "./TextComponentParagraph"
 import TextComponentHeading from "./TextComponentHeading"
+import Image from "next/image"
 interface LocaleBlockContent {
   _type: string
   en: any[]
@@ -23,12 +24,19 @@ const components = {
 
       return (
         <figure className="my-8">
-          <img
+          <Image
+            src={imageUrl}
+            alt={value.alt || ""}
+            width={1000}
+            height={1000}
+            className="w-full rounded-lg"
+          />
+          {/* <img
             src={imageUrl}
             alt={value.alt || ""}
             loading="lazy"
             className="w-full rounded-lg"
-          />
+          /> */}
           {value.caption && (
             <figcaption className="mt-2 text-center text-sm text-gray-600">
               {value.caption}

@@ -25,7 +25,7 @@ export default async function RootPage({
   const pageParams = {
     lang: fallbackLng,
   }
-  
+
   return (
     <ThankYouPage
       params={Promise.resolve(pageParams)}

@@ -33,28 +33,6 @@ const ContactForm = () => {
     } catch (error) {
       console.error("Submission error:", error)
     }
-    // const result = await submitForm(formData)
-    // if (result.success) {
-    //   try {
-    //     const response = await fetch("/__forms.html", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/x-www-form-urlencoded",
-    //       },
-    //       body: new URLSearchParams(result.data).toString(),
-    //     })
-
-    //     if (response.ok) {
-    //       router.push(`/thankyou/?name=${result.data.name}`)
-    //     } else {
-    //       // Handle error
-    //     }
-    //   } catch (error) {
-    //     console.error("Submission error:", error)
-    //   }
-    // } else {
-    //   console.log("Submission error")
-    // }
   }
   return (
     <form

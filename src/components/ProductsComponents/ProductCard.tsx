@@ -22,6 +22,7 @@ const ProductCard = ({
         <ProductCardSwiper
           images={product.imagesList}
           mainImage={product.mainImage}
+          swiperClassName="h-64 lg:h-60"
         />
         <div className="px-6 py-4">
           <div
