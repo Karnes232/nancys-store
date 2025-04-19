@@ -9,13 +9,13 @@ export const generateMetadata = async (): Promise<Metadata> => {
   )
   return langGenerateMetadata({
     params: Promise.resolve({ lang: fallbackLng }),
-    searchParams: {},
+    searchParams: Promise.resolve({}),
   })
 }
 
 interface RootPageProps {
   params: Promise<{}>
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export default async function RootPage({
@@ -25,11 +25,11 @@ export default async function RootPage({
   const pageParams = {
     lang: fallbackLng,
   }
-
+  
   return (
     <ThankYouPage
       params={Promise.resolve(pageParams)}
-      searchParams={searchParams}
+      searchParams={Promise.resolve({})}
     />
   )
 }
