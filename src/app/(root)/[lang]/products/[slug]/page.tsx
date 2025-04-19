@@ -1,3 +1,4 @@
+import BlockContent from "@/components/ProductsComponents/BlockContent"
 import ProductHeroSwiper from "@/components/HeroComponent/ProductHeroSwiper"
 import ProductPageCard from "@/components/ProductsComponents/ProductPageCard"
 import { getTranslation } from "@/i18n"
@@ -33,7 +34,8 @@ async function getProduct(slug: string) {
           url
         }
       },
-      shortDescription
+      shortDescription,
+      content
     }
     `
   const result = await client.fetch(query)
@@ -62,8 +64,18 @@ const ProductPage = async ({ params }: PageProps) => {
         images={product[0].imagesList}
         mainImage={product[0].mainImage}
       />
-      <div className="my-5 md:my-20 lg:my-5">
+      <div className="my-5 md:my-20 lg:my-5 xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <ProductPageCard product={product[0]} lang={lang} />
+      </div>
+      <div className="my-5 xl:max-w-6xl 2xl:max-w-7xl mx-auto">
+        <BlockContent
+          content={{
+            _type: "localeBlock",
+            en: product[0].content,
+            es: product[0].content,
+          }}
+          language={lang as "en" | "es"}
+        />
       </div>
     </main>
   )

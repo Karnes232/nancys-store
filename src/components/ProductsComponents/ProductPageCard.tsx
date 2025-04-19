@@ -1,4 +1,3 @@
-import Image from "next/image"
 import React from "react"
 import ProductCardSwiper from "./ProductCardSwiper"
 import { Playfair_Display } from "next/font/google"
@@ -12,7 +11,7 @@ const playfairDisplay = Playfair_Display({
 const ProductPageCard = ({ product, lang }: { product: any; lang: string }) => {
   return (
     <section>
-      <div className="flex flex-col lg:flex-row gap-4 2xl:gap-20 xl:max-w-6xl 2xl:max-w-7xl  lg:mx-auto mx-5">
+      <div className="flex flex-col lg:flex-row gap-4 2xl:gap-20">
         <div className="w-full max-w-sm mx-auto lg:w-1/2 xl:max-w-lg">
           <ProductCardSwiper
             images={product.imagesList}
@@ -43,11 +42,7 @@ const ProductPageCard = ({ product, lang }: { product: any; lang: string }) => {
             {product.shortDescription[lang]}
           </div>
           <div className="flex justify-center mt-10 lg:mt-auto">
-            <AddToCartButton
-              text="Add to cart"
-              buttonClassName="bg-gray-500 text-white px-4 py-2 rounded-md"
-              product={product}
-            />
+            <AddToCartButton product={product} />
           </div>
         </div>
       </div>

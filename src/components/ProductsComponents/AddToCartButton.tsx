@@ -48,15 +48,7 @@ import { ToastContainer, toast } from "react-toastify"
 //       },
 //     });
 
-const AddToCartButton = ({
-  text,
-  buttonClassName,
-  product,
-}: {
-  text: string
-  buttonClassName: string
-  product: any
-}) => {
+const AddToCartButton = ({ product }: { product: any }) => {
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext)
   function handleClick(e) {
     e.preventDefault()
@@ -78,7 +70,7 @@ const AddToCartButton = ({
         <button
           type="submit"
           onClick={handleClick}
-          className={`bg-[#E4C05C] hover:bg-[#C6A855] text-white font-bold py-1 px-4 rounded `}
+          className={`bg-black/75 hover:bg-black/50 text-white font-bold py-1 px-4 rounded `}
         >
           Add to Cart
         </button>
@@ -97,7 +89,7 @@ const AddToCartButton = ({
                 removeFromCart(product)
               }
             }}
-            className={`bg-[#E4C05C] hover:bg-[#C6A855] text-white font-bold py-1 px-4 rounded`}
+            className={`bg-black/75 hover:bg-black/50 text-white font-bold py-1 px-4 rounded`}
           >
             -
           </button>
@@ -111,7 +103,7 @@ const AddToCartButton = ({
           <button
             type="submit"
             onClick={handleClick}
-            className={`bg-[#E4C05C] hover:bg-[#C6A855] text-white font-bold py-1 px-4 rounded`}
+            className={`bg-black/75 hover:bg-black/50 text-white font-bold py-1 px-4 rounded`}
           >
             +
           </button>

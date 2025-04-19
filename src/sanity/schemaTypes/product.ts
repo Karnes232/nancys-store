@@ -99,6 +99,12 @@ export default defineType({
       type: "localeString",
     }),
     defineField({
+      name: "content",
+      title: "Page Content",
+      type: "localeBlockContent",
+      description: "Main content of the page",
+    }),
+    defineField({
       name: "seo",
       title: "SEO & Metadata",
       type: "object",
