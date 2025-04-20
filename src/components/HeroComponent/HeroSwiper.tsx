@@ -34,19 +34,12 @@ const playfairDisplay = Playfair_Display({
   weight: ["400", "700"],
 })
 
-const HeroSwiper = ({
-  heroImages,
-  heroHeading,
-  heroSubheading,
-  className,
-}: {
+const HeroSwiper: React.FC<{
   heroImages: any
   heroHeading: string
   heroSubheading: string
   className: string
-}) => {
-  // const [mediaItems, setMediaItems] = useState<any[]>([])
-  // const [isLoading, setIsLoading] = useState(true)
+}> = ({ heroImages, heroHeading, heroSubheading, className }) => {
   const [effectShapeBlack, setEffectShapeBlack] = useState({
     imageUrl: "",
     alt: "",

@@ -49,7 +49,12 @@ const ContactForm = () => {
           type="text"
           name="name"
           id="name"
-          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer dark:bg-black dark:text-white dark:border-gray-600 dark:focus:text-white dark:focus:bg-black dark:[&:not(:placeholder-shown)]:bg-black"
+          style={{
+            WebkitBoxShadow:
+              "0 0 0 30px var(--input-background-color, white) inset",
+            WebkitTextFillColor: "var(--input-text-color, black)",
+          }}
+          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer dark:bg-black dark:text-white dark:border-gray-600 dark:[--input-background-color:black] dark:[--input-text-color:white]"
           placeholder=" "
           required
         />
@@ -65,7 +70,12 @@ const ContactForm = () => {
           type="email"
           name="email"
           id="email"
-          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer dark:bg-black dark:text-white dark:border-gray-600"
+          style={{
+            WebkitBoxShadow:
+              "0 0 0 30px var(--input-background-color, white) inset",
+            WebkitTextFillColor: "var(--input-text-color, black)",
+          }}
+          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer dark:bg-black dark:text-white dark:border-gray-600 dark:[--input-background-color:black] dark:[--input-text-color:white]"
           placeholder=" "
           required
         />
@@ -82,7 +92,12 @@ const ContactForm = () => {
           type="tel"
           name="telephone"
           id="telephone"
-          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer dark:bg-black dark:text-white dark:border-gray-600"
+          style={{
+            WebkitBoxShadow:
+              "0 0 0 30px var(--input-background-color, white) inset",
+            WebkitTextFillColor: "var(--input-text-color, black)",
+          }}
+          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer dark:bg-black dark:text-white dark:border-gray-600 dark:[--input-background-color:black] dark:[--input-text-color:white]"
           placeholder=" "
           required
         />

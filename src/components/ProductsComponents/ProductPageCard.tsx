@@ -32,7 +32,9 @@ const ProductPageCard = ({ product, lang }: { product: any; lang: string }) => {
             </div>
 
             <div className="text-gray-500 text-sm md:text-base xl:text-lg flex items-center justify-center lg:mr-3">
-              <span className="mr-1 mt-0.5" translate="no">DOP</span>
+              <span className="mr-1 mt-0.5" translate="no">
+                DOP
+              </span>
               {product.price}
             </div>
           </div>
