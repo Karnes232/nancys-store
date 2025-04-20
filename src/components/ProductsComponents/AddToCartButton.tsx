@@ -57,6 +57,8 @@ const AddToCartButton = ({
   selectedLang: string
 }) => {
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext)
+  console.log(product)
+  console.log(cartItems)
   const t = useTranslations(selectedLang)
 
   function handleClick(e) {
@@ -73,9 +75,7 @@ const AddToCartButton = ({
 
   return (
     <div className="flex justify-center items-center mb-5">
-      {!cartItems.find(
-        rentalItem => rentalItem.rentalItem === product.rentalItem,
-      ) ? (
+      {!cartItems.find(rentalItem => rentalItem.name.en === product.name.en) ? (
         <button
           type="submit"
           onClick={handleClick}
@@ -89,7 +89,7 @@ const AddToCartButton = ({
             type="submit"
             onClick={() => {
               const cartItem = cartItems.find(
-                rentalItem => rentalItem.rentalItem === product.rentalItem,
+                rentalItem => rentalItem.name.en === product.name.en,
               )
               if (cartItem.quantity === 1) {
                 // notifyRemovedFromCart(product);
@@ -105,7 +105,7 @@ const AddToCartButton = ({
           <p className="text-gray-600 flex justify-center items-center">
             {
               cartItems.find(
-                rentalItem => rentalItem.rentalItem === product.rentalItem,
+                rentalItem => rentalItem.name.en === product.name.en,
               ).quantity
             }
           </p>

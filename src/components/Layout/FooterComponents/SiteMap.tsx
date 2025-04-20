@@ -30,6 +30,13 @@ const SiteMap = () => {
           {t("Home")}{" "}
         </Link>
         <Link
+          href={getLocalizedPath("/about-us")}
+          className="no-underline uppercase text-sm space-x-3 transition-all duration-300 hover:scale-110"
+        >
+          {" "}
+          {t("About Us")}{" "}
+        </Link>
+        <Link
           href={getLocalizedPath("/cart")}
           className="no-underline uppercase text-sm space-x-3 transition-all duration-300 hover:scale-110"
         >

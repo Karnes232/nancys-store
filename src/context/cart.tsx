@@ -39,14 +39,15 @@ export const CartProvider = ({
   }, [])
 
   const addToCart = (item: CartItem): void => {
+    console.log(item.name.en)
     const isItemInCart = cartItems.find(
-      cartItem => cartItem.rentalItem === item.rentalItem,
+      cartItem => cartItem.name.en === item.name.en,
     )
 
     if (isItemInCart) {
       setCartItems(
         cartItems.map(cartItem =>
-          cartItem.rentalItem === item.rentalItem
+          cartItem.name.en === item.name.en
             ? { ...cartItem, quantity: cartItem.quantity + 1 }
             : cartItem,
         ),
@@ -60,17 +61,17 @@ export const CartProvider = ({
 
   const removeFromCart = (item: CartItem): void => {
     const isItemInCart = cartItems.find(
-      cartItem => cartItem.rentalItem === item.rentalItem,
+      cartItem => cartItem.name.en === item.name.en,
     )
 
     if (isItemInCart && isItemInCart.quantity === 1) {
       setCartItems(
-        cartItems.filter(cartItem => cartItem.rentalItem !== item.rentalItem),
+        cartItems.filter(cartItem => cartItem.name.en !== item.name.en),
       )
     } else {
       setCartItems(
         cartItems.map(cartItem =>
-          cartItem.rentalItem === item.rentalItem
+          cartItem.name.en === item.name.en
             ? { ...cartItem, quantity: cartItem.quantity - 1 }
             : cartItem,
         ),

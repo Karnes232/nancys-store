@@ -5,6 +5,7 @@ import { PageData } from "@/types/sanity.types"
 import React from "react"
 import { Metadata } from "next"
 import imageUrlBuilder from "@sanity/image-url"
+import Cart from "@/components/CartComponents/Cart"
 
 async function getCartPageContent() {
   const query = `
@@ -73,8 +74,8 @@ const CartPage = async ({ params }: PageProps) => {
         }
         className="hero-swiper"
       />
-      <div className="bg-white dark:bg-black h-screen">
-        <h2>{t("common.welcome")}</h2>
+      <div className="my-5">
+        <Cart />
       </div>
     </main>
   )
