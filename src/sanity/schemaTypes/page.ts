@@ -11,7 +11,7 @@ export default defineType({
       title: "Page Title",
       type: "string",
       validation: Rule => Rule.required(),
-      description: "Title of the page for internal reference",
+      description: "Title of the page for internal reference, DO NOT CHANGE",
     }),
     defineField({
       name: "slug",
