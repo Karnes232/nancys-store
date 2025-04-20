@@ -12,11 +12,7 @@ const Header = () => {
           <NavBar />
         </div>
         <div className="flex-1 flex justify-center">
-          <Logo
-            width={300}
-            height={160}
-            className="sm:w-[300px] sm:h-[160px] lg:w-[200px] lg:h-[120px]"
-          />
+          <Logo />
         </div>
         <div className="hidden lg:block absolute right-4">
           <HamburgerMenu />
