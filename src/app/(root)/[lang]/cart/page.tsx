@@ -75,7 +75,7 @@ const CartPage = async ({ params }: PageProps) => {
         className="hero-swiper"
       />
       <div className="my-5">
-        <Cart />
+        <Cart selectedLang={lang} />
       </div>
     </main>
   )

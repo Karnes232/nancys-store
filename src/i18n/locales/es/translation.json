@@ -18,5 +18,8 @@
   },
   "search": {
     "products": "Buscar Productos..."
+  },
+  "cart": {
+    "title": "Carrito de Compras"
   }
 }

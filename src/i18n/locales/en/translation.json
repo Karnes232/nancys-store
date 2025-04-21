@@ -18,5 +18,8 @@
   },
   "search": {
     "products": "Search Products..."
+  },
+  "cart": {
+    "title": "Shopping Cart"
   }
 }
