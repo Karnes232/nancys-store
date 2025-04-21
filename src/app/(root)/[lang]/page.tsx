@@ -85,7 +85,7 @@ const HomePage = async ({ params }: PageProps) => {
           language={lang as "en" | "es"}
         />
       </div>
-      <div>
+      <div className="">
         <ProductsDisplay lang={lang} />
       </div>
     </main>

@@ -18,15 +18,15 @@ const ProductCard = ({
 }) => {
   return (
     <Link href={`/${selectedLang}/products/${product.slug.current}`}>
-      <div className="max-w-sm min-w-[20rem] xl:max-w-xs my-5 mx-2 rounded-lg overflow-hidden shadow-lg dark:shadow-slate-900">
+      <div className="max-w-sm w-[22rem] xl:max-w-xs my-5 mx-2 rounded-lg overflow-hidden shadow-lg dark:shadow-slate-900">
         <ProductCardSwiper
           images={product.imagesList}
           mainImage={product.mainImage}
           swiperClassName="h-64 lg:h-60"
         />
-        <div className="px-6 py-4">
+        <div className="px-6 py-4 mt-2 mb-5">
           <div
-            className={`${playfairDisplay.className} font-bold text-lg mb-2 items-center flex justify-between`}
+            className={`${playfairDisplay.className} font-bold text-lg mb-5 items-center flex justify-between`}
           >
             <div className="truncate mr-3" translate="no">
               {product.name[selectedLang]}

@@ -94,7 +94,7 @@ const ProductPage = async ({ params }: PageProps) => {
         images={product[0].imagesList}
         mainImage={product[0].mainImage}
       />
-      <div className="my-5 md:my-20 lg:my-5 xl:max-w-6xl 2xl:max-w-7xl mx-auto">
+      <div className="mt-10 mb-5 md:my-20 lg:my-5 xl:max-w-6xl 2xl:max-w-7xl mx-5 md:mx-auto">
         <ProductPageCard product={product[0]} lang={lang} />
       </div>
       <div className="my-5 xl:max-w-6xl 2xl:max-w-7xl mx-auto">

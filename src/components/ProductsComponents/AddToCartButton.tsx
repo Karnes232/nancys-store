@@ -79,7 +79,7 @@ const AddToCartButton = ({
         <button
           type="submit"
           onClick={handleClick}
-          className={`bg-black/75 hover:bg-black/50 text-white font-bold py-1 px-4 rounded `}
+          className={`bg-black/75 hover:bg-black/50 text-white font-bold py-1 px-4 rounded dark:bg-white dark:text-black`}
         >
           {t("addToCart")}
         </button>
@@ -98,11 +98,11 @@ const AddToCartButton = ({
                 removeFromCart(product)
               }
             }}
-            className={`bg-black/75 hover:bg-black/50 text-white font-bold py-1 px-4 rounded`}
+            className={`bg-black/75 hover:bg-black/50 text-white font-bold py-1 px-4 rounded dark:bg-white dark:text-black`}
           >
             -
           </button>
-          <p className="text-gray-600 flex justify-center items-center">
+          <p className="text-gray-600 dark:text-gray-300 flex justify-center items-center">
             {
               cartItems.find(
                 rentalItem => rentalItem.name.en === product.name.en,
@@ -112,7 +112,7 @@ const AddToCartButton = ({
           <button
             type="submit"
             onClick={handleClick}
-            className={`bg-black/75 hover:bg-black/50 text-white font-bold py-1 px-4 rounded`}
+            className={`bg-black/75 hover:bg-black/50 text-white font-bold py-1 px-4 rounded dark:bg-white dark:text-black`}
           >
             +
           </button>

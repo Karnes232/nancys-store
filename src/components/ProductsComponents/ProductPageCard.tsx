@@ -31,7 +31,7 @@ const ProductPageCard = ({ product, lang }: { product: any; lang: string }) => {
               {product.name[lang]}
             </div>
 
-            <div className="text-gray-500 text-sm md:text-base xl:text-lg flex items-center justify-center lg:mr-3">
+            <div className="text-gray-500 dark:text-white text-sm md:text-base xl:text-lg flex items-center justify-center lg:mr-3">
               <span className="mr-1 mt-0.5" translate="no">
                 DOP
               </span>
@@ -39,7 +39,7 @@ const ProductPageCard = ({ product, lang }: { product: any; lang: string }) => {
             </div>
           </div>
           <div
-            className={`${playfairDisplay.className} text-gray-500 text-sm md:text-base xl:text-lg`}
+            className={`${playfairDisplay.className} text-gray-500 dark:text-white text-sm md:text-base xl:text-lg`}
           >
             {product.shortDescription[lang]}
           </div>

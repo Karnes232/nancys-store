@@ -63,7 +63,7 @@ export function ProductsFilter({
         products={products}
         selectedLang={lang}
       />
-      <div className="flex flex-col justify-center items-center md:flex-row md:flex-wrap md:justify-evenly max-w-5xl xl:max-w-6xl mx-auto">
+      <div className="flex flex-col justify-center items-center md:flex-row md:flex-wrap md:justify-evenly max-w-5xl xl:max-w-6xl mx-5 md:mx-auto">
         {filteredProducts.map(product => {
           return (
             <ProductCard
