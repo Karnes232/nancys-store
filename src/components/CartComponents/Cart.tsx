@@ -3,6 +3,7 @@ import { CartContext } from "@/context/cart"
 import React, { useContext } from "react"
 import TextComponentHeading from "../BlockContent/TextComponentHeading"
 import useTranslations from "@/i18n/useTranslations"
+import ProductCartCard from "../ProductsComponents/ProductCartCard"
 
 const Cart = ({ selectedLang }: { selectedLang: string }) => {
   const t = useTranslations(selectedLang)
@@ -16,12 +17,16 @@ const Cart = ({ selectedLang }: { selectedLang: string }) => {
         HeadingClassName="mb-4 mt-8"
       />
       <div className="flex flex-col justify-center items-center gap-5 mx-auto">
-        {cartItems.map((item, index) => (
-          <div key={index}>
-            <h1>{item.name[selectedLang]}</h1>
-            <p>{item.price}</p>
-          </div>
-        ))}
+        {cartItems.map((item, index) => {
+          console.log(item)
+          return (
+            <ProductCartCard
+              product={item}
+              selectedLang={selectedLang}
+              key={index}
+            />
+          )
+        })}
       </div>
     </div>
   )

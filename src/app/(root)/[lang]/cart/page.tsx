@@ -6,7 +6,7 @@ import React from "react"
 import { Metadata } from "next"
 import imageUrlBuilder from "@sanity/image-url"
 import Cart from "@/components/CartComponents/Cart"
-
+import { ToastContainer } from "react-toastify"
 async function getCartPageContent() {
   const query = `
           *[_type == "page" && title == "Cart"][0] {
@@ -56,6 +56,7 @@ const CartPage = async ({ params }: PageProps) => {
 
   return (
     <main>
+      <ToastContainer />
       <HeroSwiper
         heroImages={pageData.heroImages}
         heroHeading={

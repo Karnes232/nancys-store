@@ -20,6 +20,8 @@
     "products": "Search Products..."
   },
   "cart": {
-    "title": "Shopping Cart"
+    "title": "Shopping Cart",
+    "unitPrice": "Unit Price",
+    "total": "Total"
   }
 }

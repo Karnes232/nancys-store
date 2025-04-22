@@ -42,8 +42,6 @@ const AddToCartButton = ({
   selectedLang: string
 }) => {
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext)
-  console.log(product)
-  console.log(cartItems)
   const t = useTranslations(selectedLang)
 
   function handleClick(e) {
@@ -60,7 +58,7 @@ const AddToCartButton = ({
 
   return (
     <div className="flex justify-center items-center mb-5">
-      {!cartItems.find(rentalItem => rentalItem.name.en === product.name.en) ? (
+      {!cartItems.find(item => item.name.en === product.name.en) ? (
         <button
           type="submit"
           onClick={handleClick}
