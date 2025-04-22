@@ -1,53 +1,38 @@
 "use client"
 import React, { useContext } from "react"
 import { CartContext } from "../../context/cart"
-import { ToastContainer, toast } from "react-toastify"
+import { toast } from "react-toastify"
 import useTranslations from "@/i18n/useTranslations"
 
-// const notifyAddedToCart = (product) =>
-//     toast.success(`${product.rentalItem} added to cart!`, {
-//       position: "top-center",
-//       autoClose: 2000,
-//       hideProgressBar: true,
-//       closeOnClick: true,
-//       pauseOnHover: true,
-//       draggable: true,
-//       theme: "colored",
-//       style: {
-//         backgroundColor: "#fff",
-//         color: "#000",
-//       },
-//     });
+const notifyAddedToCart = (productName: string) =>
+  toast.success(`${productName} added to cart!`, {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "colored",
+    style: {
+      backgroundColor: "#fff",
+      color: "#000",
+    },
+  })
 
-//   const notifyCartFull = (product) =>
-//     toast.error(`Your Cart is Full!`, {
-//       position: "top-center",
-//       autoClose: 2000,
-//       hideProgressBar: true,
-//       closeOnClick: true,
-//       pauseOnHover: true,
-//       draggable: true,
-//       theme: "colored",
-//       style: {
-//         backgroundColor: "#fff",
-//         color: "#000",
-//       },
-//     });
-
-//   const notifyRemovedFromCart = (product) =>
-//     toast.error(`${product.rentalItem} removed from cart!`, {
-//       position: "top-center",
-//       autoClose: 2000,
-//       hideProgressBar: true,
-//       closeOnClick: true,
-//       pauseOnHover: true,
-//       draggable: true,
-//       theme: "colored",
-//       style: {
-//         backgroundColor: "#000",
-//         color: "#fff",
-//       },
-//     });
+const notifyRemovedFromCart = (productName: string) =>
+  toast.error(`${productName} removed from cart!`, {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "colored",
+    style: {
+      backgroundColor: "#000",
+      color: "#fff",
+    },
+  })
 
 const AddToCartButton = ({
   product,
@@ -66,7 +51,7 @@ const AddToCartButton = ({
 
     addToCart(product)
     if (cartItems.length < 4) {
-      //   notifyAddedToCart(product);
+      notifyAddedToCart(product.name[selectedLang])
     } else {
       console.log(product)
       // addVariantToCart(variantId, quantity)
@@ -89,10 +74,10 @@ const AddToCartButton = ({
             type="submit"
             onClick={() => {
               const cartItem = cartItems.find(
-                rentalItem => rentalItem.name.en === product.name.en,
+                item => item.name.en === product.name.en,
               )
               if (cartItem.quantity === 1) {
-                // notifyRemovedFromCart(product);
+                notifyRemovedFromCart(product.name[selectedLang])
                 removeFromCart(product)
               } else {
                 removeFromCart(product)
@@ -103,11 +88,7 @@ const AddToCartButton = ({
             -
           </button>
           <p className="text-gray-600 dark:text-gray-300 flex justify-center items-center">
-            {
-              cartItems.find(
-                rentalItem => rentalItem.name.en === product.name.en,
-              ).quantity
-            }
+            {cartItems.find(item => item.name.en === product.name.en).quantity}
           </p>
           <button
             type="submit"

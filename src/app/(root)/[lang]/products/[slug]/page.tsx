@@ -6,7 +6,7 @@ import { client } from "@/sanity/lib/client"
 import React from "react"
 import imageUrlBuilder from "@sanity/image-url"
 import { Metadata } from "next"
-
+import { ToastContainer } from "react-toastify"
 export interface PageProps {
   params: Promise<{
     lang: string
@@ -90,6 +90,7 @@ const ProductPage = async ({ params }: PageProps) => {
 
   return (
     <main>
+      <ToastContainer />
       <ProductHeroSwiper
         images={product[0].imagesList}
         mainImage={product[0].mainImage}
