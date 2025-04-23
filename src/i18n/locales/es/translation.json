@@ -22,6 +22,8 @@
   "cart": {
     "title": "Carrito de Compras",
     "unitPrice": "Precio Unitario",
-    "total": "Total"
+    "total": "Total",
+    "instructions": "Instrucciones Especiales para el Vendedor",
+    "instructionsPlaceholder": "Ingrese cualquier instrucción especial aquí..."
   }
 }

@@ -67,15 +67,15 @@ export default function LanguageSwitcher() {
       {/* Dropdown Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 bg-white px-3 py-2 rounded-md shadow-sm border border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+        className="flex items-center space-x-2 bg-white dark:bg-black  px-3 py-2 rounded-md shadow-sm border border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
       >
         <span className="text-lg">{currentLangOption.flag}</span>
-        <span className="font-medium text-gray-700">
+        <span className="font-medium text-gray-700 dark:text-white">
           {currentLangOption.display}
         </span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className={`h-4 w-4 text-gray-500 transition-transform duration-200 ${
+          className={`h-4 w-4 text-gray-500 dark:text-white transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
           }`}
           fill="none"
@@ -93,15 +93,15 @@ export default function LanguageSwitcher() {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="mt-2 w-48 bg-white rounded-md shadow-2xl">
+        <div className="mt-2 w-48 bg-white dark:bg-black dark:border dark:border-gray-300 dark:rounded-md rounded-md shadow-2xl">
           {languageOptions.map(lng => {
             const isActive = getCurrentLocale() === lng.code
             return (
               <button
                 key={lng.code}
                 onClick={() => handleLanguageChange(lng.code)}
-                className={`flex items-center space-x-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ${
-                  isActive ? "bg-gray-100" : ""
+                className={`flex items-center space-x-2 w-full px-4 py-2 text-sm text-gray-700  dark:border dark:border-gray-300 dark:text-white  hover:bg-gray-100 dark:hover:bg-gray-700 ${
+                  isActive ? "bg-gray-100 dark:bg-black" : ""
                 }`}
               >
                 <span className="text-lg">{lng.flag}</span>

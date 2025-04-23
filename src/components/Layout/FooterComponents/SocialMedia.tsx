@@ -10,7 +10,7 @@ const SocialMedia = ({
   telephone: string
 }) => {
   return (
-    <div className="flex flex-col lg:flex-row gap-2 lg:gap-5">
+    <div className="flex flex-row gap-5">
       <a
         href={instagram}
         target="_blank"

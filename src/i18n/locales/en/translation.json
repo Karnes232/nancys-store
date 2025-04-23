@@ -22,6 +22,8 @@
   "cart": {
     "title": "Shopping Cart",
     "unitPrice": "Unit Price",
-    "total": "Total"
+    "total": "Total",
+    "instructions": "Special Instructions for Seller",
+    "instructionsPlaceholder": "Enter any special instructions here..."
   }
 }
