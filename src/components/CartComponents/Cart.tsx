@@ -8,7 +8,6 @@ import ProductCartCard from "../ProductsComponents/ProductCartCard"
 const Cart = ({ selectedLang }: { selectedLang: string }) => {
   const t = useTranslations(selectedLang)
   const { clearCart, cartItems } = useContext(CartContext)
-  console.log(cartItems)
   return (
     <div className="mt-10 flex flex-col justify-center items-center gap-5 mx-auto">
       <TextComponentHeading
@@ -18,7 +17,6 @@ const Cart = ({ selectedLang }: { selectedLang: string }) => {
       />
       <div className="flex flex-col justify-center items-center gap-5 mx-auto">
         {cartItems.map((item, index) => {
-          console.log(item)
           return (
             <ProductCartCard
               product={item}

@@ -1,5 +1,5 @@
 "use client"
-import React, { useContext } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { CartContext } from "../../context/cart"
 import { toast } from "react-toastify"
 import useTranslations from "@/i18n/useTranslations"
@@ -41,8 +41,33 @@ const AddToCartButton = ({
   product: any
   selectedLang: string
 }) => {
-  const { cartItems, addToCart, removeFromCart } = useContext(CartContext)
+  const { cartItems, addToCart, removeFromCart, updateCartItemQuantity } =
+    useContext(CartContext)
   const t = useTranslations(selectedLang)
+  const [inputValue, setInputValue] = useState("")
+
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setInputValue(value)
+
+    const newQuantity = parseInt(value)
+    if (!isNaN(newQuantity) && newQuantity >= 0) {
+      if (newQuantity === 0) {
+        notifyRemovedFromCart(product.name[selectedLang])
+        removeFromCart(product)
+      } else {
+        updateCartItemQuantity(product, newQuantity)
+      }
+    }
+  }
+
+  // Update inputValue when cartItems changes
+  useEffect(() => {
+    const cartItem = cartItems.find(item => item.name.en === product.name.en)
+    if (cartItem) {
+      setInputValue(cartItem.quantity.toString())
+    }
+  }, [cartItems, product.name.en])
 
   function handleClick(e) {
     e.preventDefault()
@@ -85,9 +110,14 @@ const AddToCartButton = ({
           >
             -
           </button>
-          <p className="text-gray-600 dark:text-gray-300 flex justify-center items-center">
-            {cartItems.find(item => item.name.en === product.name.en).quantity}
-          </p>
+          <input
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            value={inputValue}
+            onChange={handleQuantityChange}
+            className="w-12 text-center text-gray-600 dark:text-gray-300 bg-transparent"
+          />
           <button
             type="submit"
             onClick={handleClick}

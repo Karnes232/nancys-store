@@ -15,6 +15,7 @@ interface CartContextType {
   removeFromCart: (item: CartItem) => void
   clearCart: () => void
   getCartTotal: () => number
+  updateCartItemQuantity: (product: any, newQuantity: number) => void
 }
 
 // Create context with default values
@@ -39,7 +40,6 @@ export const CartProvider = ({
   }, [])
 
   const addToCart = (item: CartItem): void => {
-    console.log(item.name.en)
     const isItemInCart = cartItems.find(
       cartItem => cartItem.name.en === item.name.en,
     )
@@ -90,6 +90,16 @@ export const CartProvider = ({
     )
   }
 
+  const updateCartItemQuantity = (product: any, newQuantity: number) => {
+    setCartItems(prevItems =>
+      prevItems.map(item =>
+        item.name.en === product.name.en
+          ? { ...item, quantity: newQuantity }
+          : item,
+      ),
+    )
+  }
+
   // Removed duplicate useEffect that was in the original code
 
   useEffect(() => {
@@ -105,6 +115,7 @@ export const CartProvider = ({
           removeFromCart,
           clearCart,
           getCartTotal,
+          updateCartItemQuantity,
         } as CartContextType
       }
     >
