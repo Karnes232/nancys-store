@@ -5,9 +5,9 @@ import { fallbackLng } from "@/i18n/settings"
 import ProductPage from "../../[lang]/products/[slug]/page"
 import { Metadata } from "next"
 
-interface RootPageProps {
-  params: { slug: string }
-}
+// interface RootPageProps {
+//   params: { slug: string }
+// }
 
 // Function to get all available product slugs for static paths at the root level
 export async function generateStaticParams() {
