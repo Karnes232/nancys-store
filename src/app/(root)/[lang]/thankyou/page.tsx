@@ -54,23 +54,23 @@ async function getCompanyEmail() {
   return await client.fetch(query)
 }
 
-// Remove searchParams from the props since this is a static page
-type PageProps = {
+// Define interface instead of type
+interface PageProps {
   params: { lang: string }
 }
 
 const ThankYouPage = async ({ params }: PageProps) => {
-  const { lang } = await params
+  const { lang } = params  // Remove await here
   
-  // const [pageData, { t }, email] = await Promise.all([
-  //   getContactPageContent(),
-  //   getTranslation(lang),
-  //   getCompanyEmail(),
-  // ])
+  const [pageData, { t }, email] = await Promise.all([
+    getContactPageContent(),
+    getTranslation(lang),
+    getCompanyEmail(),
+  ])
 
   return (
     <main>
-      {/* <HeroSwiper
+      <HeroSwiper
         heroImages={pageData.heroImages}
         heroHeading={
           pageData.heroHeading
@@ -87,12 +87,12 @@ const ThankYouPage = async ({ params }: PageProps) => {
             : ""
         }
         className="hero-swiper"
-      /> */}
-      {/* <div className="flex flex-col items-center justify-center max-w-xs xl:max-w-sm mx-auto min-h-[40vh] xl:min-h-[50vh]">
+      />
+      <div className="flex flex-col items-center justify-center max-w-xs xl:max-w-sm mx-auto min-h-[40vh] xl:min-h-[50vh]">
         <div className="mb-10">
           <div className="flex flex-col justify-center items-center text-slate-600 ">
             <div className="text-2xl xl:text-4xl font-serif text-center mt-6">
-              {t("ThankYouPage.thank_you_message", { name: name || '' })}
+              {t("ThankYouPage.thank_you_message", { name: 'John' })}
             </div>
 
             <div className="text-center text-sm xl:text-base mt-2 xl:mt-6">
@@ -109,7 +109,7 @@ const ThankYouPage = async ({ params }: PageProps) => {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
     </main>
   )
 }
@@ -162,5 +162,4 @@ const ThankYouPage = async ({ params }: PageProps) => {
 //   }
 // }
 
-export type { PageProps }
 export default ThankYouPage

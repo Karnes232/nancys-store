@@ -47,14 +47,14 @@ async function getAboutUsPageContent() {
   return await client.fetch<PageData>(query)
 }
 
-// Update PageProps to remove Promise
-interface PageProps {
-  params: { lang: string }
-}
-
 // Update the page component
-const AboutUsPage = async ({ params }: PageProps) => {
-  const { lang } = params
+const AboutUsPage = async ({
+  params,
+}: {
+  params: Promise<{ lang: string }> | { lang: string }
+}) => {
+  const resolvedParams = await Promise.resolve(params)
+  const { lang } = resolvedParams
 
   const [pageData, { t }] = await Promise.all([
     getAboutUsPageContent(),
@@ -100,8 +100,11 @@ const AboutUsPage = async ({ params }: PageProps) => {
 // Update metadata generation to remove Promise from params
 export async function generateMetadata({
   params,
-}: PageProps): Promise<Metadata> {
-  const { lang } = params
+}: {
+  params: Promise<{ lang: string }> | { lang: string }
+}): Promise<Metadata> {
+  const resolvedParams = await Promise.resolve(params)
+  const { lang } = resolvedParams
   const pageData = await getAboutUsPageContent()
 
   const builder = imageUrlBuilder(client)

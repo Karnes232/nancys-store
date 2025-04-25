@@ -14,5 +14,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 // Root page component
 export default async function RootPage() {
-  return <AboutUsPage params={{ lang: fallbackLng }} />
+  const params = Promise.resolve({ lang: fallbackLng })
+  
+  return (
+    <AboutUsPage
+      params={params}
+    />
+  )
 }
