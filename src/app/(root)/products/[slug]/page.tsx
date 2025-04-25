@@ -28,7 +28,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: RootPageProps): Promise<Metadata> {
+}): Promise<Metadata> {
   // Import the language-specific metadata generation function
   const { generateMetadata: langGenerateMetadata } = await import(
     "../../[lang]/products/[slug]/page"
@@ -40,7 +40,7 @@ export async function generateMetadata({
   })
 }
 
-export default function RootProductPage({ params }: RootPageProps) {
+export default function RootProductPage({ params }) {
   // Pass params as an object, not a Promise
   return <ProductPage params={{ lang: fallbackLng, slug: params.slug }} />
 }
