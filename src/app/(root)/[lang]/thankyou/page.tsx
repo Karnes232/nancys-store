@@ -54,15 +54,17 @@ async function getCompanyEmail() {
   return await client.fetch(query)
 }
 
-// Update the interface to match Next.js expectations
+// Update the interface to handle async params
 type PageProps = {
-  params: { lang: string }
+  params: Promise<{ lang: string }> | { lang: string }
   searchParams?: { [key: string]: string | string[] }
 }
 
-// Change the component declaration to be more explicit
-const ThankYouPage: React.FC<PageProps> = async ({ params, searchParams }) => {
-  const { lang } = params
+// Update the component to handle potentially async params
+const ThankYouPage = async ({ params, searchParams }: PageProps) => {
+  const resolvedParams = await (Promise.resolve(params))
+  const { lang } = resolvedParams
+  
   const name = searchParams?.name as string | undefined
   
   const [pageData, { t }, email] = await Promise.all([
@@ -165,5 +167,5 @@ export async function generateMetadata({
   }
 }
 
-export type { PageProps }  // Export the type for reuse
+export type { PageProps }
 export default ThankYouPage

@@ -2,15 +2,16 @@ import { fallbackLng } from "@/i18n/settings"
 import ThankYouPage from "../[lang]/thankyou/page"
 import { Metadata } from "next"
 
-// Define a simpler interface for the root page
-type RootPageProps = {
-  searchParams?: { [key: string]: string | string[] }
-}
-
-export default async function RootPage({ searchParams }: RootPageProps) {
+export default async function RootPage({ 
+  searchParams 
+}: { 
+  searchParams?: { [key: string]: string | string[] } 
+}) {
+  const params = Promise.resolve({ lang: fallbackLng })
+  
   return (
     <ThankYouPage
-      params={{ lang: fallbackLng }}
+      params={params}
       searchParams={searchParams}
     />
   )
