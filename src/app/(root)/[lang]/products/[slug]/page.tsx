@@ -1,3 +1,4 @@
+
 import BlockContent from "@/components/ProductsComponents/BlockContent"
 import ProductHeroSwiper from "@/components/HeroComponent/ProductHeroSwiper"
 import ProductPageCard from "@/components/ProductsComponents/ProductPageCard"
@@ -7,11 +8,12 @@ import React from "react"
 import imageUrlBuilder from "@sanity/image-url"
 import { Metadata } from "next"
 import { ToastContainer } from "react-toastify"
+
 export interface PageProps {
-  params: Promise<{
+  params: { 
     lang: string
     slug: string
-  }>
+  }
 }
 
 interface LocalizedField {
@@ -29,6 +31,31 @@ interface SeoData {
       url: string
     }
   }
+}
+
+// Function to get all available product slugs for static paths
+export async function generateStaticParams() {
+  // Get all products
+  const productSlugs = await client.fetch(`
+    *[_type == "product"] {
+      "slug": slug.current
+    }
+  `)
+  
+  // Generate combination of languages and slugs for all possible paths
+  const languages = ["en", "es"]
+  const paths = []
+  
+  for (const lang of languages) {
+    for (const product of productSlugs) {
+      paths.push({
+        lang,
+        slug: product.slug,
+      })
+    }
+  }
+  
+  return paths
 }
 
 async function getProduct(slug: string) {
@@ -72,50 +99,10 @@ async function getProduct(slug: string) {
   return result
 }
 
-const ProductPage = async ({ params }: PageProps) => {
-  const { lang, slug } = await params
-
-  const [{ t }, product] = await Promise.all([
-    getTranslation(lang),
-    getProduct(slug),
-  ])
-
-  if (!product || product.length === 0) {
-    return (
-      <main>
-        <h1>Product not found</h1>
-      </main>
-    )
-  }
-
-  return (
-    <main>
-      <ToastContainer />
-      <ProductHeroSwiper
-        images={product[0].imagesList}
-        mainImage={product[0].mainImage}
-      />
-      <div className="mt-10 mb-5 md:my-20 lg:my-5 xl:max-w-6xl 2xl:max-w-7xl mx-5 md:mx-auto">
-        <ProductPageCard product={product[0]} lang={lang} />
-      </div>
-      <div className="my-5 xl:max-w-6xl 2xl:max-w-7xl mx-auto">
-        <BlockContent
-          content={{
-            _type: "localeBlock",
-            en: product[0].content,
-            es: product[0].content,
-          }}
-          language={lang as "en" | "es"}
-        />
-      </div>
-    </main>
-  )
-}
-
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { lang, slug } = await params
+  const { lang, slug } = params
   const pageData = await getProduct(slug)
 
   if (!pageData || pageData.length === 0) {
@@ -164,6 +151,46 @@ export async function generateMetadata({
       },
     },
   }
+}
+
+const ProductPage = async ({ params }: PageProps) => {
+  const { lang, slug } = params
+
+  const [{ t }, product] = await Promise.all([
+    getTranslation(lang),
+    getProduct(slug),
+  ])
+
+  if (!product || product.length === 0) {
+    return (
+      <main>
+        <h1>Product not found</h1>
+      </main>
+    )
+  }
+
+  return (
+    <main>
+      <ToastContainer />
+      <ProductHeroSwiper
+        images={product[0].imagesList}
+        mainImage={product[0].mainImage}
+      />
+      <div className="mt-10 mb-5 md:my-20 lg:my-5 xl:max-w-6xl 2xl:max-w-7xl mx-5 md:mx-auto">
+        <ProductPageCard product={product[0]} lang={lang} />
+      </div>
+      <div className="my-5 xl:max-w-6xl 2xl:max-w-7xl mx-auto">
+        <BlockContent
+          content={{
+            _type: "localeBlock",
+            en: product[0].content,
+            es: product[0].content,
+          }}
+          language={lang as "en" | "es"}
+        />
+      </div>
+    </main>
+  )
 }
 
 export default ProductPage

@@ -2,34 +2,26 @@ import { fallbackLng } from "@/i18n/settings"
 import ThankYouPage from "../[lang]/thankyou/page"
 import { Metadata } from "next"
 
-export const generateMetadata = async (): Promise<Metadata> => {
-  // Reuse the same metadata generation from [lang]/page.tsx
+export async function generateMetadata(): Promise<Metadata> {
   const { generateMetadata: langGenerateMetadata } = await import(
     "../[lang]/thankyou/page"
   )
+  
+  // Fix: Only pass the params object that the function is expecting
   return langGenerateMetadata({
-    params: Promise.resolve({ lang: fallbackLng }),
-    searchParams: Promise.resolve({}),
+    params: { lang: fallbackLng }
   })
 }
 
 interface RootPageProps {
-  params: Promise<{}>
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+  searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export default async function RootPage({
-  params,
-  searchParams,
-}: RootPageProps) {
-  const pageParams = {
-    lang: fallbackLng,
-  }
-
+export default function RootPage({ searchParams }: RootPageProps) {
   return (
     <ThankYouPage
-      params={Promise.resolve(pageParams)}
-      searchParams={Promise.resolve({})}
+      params={{ lang: fallbackLng }}
+      searchParams={searchParams}
     />
   )
 }

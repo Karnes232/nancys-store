@@ -6,6 +6,11 @@ import HeroSwiper from "@/components/HeroComponent/HeroSwiper"
 import { Metadata } from "next"
 import imageUrlBuilder from "@sanity/image-url"
 
+// Add static paths generation for SSG
+export async function generateStaticParams() {
+  return [{ lang: "en" }, { lang: "es" }]
+}
+
 async function getContactPageContent() {
   const query = `
           *[_type == "page" && title == "Contact"][0] {
@@ -50,12 +55,14 @@ async function getCompanyEmail() {
 }
 
 interface PageProps {
-  params: Promise<{ lang: string }>
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+  params: { lang: string }
+  searchParams: { [key: string]: string | string[] | undefined }
 }
+
 const ThankYouPage = async ({ params, searchParams }: PageProps) => {
-  const { lang } = await params
-  const { name } = await searchParams
+  const { lang } = params
+  const name = searchParams.name as string | undefined
+  
   const [pageData, { t }, email] = await Promise.all([
     getContactPageContent(),
     getTranslation(lang),
@@ -86,7 +93,7 @@ const ThankYouPage = async ({ params, searchParams }: PageProps) => {
         <div className="mb-10">
           <div className="flex flex-col justify-center items-center text-slate-600 ">
             <div className="text-2xl xl:text-4xl font-serif text-center mt-6">
-              {t("ThankYouPage.thank_you_message", { name })}
+              {t("ThankYouPage.thank_you_message", { name: name || '' })}
             </div>
 
             <div className="text-center text-sm xl:text-base mt-2 xl:mt-6">
@@ -110,8 +117,10 @@ const ThankYouPage = async ({ params, searchParams }: PageProps) => {
 
 export async function generateMetadata({
   params,
-}: PageProps): Promise<Metadata> {
-  const { lang } = await params
+}: {
+  params: { lang: string }
+}): Promise<Metadata> {
+  const { lang } = params
   const pageData = await getContactPageContent()
   const builder = imageUrlBuilder(client)
   const ogImage = pageData.seo?.openGraphImage?.asset?._ref

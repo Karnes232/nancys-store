@@ -1,19 +1,18 @@
 import { fallbackLng } from "@/i18n/settings"
-
-import { Metadata } from "next"
 import AboutUsPage from "../[lang]/about-us/page"
+import { Metadata } from "next"
 
-export const generateMetadata = async (): Promise<Metadata> => {
-  // Reuse the same metadata generation from [lang]/page.tsx
+// Generate metadata for the root (English) version
+export async function generateMetadata(): Promise<Metadata> {
   const { generateMetadata: langGenerateMetadata } = await import(
     "../[lang]/about-us/page"
   )
   return langGenerateMetadata({
-    params: Promise.resolve({ lang: fallbackLng }),
+    params: { lang: fallbackLng }
   })
 }
 
+// Root page component
 export default async function RootPage() {
-  // Reuse the same page component with the default language
-  return <AboutUsPage params={Promise.resolve({ lang: fallbackLng })} />
+  return <AboutUsPage params={{ lang: fallbackLng }} />
 }

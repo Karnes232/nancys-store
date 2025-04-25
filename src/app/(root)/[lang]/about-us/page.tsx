@@ -7,6 +7,12 @@ import imageUrlBuilder from "@sanity/image-url"
 import React from "react"
 import BlockContent from "@/components/BlockContent/BlockContent"
 
+// Add static paths generation
+export async function generateStaticParams() {
+  return [{ lang: "en" }, { lang: "es" }]
+}
+
+// Update the query to include team members
 async function getAboutUsPageContent() {
   const query = `
           *[_type == "page" && title == "About Us"][0] {
@@ -41,12 +47,14 @@ async function getAboutUsPageContent() {
   return await client.fetch<PageData>(query)
 }
 
+// Update PageProps to remove Promise
 interface PageProps {
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
+// Update the page component
 const AboutUsPage = async ({ params }: PageProps) => {
-  const { lang } = await params
+  const { lang } = params
 
   const [pageData, { t }] = await Promise.all([
     getAboutUsPageContent(),
@@ -83,14 +91,17 @@ const AboutUsPage = async ({ params }: PageProps) => {
           language={lang as "en" | "es"}
         />
       </div>
+
+   
     </main>
   )
 }
 
+// Update metadata generation to remove Promise from params
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { lang } = await params
+  const { lang } = params
   const pageData = await getAboutUsPageContent()
 
   const builder = imageUrlBuilder(client)
@@ -124,10 +135,10 @@ export async function generateMetadata({
       images: ogImage ? [{ url: ogImage }] : undefined,
     },
     alternates: {
-      canonical: lang === "en" ? "/contact" : `/${lang}/contact`,
+      canonical: lang === "en" ? "/about-us" : `/${lang}/about-us`,
       languages: {
-        en: "/contact",
-        es: "/es/contact",
+        en: "/about-us",
+        es: "/es/about-us",
       },
     },
   }

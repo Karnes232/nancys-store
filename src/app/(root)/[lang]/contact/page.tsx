@@ -7,6 +7,11 @@ import imageUrlBuilder from "@sanity/image-url"
 import { PageData } from "@/types/sanity.types"
 import ContactForm from "@/components/ContactFormComponents/ContactForm"
 
+// Add static paths generation for SSG
+export async function generateStaticParams() {
+  return [{ lang: "en" }, { lang: "es" }]
+}
+
 async function getContactPageContent() {
   const query = `
         *[_type == "page" && title == "Contact"][0] {
@@ -42,14 +47,12 @@ async function getContactPageContent() {
 }
 
 interface PageProps {
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
 const ContactPage = async ({ params }: PageProps) => {
-  // Await the params first
-  const { lang } = await params
+  const { lang } = params
 
-  // Then use the resolved lang parameter
   const [pageData, { t }] = await Promise.all([
     getContactPageContent(),
     getTranslation(lang),
@@ -82,11 +85,12 @@ const ContactPage = async ({ params }: PageProps) => {
   )
 }
 
-// Add metadata generation function
 export async function generateMetadata({
   params,
-}: PageProps): Promise<Metadata> {
-  const { lang } = await params
+}: {
+  params: { lang: string }
+}): Promise<Metadata> {
+  const { lang } = params
   const pageData = await getContactPageContent()
 
   const builder = imageUrlBuilder(client)
