@@ -54,18 +54,13 @@ async function getCompanyEmail() {
   return await client.fetch(query)
 }
 
-// Update the interface to handle async params
+// Remove searchParams from the props since this is a static page
 type PageProps = {
-  params: Promise<{ lang: string }> | { lang: string }
-  searchParams?: { [key: string]: string | string[] }
+  params: { lang: string }
 }
 
-// Update the component to handle potentially async params
-const ThankYouPage = async ({ params, searchParams }: PageProps) => {
-  const resolvedParams = await (Promise.resolve(params))
-  const { lang } = resolvedParams
-  
-  const name = searchParams?.name as string | undefined
+const ThankYouPage = async ({ params }: PageProps) => {
+  const { lang } = params
   
   const [pageData, { t }, email] = await Promise.all([
     getContactPageContent(),
@@ -93,7 +88,7 @@ const ThankYouPage = async ({ params, searchParams }: PageProps) => {
         }
         className="hero-swiper"
       />
-      <div className="flex flex-col items-center justify-center max-w-xs xl:max-w-sm mx-auto min-h-[40vh] xl:min-h-[50vh]">
+      {/* <div className="flex flex-col items-center justify-center max-w-xs xl:max-w-sm mx-auto min-h-[40vh] xl:min-h-[50vh]">
         <div className="mb-10">
           <div className="flex flex-col justify-center items-center text-slate-600 ">
             <div className="text-2xl xl:text-4xl font-serif text-center mt-6">
@@ -114,7 +109,7 @@ const ThankYouPage = async ({ params, searchParams }: PageProps) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </main>
   )
 }

@@ -2,17 +2,11 @@ import { fallbackLng } from "@/i18n/settings"
 import ThankYouPage from "../[lang]/thankyou/page"
 import { Metadata } from "next"
 
-export default async function RootPage({ 
-  searchParams 
-}: { 
-  searchParams?: { [key: string]: string | string[] } 
-}) {
-  const params = Promise.resolve({ lang: fallbackLng })
-  
+// Remove searchParams from props since this is a static page
+export default function RootPage() {
   return (
     <ThankYouPage
-      params={params}
-      searchParams={searchParams}
+      params={{ lang: fallbackLng }}
     />
   )
 }
