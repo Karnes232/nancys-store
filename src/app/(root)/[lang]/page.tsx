@@ -147,8 +147,7 @@ export async function generateMetadata({
 export async function generateStaticParams() {
   // Define the supported languages
   return [
-    { lang: 'en' },
-    { lang: 'es' }
+     { lang: 'es' }
   ]
 }
 
