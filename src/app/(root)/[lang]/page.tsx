@@ -9,10 +9,7 @@ import ProductsDisplay from "@/components/ProductsComponents/ProductsDisplay"
 
 // Function to get all available languages for static paths
 export async function generateStaticParams() {
-  return [
-    { lang: 'en' },
-    { lang: 'es' }
-  ]
+  return [{ lang: "en" }, { lang: "es" }]
 }
 
 async function getHomePageContent() {
@@ -54,7 +51,9 @@ interface PageProps {
 }
 
 // Convert to static generation
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { lang } = params
   const pageData = await getHomePageContent()
   const builder = imageUrlBuilder(client)
@@ -105,7 +104,7 @@ const HomePage = async ({ params }: PageProps) => {
     getHomePageContent(),
     getTranslation(lang),
   ])
-  
+
   return (
     <main>
       <HeroSwiper
@@ -144,7 +143,6 @@ const HomePage = async ({ params }: PageProps) => {
 }
 
 export default HomePage
-
 
 // import HeroSwiper from "@/components/HeroComponent/HeroSwiper"
 // import { client } from "@/sanity/lib/client"
