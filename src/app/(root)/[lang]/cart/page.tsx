@@ -7,12 +7,6 @@ import { Metadata } from "next"
 import imageUrlBuilder from "@sanity/image-url"
 import Cart from "@/components/CartComponents/Cart"
 import { ToastContainer } from "react-toastify"
-
-// Add static paths generation for SSG
-export async function generateStaticParams() {
-  return [{ lang: "en" }, { lang: "es" }]
-}
-
 async function getCartPageContent() {
   const query = `
           *[_type == "page" && title == "Cart"][0] {
@@ -48,12 +42,13 @@ async function getCartPageContent() {
 }
 
 interface PageProps {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
 }
 
 const CartPage = async ({ params }: PageProps) => {
-  const { lang } = params
+  const { lang } = await params
 
+  // Then use the resolved lang parameter
   const [pageData, { t }] = await Promise.all([
     getCartPageContent(),
     getTranslation(lang),
@@ -89,10 +84,8 @@ const CartPage = async ({ params }: PageProps) => {
 
 export async function generateMetadata({
   params,
-}: {
-  params: { lang: string }
-}): Promise<Metadata> {
-  const { lang } = params
+}: PageProps): Promise<Metadata> {
+  const { lang } = await params
   const pageData = await getCartPageContent()
 
   const builder = imageUrlBuilder(client)

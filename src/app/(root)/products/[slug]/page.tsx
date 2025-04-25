@@ -1,46 +1,31 @@
-
-// /products/[slug]/page.tsx
-
 import { fallbackLng } from "@/i18n/settings"
-import ProductPage from "../../[lang]/products/[slug]/page"
+import ProductPage, { PageProps } from "../../[lang]/products/[slug]/page"
 import { Metadata } from "next"
 
-// interface RootPageProps {
-//   params: { slug: string }
-// }
-
-// Function to get all available product slugs for static paths at the root level
-export async function generateStaticParams() {
-  // Import client from sanity library
-  const { client } = await import("@/sanity/lib/client")
-  
-  // Get all products
-  const productSlugs = await client.fetch(`
-    *[_type == "product"] {
-      "slug": slug.current
-    }
-  `)
-  
-  return productSlugs.map((product: { slug: string }) => ({
-    slug: product.slug
-  }))
+interface RootPageProps {
+  params: Promise<{
+    slug: string
+  }>
 }
 
-export async function generateMetadata({
+export const generateMetadata = async ({
   params,
-}): Promise<Metadata> {
-  // Import the language-specific metadata generation function
+}: RootPageProps): Promise<Metadata> => {
   const { generateMetadata: langGenerateMetadata } = await import(
     "../../[lang]/products/[slug]/page"
   )
-  
-  // Pass params as an object, not a Promise
+  const { slug } = await params
   return langGenerateMetadata({
-    params: { lang: fallbackLng, slug: params.slug },
+    params: Promise.resolve({ lang: fallbackLng, slug: slug }),
   })
 }
 
-export default function RootProductPage({ params }) {
-  // Pass params as an object, not a Promise
-  return <ProductPage params={{ lang: fallbackLng, slug: params.slug }} />
+export default async function RootPage({ params }: RootPageProps) {
+  const { slug } = await params
+  const pageParams = {
+    lang: fallbackLng,
+    slug: slug,
+  }
+
+  return <ProductPage params={Promise.resolve(pageParams)} />
 }

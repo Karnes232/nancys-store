@@ -6,11 +6,6 @@ import HeroSwiper from "@/components/HeroComponent/HeroSwiper"
 import { Metadata } from "next"
 import imageUrlBuilder from "@sanity/image-url"
 
-// Add static paths generation for SSG
-export async function generateStaticParams() {
-  return [{ lang: "en" }, { lang: "es" }]
-}
-
 async function getContactPageContent() {
   const query = `
           *[_type == "page" && title == "Contact"][0] {
@@ -54,14 +49,13 @@ async function getCompanyEmail() {
   return await client.fetch(query)
 }
 
-// Define interface instead of type
 interface PageProps {
-  params: { lang: string }
+  params: Promise<{ lang: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
-
-const ThankYouPage = async ({ params }) => {
-  const { lang } = params  // Remove await here
-  
+const ThankYouPage = async ({ params, searchParams }: PageProps) => {
+  const { lang } = await params
+  const { name } = await searchParams
   const [pageData, { t }, email] = await Promise.all([
     getContactPageContent(),
     getTranslation(lang),
@@ -92,7 +86,7 @@ const ThankYouPage = async ({ params }) => {
         <div className="mb-10">
           <div className="flex flex-col justify-center items-center text-slate-600 ">
             <div className="text-2xl xl:text-4xl font-serif text-center mt-6">
-              {t("ThankYouPage.thank_you_message", { name: 'John' })}
+              {t("ThankYouPage.thank_you_message", { name })}
             </div>
 
             <div className="text-center text-sm xl:text-base mt-2 xl:mt-6">
@@ -114,52 +108,50 @@ const ThankYouPage = async ({ params }) => {
   )
 }
 
-// export async function generateMetadata({
-//   params,
-// }: {
-//   params: { lang: string }
-// }): Promise<Metadata> {
-//   const { lang } = params
-//   const pageData = await getContactPageContent()
-//   const builder = imageUrlBuilder(client)
-//   const ogImage = pageData.seo?.openGraphImage?.asset?._ref
-//     ? builder.image(pageData.seo.openGraphImage.asset._ref).url()
-//     : undefined
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { lang } = await params
+  const pageData = await getContactPageContent()
+  const builder = imageUrlBuilder(client)
+  const ogImage = pageData.seo?.openGraphImage?.asset?._ref
+    ? builder.image(pageData.seo.openGraphImage.asset._ref).url()
+    : undefined
 
-//   // Handle localized meta title and description
-//   const metaTitle =
-//     pageData.seo?.metaTitle?.[lang as keyof typeof pageData.seo.metaTitle] ||
-//     pageData.seo?.metaTitle?.en ||
-//     pageData.title
+  // Handle localized meta title and description
+  const metaTitle =
+    pageData.seo?.metaTitle?.[lang as keyof typeof pageData.seo.metaTitle] ||
+    pageData.seo?.metaTitle?.en ||
+    pageData.title
 
-//   const metaDescription =
-//     pageData.seo?.metaDescription?.[
-//       lang as keyof typeof pageData.seo.metaDescription
-//     ] || pageData.seo?.metaDescription?.en
+  const metaDescription =
+    pageData.seo?.metaDescription?.[
+      lang as keyof typeof pageData.seo.metaDescription
+    ] || pageData.seo?.metaDescription?.en
 
-//   // Get language-specific keywords or fallback to English
-//   const keywords =
-//     pageData.seo?.keywords?.[lang as keyof typeof pageData.seo.keywords] ||
-//     pageData.seo?.keywords?.en ||
-//     []
+  // Get language-specific keywords or fallback to English
+  const keywords =
+    pageData.seo?.keywords?.[lang as keyof typeof pageData.seo.keywords] ||
+    pageData.seo?.keywords?.en ||
+    []
 
-//   return {
-//     title: metaTitle,
-//     description: metaDescription,
-//     keywords: keywords,
-//     openGraph: {
-//       title: metaTitle,
-//       description: metaDescription,
-//       images: ogImage ? [{ url: ogImage }] : undefined,
-//     },
-//     alternates: {
-//       canonical: lang === "en" ? "/thankyou" : `/${lang}/thankyou`,
-//       languages: {
-//         en: "/thankyou",
-//         es: "/es/thankyou",
-//       },
-//     },
-//   }
-// }
+  return {
+    title: metaTitle,
+    description: metaDescription,
+    keywords: keywords,
+    openGraph: {
+      title: metaTitle,
+      description: metaDescription,
+      images: ogImage ? [{ url: ogImage }] : undefined,
+    },
+    alternates: {
+      canonical: lang === "en" ? "/thankyou" : `/${lang}/thankyou`,
+      languages: {
+        en: "/thankyou",
+        es: "/es/thankyou",
+      },
+    },
+  }
+}
 
 export default ThankYouPage

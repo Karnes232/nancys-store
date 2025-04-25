@@ -7,12 +7,6 @@ import imageUrlBuilder from "@sanity/image-url"
 import React from "react"
 import BlockContent from "@/components/BlockContent/BlockContent"
 
-// Add static paths generation
-export async function generateStaticParams() {
-  return [{ lang: "en" }, { lang: "es" }]
-}
-
-// Update the query to include team members
 async function getAboutUsPageContent() {
   const query = `
           *[_type == "page" && title == "About Us"][0] {
@@ -47,14 +41,12 @@ async function getAboutUsPageContent() {
   return await client.fetch<PageData>(query)
 }
 
-// Update the page component
-const AboutUsPage = async ({
-  params,
-}: {
-  params: Promise<{ lang: string }> | { lang: string }
-}) => {
-  const resolvedParams = await Promise.resolve(params)
-  const { lang } = resolvedParams
+interface PageProps {
+  params: Promise<{ lang: string }>
+}
+
+const AboutUsPage = async ({ params }: PageProps) => {
+  const { lang } = await params
 
   const [pageData, { t }] = await Promise.all([
     getAboutUsPageContent(),
@@ -91,20 +83,14 @@ const AboutUsPage = async ({
           language={lang as "en" | "es"}
         />
       </div>
-
-   
     </main>
   )
 }
 
-// Update metadata generation to remove Promise from params
 export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ lang: string }> | { lang: string }
-}): Promise<Metadata> {
-  const resolvedParams = await Promise.resolve(params)
-  const { lang } = resolvedParams
+}: PageProps): Promise<Metadata> {
+  const { lang } = await params
   const pageData = await getAboutUsPageContent()
 
   const builder = imageUrlBuilder(client)
@@ -138,10 +124,10 @@ export async function generateMetadata({
       images: ogImage ? [{ url: ogImage }] : undefined,
     },
     alternates: {
-      canonical: lang === "en" ? "/about-us" : `/${lang}/about-us`,
+      canonical: lang === "en" ? "/contact" : `/${lang}/contact`,
       languages: {
-        en: "/about-us",
-        es: "/es/about-us",
+        en: "/contact",
+        es: "/es/contact",
       },
     },
   }
