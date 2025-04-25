@@ -60,17 +60,17 @@ type PageProps = {
 }
 
 const ThankYouPage = async ({ params }: PageProps) => {
-  const { lang } = params
+  const { lang } = await params
   
-  const [pageData, { t }, email] = await Promise.all([
-    getContactPageContent(),
-    getTranslation(lang),
-    getCompanyEmail(),
-  ])
+  // const [pageData, { t }, email] = await Promise.all([
+  //   getContactPageContent(),
+  //   getTranslation(lang),
+  //   getCompanyEmail(),
+  // ])
 
   return (
     <main>
-      <HeroSwiper
+      {/* <HeroSwiper
         heroImages={pageData.heroImages}
         heroHeading={
           pageData.heroHeading
@@ -87,7 +87,7 @@ const ThankYouPage = async ({ params }: PageProps) => {
             : ""
         }
         className="hero-swiper"
-      />
+      /> */}
       {/* <div className="flex flex-col items-center justify-center max-w-xs xl:max-w-sm mx-auto min-h-[40vh] xl:min-h-[50vh]">
         <div className="mb-10">
           <div className="flex flex-col justify-center items-center text-slate-600 ">
@@ -114,53 +114,53 @@ const ThankYouPage = async ({ params }: PageProps) => {
   )
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { lang: string }
-}): Promise<Metadata> {
-  const { lang } = params
-  const pageData = await getContactPageContent()
-  const builder = imageUrlBuilder(client)
-  const ogImage = pageData.seo?.openGraphImage?.asset?._ref
-    ? builder.image(pageData.seo.openGraphImage.asset._ref).url()
-    : undefined
+// export async function generateMetadata({
+//   params,
+// }: {
+//   params: { lang: string }
+// }): Promise<Metadata> {
+//   const { lang } = params
+//   const pageData = await getContactPageContent()
+//   const builder = imageUrlBuilder(client)
+//   const ogImage = pageData.seo?.openGraphImage?.asset?._ref
+//     ? builder.image(pageData.seo.openGraphImage.asset._ref).url()
+//     : undefined
 
-  // Handle localized meta title and description
-  const metaTitle =
-    pageData.seo?.metaTitle?.[lang as keyof typeof pageData.seo.metaTitle] ||
-    pageData.seo?.metaTitle?.en ||
-    pageData.title
+//   // Handle localized meta title and description
+//   const metaTitle =
+//     pageData.seo?.metaTitle?.[lang as keyof typeof pageData.seo.metaTitle] ||
+//     pageData.seo?.metaTitle?.en ||
+//     pageData.title
 
-  const metaDescription =
-    pageData.seo?.metaDescription?.[
-      lang as keyof typeof pageData.seo.metaDescription
-    ] || pageData.seo?.metaDescription?.en
+//   const metaDescription =
+//     pageData.seo?.metaDescription?.[
+//       lang as keyof typeof pageData.seo.metaDescription
+//     ] || pageData.seo?.metaDescription?.en
 
-  // Get language-specific keywords or fallback to English
-  const keywords =
-    pageData.seo?.keywords?.[lang as keyof typeof pageData.seo.keywords] ||
-    pageData.seo?.keywords?.en ||
-    []
+//   // Get language-specific keywords or fallback to English
+//   const keywords =
+//     pageData.seo?.keywords?.[lang as keyof typeof pageData.seo.keywords] ||
+//     pageData.seo?.keywords?.en ||
+//     []
 
-  return {
-    title: metaTitle,
-    description: metaDescription,
-    keywords: keywords,
-    openGraph: {
-      title: metaTitle,
-      description: metaDescription,
-      images: ogImage ? [{ url: ogImage }] : undefined,
-    },
-    alternates: {
-      canonical: lang === "en" ? "/thankyou" : `/${lang}/thankyou`,
-      languages: {
-        en: "/thankyou",
-        es: "/es/thankyou",
-      },
-    },
-  }
-}
+//   return {
+//     title: metaTitle,
+//     description: metaDescription,
+//     keywords: keywords,
+//     openGraph: {
+//       title: metaTitle,
+//       description: metaDescription,
+//       images: ogImage ? [{ url: ogImage }] : undefined,
+//     },
+//     alternates: {
+//       canonical: lang === "en" ? "/thankyou" : `/${lang}/thankyou`,
+//       languages: {
+//         en: "/thankyou",
+//         es: "/es/thankyou",
+//       },
+//     },
+//   }
+// }
 
 export type { PageProps }
 export default ThankYouPage

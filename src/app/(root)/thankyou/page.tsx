@@ -11,12 +11,12 @@ export default function RootPage() {
   )
 }
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { generateMetadata: langGenerateMetadata } = await import(
-    "../[lang]/thankyou/page"
-  )
+// export async function generateMetadata(): Promise<Metadata> {
+//   const { generateMetadata: langGenerateMetadata } = await import(
+//     "../[lang]/thankyou/page"
+//   )
   
-  return langGenerateMetadata({
-    params: { lang: fallbackLng }
-  })
-}
+//   return langGenerateMetadata({
+//     params: { lang: fallbackLng }
+//   })
+// }
