@@ -55,7 +55,7 @@ async function getCompanyEmail() {
 }
 
 interface PageProps {
-  params: { lang: string }
+  params: { lang: any }
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
