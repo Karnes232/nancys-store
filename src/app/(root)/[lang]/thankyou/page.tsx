@@ -59,7 +59,7 @@ interface PageProps {
   params: { lang: string }
 }
 
-const ThankYouPage = async ({ params }: PageProps) => {
+const ThankYouPage = async ({ params }) => {
   const { lang } = params  // Remove await here
   
   const [pageData, { t }, email] = await Promise.all([
