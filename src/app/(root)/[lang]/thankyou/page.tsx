@@ -54,18 +54,13 @@ async function getCompanyEmail() {
   return await client.fetch(query)
 }
 
-// interface PageProps {
-//   params: { lang: string }
-//   searchParams: { [key: string]: string | string[] | undefined }
-// }
-
-const ThankYouPage = async ({
-  params,
-  searchParams,
-}: {
+// Define the correct interface for the page props
+interface PageProps {
   params: { lang: string }
   searchParams?: { [key: string]: string | string[] }
-}) => {
+}
+
+const ThankYouPage = async ({ params, searchParams }: PageProps) => {
   const { lang } = params
   const name = searchParams?.name as string | undefined
   
