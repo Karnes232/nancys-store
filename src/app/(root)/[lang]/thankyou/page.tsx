@@ -64,10 +64,10 @@ const ThankYouPage = async ({
   searchParams,
 }: {
   params: { lang: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams?: { [key: string]: string | string[] }
 }) => {
   const { lang } = params
-  const name = searchParams.name as string | undefined
+  const name = searchParams?.name as string | undefined
   
   const [pageData, { t }, email] = await Promise.all([
     getContactPageContent(),
