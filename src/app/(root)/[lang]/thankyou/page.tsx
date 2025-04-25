@@ -54,13 +54,14 @@ async function getCompanyEmail() {
   return await client.fetch(query)
 }
 
-// Define the correct interface for the page props
-interface PageProps {
+// Update the interface to match Next.js expectations
+type PageProps = {
   params: { lang: string }
   searchParams?: { [key: string]: string | string[] }
 }
 
-const ThankYouPage = async ({ params, searchParams }: PageProps) => {
+// Change the component declaration to be more explicit
+const ThankYouPage: React.FC<PageProps> = async ({ params, searchParams }) => {
   const { lang } = params
   const name = searchParams?.name as string | undefined
   
@@ -164,4 +165,5 @@ export async function generateMetadata({
   }
 }
 
+export type { PageProps }  // Export the type for reuse
 export default ThankYouPage
