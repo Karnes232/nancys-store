@@ -7,8 +7,8 @@ export async function generateMetadata(): Promise<Metadata> {
     "../[lang]/thankyou/page"
   )
   
-  // Fix: Only pass the params object that the function is expecting
-  return langGenerateMetadata({
+  // The imported generateMetadata function is async, so we need to await its result
+  return await langGenerateMetadata({
     params: { lang: fallbackLng }
   })
 }
