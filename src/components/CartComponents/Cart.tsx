@@ -37,16 +37,12 @@ const Cart = ({ selectedLang }: { selectedLang: string }) => {
 
   const handleSubmit = async () => {
     try {
-      const encodedFormData = {
-        ...formData,
-        cartItems: encodeURIComponent(formData.cartItems)
-      }
       const response = await fetch("/__forms.html", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: new URLSearchParams(encodedFormData).toString()
+        body: new URLSearchParams(formData).toString()
       })
       if (response.ok) {
         router.push(`/thankyou/?name=${formData.name}`)
