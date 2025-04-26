@@ -5,6 +5,7 @@ import { getTranslation } from "@/i18n"
 import HeroSwiper from "@/components/HeroComponent/HeroSwiper"
 import { Metadata } from "next"
 import imageUrlBuilder from "@sanity/image-url"
+import ThankYou from "@/components/ContactFormComponents/ThankYou"
 
 async function getContactPageContent() {
   const query = `
@@ -61,7 +62,7 @@ const ThankYouPage = async ({ params, searchParams }: PageProps) => {
     getTranslation(lang),
     getCompanyEmail(),
   ])
-
+  console.log(name)
   return (
     <main>
       <HeroSwiper
@@ -82,28 +83,7 @@ const ThankYouPage = async ({ params, searchParams }: PageProps) => {
         }
         className="hero-swiper"
       />
-      <div className="flex flex-col items-center justify-center max-w-xs xl:max-w-sm mx-auto min-h-[40vh] xl:min-h-[50vh]">
-        <div className="mb-10">
-          <div className="flex flex-col justify-center items-center text-slate-600 ">
-            <div className="text-2xl xl:text-4xl font-serif text-center mt-6">
-              {t("ThankYouPage.thank_you_message", { name })}
-            </div>
-
-            <div className="text-center text-sm xl:text-base mt-2 xl:mt-6">
-              {t("ThankYouPage.contact_follow_up")}{" "}
-              <a
-                href={`mailto:${email.email}`}
-                aria-label="Gmail"
-                rel="noreferrer"
-                className="underline"
-              >
-                {t("ThankYouPage.contact_us")}
-              </a>{" "}
-              {t("ThankYouPage.with_questions")}
-            </div>
-          </div>
-        </div>
-      </div>
+      <ThankYou email={email.email} lang={lang} />
     </main>
   )
 }

@@ -21,9 +21,12 @@ const Cart = ({ selectedLang }: { selectedLang: string }) => {
     email: "",
     telephone: "",
     instructions: instructions,
-    cartItems: cartItems.map(item => 
-      `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}\nProduct Link: https://${host}/products/${item.slug.current}`
-    ).join('\n\n')
+    cartItems: cartItems
+      .map(
+        item =>
+          `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}\nProduct Link: https://${host}/products/${item.slug.current}`,
+      )
+      .join("\n\n"),
   })
 
   useEffect(() => {
@@ -31,9 +34,12 @@ const Cart = ({ selectedLang }: { selectedLang: string }) => {
     setFormData(prev => ({
       ...prev,
       instructions,
-      cartItems: cartItems.map(item => 
-        `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}\nProduct Link: https://${host}/products/${item.slug.current}`
-      ).join('\n\n')
+      cartItems: cartItems
+        .map(
+          item =>
+            `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}\nProduct Link: https://${host}/products/${item.slug.current}`,
+        )
+        .join("\n\n"),
     }))
   }, [cartItems, instructions, host])
 
@@ -44,9 +50,10 @@ const Cart = ({ selectedLang }: { selectedLang: string }) => {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: new URLSearchParams(formData).toString()
+        body: new URLSearchParams(formData).toString(),
       })
       if (response.ok) {
+        clearCart()
         router.push(`/thankyou/?name=${formData.name}`)
       } else {
         // Handle error

@@ -98,7 +98,7 @@ const CartForm = ({
       </div>
       <button
         type="submit"
-        className="w-full bg-blue-500 text-white py-2 px-4 rounded-md"
+        className="w-full bg-black/75 hover:bg-black/50 text-white dark:bg-white dark:text-black py-2 px-4 rounded-md hover:dark:bg-white/75"
       >
         {t("contact.submit")}
       </button>

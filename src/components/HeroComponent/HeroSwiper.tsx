@@ -107,6 +107,7 @@ const HeroSwiper: React.FC<{
                   width={1000}
                   height={1000}
                   className={`w-full object-cover object-center ${height}`}
+                  priority={true}
                 />
                 <div className="absolute inset-0" style={HeroStyles}>
                   <div
@@ -138,6 +139,7 @@ const HeroSwiper: React.FC<{
               width={1000}
               height={1000}
               className={`z-50 !absolute -bottom-[1px] w-screen dark:hidden`}
+              priority={true}
             />
           )}
           {effectShapeBlack.imageUrl && (
@@ -147,6 +149,7 @@ const HeroSwiper: React.FC<{
               width={1000}
               height={1000}
               className={`z-50 !absolute -bottom-[1px] w-screen dark:block hidden`}
+              priority={true}
             />
           )}
         </Swiper>

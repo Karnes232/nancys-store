@@ -87,7 +87,7 @@ const AddToCartButton = ({
         <button
           type="submit"
           onClick={handleClick}
-          className={`bg-black/75 hover:bg-black/50 text-white font-bold py-1 px-4 rounded dark:bg-white dark:text-black`}
+          className={`bg-black/75 hover:bg-black/50 text-white font-bold py-1 px-4 rounded dark:bg-white dark:text-black hover:dark:bg-white/75`}
         >
           {t("addToCart")}
         </button>
@@ -106,7 +106,7 @@ const AddToCartButton = ({
                 removeFromCart(product)
               }
             }}
-            className={`bg-black/75 hover:bg-black/50 text-white font-bold py-1 px-4 rounded dark:bg-white dark:text-black`}
+            className={`bg-black/75 hover:bg-black/50 text-white font-bold py-1 px-4 rounded dark:bg-white dark:text-black hover:dark:bg-white/75`}
           >
             -
           </button>
@@ -121,7 +121,7 @@ const AddToCartButton = ({
           <button
             type="submit"
             onClick={handleClick}
-            className={`bg-black/75 hover:bg-black/50 text-white font-bold py-1 px-4 rounded dark:bg-white dark:text-black`}
+            className={`bg-black/75 hover:bg-black/50 text-white font-bold py-1 px-4 rounded dark:bg-white dark:text-black hover:dark:bg-white/75`}
           >
             +
           </button>

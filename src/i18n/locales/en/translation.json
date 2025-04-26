@@ -6,7 +6,8 @@
   "copyright": "All content Copyright",
   "addToCart": "Add to Cart",
   "ThankYouPage": {
-    "thank_you_message": "Thank you {{name}}, our team will reach out to you shortly!",
+    "thank_you_message1": "Thank you",
+    "thank_you_message2": "our team will reach out to you shortly!",
     "contact_follow_up": "Please feel free to",
     "contact_us": "contact us",
     "with_questions": "with any questions or concerns."
