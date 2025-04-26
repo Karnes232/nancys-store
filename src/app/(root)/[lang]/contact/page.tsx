@@ -76,8 +76,8 @@ const ContactPage = async ({ params }: PageProps) => {
         }
         className="hero-swiper"
       />
-      <div className="bg-white dark:bg-black h-screen">
-        <ContactForm />
+      <div className="bg-white dark:bg-black my-40">
+        <ContactForm selectedLang={lang} />
       </div>
     </main>
   )

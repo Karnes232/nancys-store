@@ -1,56 +1,29 @@
-"use client"
-
-import React from "react"
-import { useRouter } from "next/navigation"
 import useTranslations from "@/i18n/useTranslations"
+import React from "react"
 
-interface ContactFormProps {
+const CartForm = ({
+  selectedLang,
+  handleSubmit,
+  formData,
+  setFormData,
+}: {
   selectedLang: string
-}
-
-const ContactForm = ({ selectedLang }: ContactFormProps) => {
-  const router = useRouter()
+  handleSubmit: (formData: any) => void
+  formData: any
+  setFormData: (formData: any) => void
+}) => {
   const t = useTranslations(selectedLang)
-
-  const handleSubmit = async (formData: FormData) => {
-    const name = formData.get("name")
-    const email = formData.get("email")
-    const telephone = formData.get("telephone")
-    const message = formData.get("message")
-
-    try {
-      const response = await fetch("/__forms.html", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams(
-          Array.from(formData.entries()).map(([key, value]) => [
-            key,
-            String(value),
-          ]),
-        ).toString(),
-      })
-      if (response.ok) {
-        router.push(`/thankyou/?name=${name}`)
-      } else {
-        // Handle error
-      }
-    } catch (error) {
-      console.error("Submission error:", error)
-    }
-  }
   return (
     <form
       action={handleSubmit}
-      name="contact"
+      name="cart"
       data-netlify="true"
       data-netlify-honeypot="bot-field"
-      id="contact"
-      className="w-64 md:w-full max-w-md flex flex-col justify-center items-center mx-auto my-20"
+      id="cart"
+      className="w-80 md:w-full max-w-md flex flex-col justify-center items-center mx-auto my-20"
     >
       <input type="hidden" name="bot-field" />
-      <input type="hidden" name="form-name" value="contact" />
+      <input type="hidden" name="form-name" value="cart" />
       <div className="relative z-0 mb-6 w-full group">
         <input
           type="text"
@@ -64,6 +37,8 @@ const ContactForm = ({ selectedLang }: ContactFormProps) => {
           className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer dark:bg-black dark:text-white dark:border-gray-600 dark:[--input-background-color:black] dark:[--input-text-color:white]"
           placeholder=" "
           required
+          value={formData.name}
+          onChange={e => setFormData({ ...formData, name: e.target.value })}
         />
         <label
           htmlFor="name"
@@ -85,6 +60,8 @@ const ContactForm = ({ selectedLang }: ContactFormProps) => {
           className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer dark:bg-black dark:text-white dark:border-gray-600 dark:[--input-background-color:black] dark:[--input-text-color:white]"
           placeholder=" "
           required
+          value={formData.email}
+          onChange={e => setFormData({ ...formData, email: e.target.value })}
         />
         <label
           htmlFor="email"
@@ -107,6 +84,10 @@ const ContactForm = ({ selectedLang }: ContactFormProps) => {
           className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer dark:bg-black dark:text-white dark:border-gray-600 dark:[--input-background-color:black] dark:[--input-text-color:white]"
           placeholder=" "
           required
+          value={formData.telephone}
+          onChange={e =>
+            setFormData({ ...formData, telephone: e.target.value })
+          }
         />
         <label
           htmlFor="telephone"
@@ -115,26 +96,9 @@ const ContactForm = ({ selectedLang }: ContactFormProps) => {
           {t("contact.telephone")}
         </label>
       </div>
-
-      <div className="relative z-0 mb-6 w-full group">
-        <label
-          htmlFor="message"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-200"
-        >
-          {t("contact.message")}
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          rows={4}
-          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-black dark:text-white dark:placeholder:text-gray-200"
-          placeholder={t("contact.placeholder")}
-        ></textarea>
-      </div>
-
       <button
         type="submit"
-        className="text-white bg-black/75 hover:bg-black/50 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-white/50 dark:text-white dark:hover:bg-white/25"
+        className="w-full bg-blue-500 text-white py-2 px-4 rounded-md"
       >
         {t("contact.submit")}
       </button>
@@ -142,4 +106,4 @@ const ContactForm = ({ selectedLang }: ContactFormProps) => {
   )
 }
 
-export default ContactForm
+export default CartForm

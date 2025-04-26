@@ -25,5 +25,13 @@
     "total": "Total",
     "instructions": "Special Instructions for Seller",
     "instructionsPlaceholder": "Enter any special instructions here..."
+  },
+  "contact": {
+    "fullName": "Full Name",
+    "email": "Email Address",
+    "telephone": "Telephone",
+    "message": "Your message",
+    "placeholder": "Leave a comment...",
+    "submit": "Submit"
   }
 }
