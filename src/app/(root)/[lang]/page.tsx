@@ -43,7 +43,7 @@ async function getHomePageContent() {
 }
 
 interface PageProps {
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
 // Add these export configurations
@@ -52,7 +52,7 @@ export const revalidate = false // or a number in seconds if you want ISR
 
 const HomePage = async ({ params }: PageProps) => {
   // Await the params first
-  const { lang } = await params
+  const { lang } = params
 
   // Then use the resolved lang parameter
   const [pageData, { t }] = await Promise.all([

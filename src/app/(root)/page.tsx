@@ -3,12 +3,11 @@ import HomePage from "./[lang]/page"
 import { Metadata } from "next"
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  // Reuse the same metadata generation from [lang]/page.tsx
   const { generateMetadata: langGenerateMetadata } = await import(
     "./[lang]/page"
   )
   return langGenerateMetadata({
-    params: Promise.resolve({ lang: fallbackLng }),
+    params: { lang: fallbackLng },
   })
 }
 
@@ -17,9 +16,9 @@ export async function generateStaticParams() {
 }
 
 export const dynamic = "force-static"
-export const revalidate = false // or a number in seconds if you want ISR
+export const revalidate = false
 
-export default async function RootPage() {
-  // Reuse the same page component with the default language
-  return <HomePage params={Promise.resolve({ lang: fallbackLng })} />
+export default function RootPage() {
+  // Pass the resolved value, not the Promise itself
+  return <HomePage params={{ lang: fallbackLng }} />
 }
