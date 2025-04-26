@@ -42,14 +42,14 @@ async function getAboutUsPageContent() {
 }
 
 interface PageProps {
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
 export const dynamic = "force-static"
-export const revalidate = false // or a number in seconds if you want ISR
+export const revalidate = false
 
 const AboutUsPage = async ({ params }: PageProps) => {
-  const { lang } = await params
+  const { lang } = params  // Direct access, no await needed
 
   const [pageData, { t }] = await Promise.all([
     getAboutUsPageContent(),
@@ -93,7 +93,7 @@ const AboutUsPage = async ({ params }: PageProps) => {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { lang } = await params
+  const { lang } = params  // Direct access, no await needed
   const pageData = await getAboutUsPageContent()
 
   const builder = imageUrlBuilder(client)
@@ -127,17 +127,16 @@ export async function generateMetadata({
       images: ogImage ? [{ url: ogImage }] : undefined,
     },
     alternates: {
-      canonical: lang === "en" ? "/contact" : `/${lang}/contact`,
+      canonical: lang === "en" ? "/about-us" : `/${lang}/about-us`,
       languages: {
-        en: "/contact",
-        es: "/es/contact",
+        en: "/about-us",
+        es: "/es/about-us",
       },
     },
   }
 }
 
 export async function generateStaticParams() {
-  // Define the supported languages
   return [{ lang: "es" }]
 }
 
