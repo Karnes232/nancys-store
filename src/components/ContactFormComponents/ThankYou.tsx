@@ -1,9 +1,9 @@
 "use client"
 import useTranslations from "@/i18n/useTranslations"
 import { useSearchParams } from "next/navigation"
-import React from "react"
+import React, { Suspense } from "react"
 
-const ThankYou = ({ email, lang }: { email: string; lang: string }) => {
+const ThankYouContent = ({ email, lang }: { email: string; lang: string }) => {
   const t = useTranslations(lang)
   const searchParams = useSearchParams()
   const name = searchParams.get("name")
@@ -32,6 +32,14 @@ const ThankYou = ({ email, lang }: { email: string; lang: string }) => {
         </div>
       </div>
     </div>
+  )
+}
+
+const ThankYou = (props: { email: string; lang: string }) => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ThankYouContent {...props} />
+    </Suspense>
   )
 }
 
