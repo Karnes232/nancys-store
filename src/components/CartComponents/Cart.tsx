@@ -20,24 +20,18 @@ const Cart = ({ selectedLang }: { selectedLang: string }) => {
     email: "",
     telephone: "",
     instructions: instructions,
-    cartItems: cartItems.map(item => ({
-      name: item.name.en,
-      price: item.price,
-      quantity: item.quantity,
-      slug: item.slug,
-    })),
+    cartItems: cartItems.map(item => 
+      `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}\nProduct Link: ${item.slug.current}`
+    ).join('\n\n')
   })
 
   useEffect(() => {
     setFormData(prev => ({
       ...prev,
       instructions,
-      cartItems: cartItems.map(item => ({
-        name: item.name.en,
-        price: item.price,
-        quantity: item.quantity,
-        slug: item.slug,
-      })),
+      cartItems: cartItems.map(item => 
+        `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}\nProduct Link: ${item.slug.current}`
+      ).join('\n\n')
     }))
   }, [cartItems, instructions])
 
