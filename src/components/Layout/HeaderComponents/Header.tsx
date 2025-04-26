@@ -9,13 +9,13 @@ const Header = () => {
     <nav className="bg-black/75 relative lg:sticky top-0 z-50">
       <div className="relative flex items-center justify-between bg-transparent max-w-screen-xl mx-auto px-4">
         <div className="hidden lg:block absolute left-4">
-          <NavBar />
+          <HamburgerMenu />
         </div>
         <div className="flex-1 flex justify-center">
           <Logo />
         </div>
         <div className="hidden lg:block absolute right-4">
-          <HamburgerMenu />
+          <CartButton />
         </div>
       </div>
       <div className="lg:hidden flex items-center justify-between bg-transparent max-w-screen-xl h-16 xl:mx-auto">

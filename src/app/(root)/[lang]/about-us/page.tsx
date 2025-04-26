@@ -49,7 +49,7 @@ export const dynamic = "force-static"
 export const revalidate = false
 
 const AboutUsPage = async ({ params }: PageProps) => {
-  const { lang } = params  // Direct access, no await needed
+  const { lang } = params // Direct access, no await needed
 
   const [pageData, { t }] = await Promise.all([
     getAboutUsPageContent(),
@@ -93,7 +93,7 @@ const AboutUsPage = async ({ params }: PageProps) => {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { lang } = params  // Direct access, no await needed
+  const { lang } = params // Direct access, no await needed
   const pageData = await getAboutUsPageContent()
 
   const builder = imageUrlBuilder(client)

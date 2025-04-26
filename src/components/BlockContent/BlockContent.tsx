@@ -116,7 +116,7 @@ const BlockContent: React.FC<Props> = ({ content, language = "en" }) => {
   const blockContent = content[language][language]
   return (
     <>
-      <div className="flex flex-col max-w-5xl mx-5 lg:p-2 xl:mx-auto">
+      <div className="flex flex-col max-w-5xl mx-5 lg:p-2 lg:mx-auto">
         <PortableText value={blockContent} components={components} />
       </div>
     </>
