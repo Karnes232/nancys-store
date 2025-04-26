@@ -17,9 +17,8 @@ export async function generateStaticParams() {
   return [{}] // Empty object as this is the root route
 }
 
-export const dynamic = 'force-static'
-export const revalidate = false  // or a number in seconds if you want ISR
-
+export const dynamic = "force-static"
+export const revalidate = false // or a number in seconds if you want ISR
 
 export default async function RootPage() {
   // Reuse the same page component with the default language

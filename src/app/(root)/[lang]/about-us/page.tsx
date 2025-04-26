@@ -45,6 +45,9 @@ interface PageProps {
   params: Promise<{ lang: string }>
 }
 
+export const dynamic = "force-static"
+export const revalidate = false // or a number in seconds if you want ISR
+
 const AboutUsPage = async ({ params }: PageProps) => {
   const { lang } = await params
 
@@ -131,6 +134,11 @@ export async function generateMetadata({
       },
     },
   }
+}
+
+export async function generateStaticParams() {
+  // Define the supported languages
+  return [{ lang: "es" }]
 }
 
 export default AboutUsPage
