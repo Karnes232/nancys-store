@@ -15,6 +15,7 @@ const Cart = ({ selectedLang }: { selectedLang: string }) => {
   const [showInstructions, setShowInstructions] = useState(false)
   const [instructions, setInstructions] = useState("")
   const [formData, setFormData] = useState({
+    "form-name": "cart",
     name: "",
     email: "",
     telephone: "",
