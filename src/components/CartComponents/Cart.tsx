@@ -22,7 +22,7 @@ const Cart = ({ selectedLang }: { selectedLang: string }) => {
     telephone: "",
     instructions: instructions,
     cartItems: cartItems.map(item => 
-      `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}\nProduct Link: <a href="https://${host}/products/${item.slug.current}">https://${host}/products/${item.slug.current}</a>`
+      `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}\nProduct Link: https://${host}/products/${item.slug.current}`
     ).join('\n\n')
   })
 
@@ -32,7 +32,7 @@ const Cart = ({ selectedLang }: { selectedLang: string }) => {
       ...prev,
       instructions,
       cartItems: cartItems.map(item => 
-        `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}\nProduct Link: <a href="https://${host}/products/${item.slug.current}">https://${host}/products/${item.slug.current}</a>`
+        `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}\nProduct Link: https://${host}/products/${item.slug.current}`
       ).join('\n\n')
     }))
   }, [cartItems, instructions, host])
