@@ -14,6 +14,7 @@ const Cart = ({ selectedLang }: { selectedLang: string }) => {
   const { clearCart, cartItems } = useContext(CartContext)
   const [showInstructions, setShowInstructions] = useState(false)
   const [instructions, setInstructions] = useState("")
+  const [host, setHost] = useState("")
   const [formData, setFormData] = useState({
     "form-name": "cart",
     name: "",
@@ -21,19 +22,20 @@ const Cart = ({ selectedLang }: { selectedLang: string }) => {
     telephone: "",
     instructions: instructions,
     cartItems: cartItems.map(item => 
-      `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}\nProduct Link: ${item.slug.current}`
+      `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}\nProduct Link: <a href="https://${host}/products/${item.slug.current}">https://${host}/products/${item.slug.current}</a>`
     ).join('\n\n')
   })
 
   useEffect(() => {
+    setHost(window.location.host)
     setFormData(prev => ({
       ...prev,
       instructions,
       cartItems: cartItems.map(item => 
-        `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}\nProduct Link: ${item.slug.current}`
+        `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}\nProduct Link: <a href="https://${host}/products/${item.slug.current}">https://${host}/products/${item.slug.current}</a>`
       ).join('\n\n')
     }))
-  }, [cartItems, instructions])
+  }, [cartItems, instructions, host])
 
   const handleSubmit = async () => {
     try {
