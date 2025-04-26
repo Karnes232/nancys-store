@@ -21,8 +21,8 @@ const Cart = ({ selectedLang }: { selectedLang: string }) => {
     telephone: "",
     instructions: instructions,
     cartItems: cartItems.map(item => 
-      `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}  \nProduct Link: ${item.slug.current}`
-    ).join('  \n\n')
+      `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}\nProduct Link: ${item.slug.current}`
+    ).join('\n\n')
   })
 
   useEffect(() => {
@@ -30,8 +30,8 @@ const Cart = ({ selectedLang }: { selectedLang: string }) => {
       ...prev,
       instructions,
       cartItems: cartItems.map(item => 
-        `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}  \nProduct Link: ${item.slug.current}`
-      ).join('  \n\n')
+        `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}\nProduct Link: ${item.slug.current}`
+      ).join('\n\n')
     }))
   }, [cartItems, instructions])
 
