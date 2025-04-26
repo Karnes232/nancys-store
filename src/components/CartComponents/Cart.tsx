@@ -21,8 +21,8 @@ const Cart = ({ selectedLang }: { selectedLang: string }) => {
     telephone: "",
     instructions: instructions,
     cartItems: cartItems.map(item => 
-      `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}%0D%0AProduct Link: ${item.slug.current}`
-    ).join('%0D%0A%0D%0A')
+      `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}\r\nProduct Link: ${item.slug.current}`
+    ).join('\r\n\r\n')
   })
 
   useEffect(() => {
@@ -30,23 +30,23 @@ const Cart = ({ selectedLang }: { selectedLang: string }) => {
       ...prev,
       instructions,
       cartItems: cartItems.map(item => 
-        `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}%0D%0AProduct Link: ${item.slug.current}`
-      ).join('%0D%0A%0D%0A')
+        `${item.name.en} - Quantity: ${item.quantity} - Price: ${item.price}\r\nProduct Link: ${item.slug.current}`
+      ).join('\r\n\r\n')
     }))
   }, [cartItems, instructions])
 
   const handleSubmit = async () => {
     try {
-      const formDataWithStringifiedCart = {
+      const encodedFormData = {
         ...formData,
-        cartItems: JSON.stringify(formData.cartItems),
+        cartItems: encodeURIComponent(formData.cartItems)
       }
       const response = await fetch("/__forms.html", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: new URLSearchParams(formDataWithStringifiedCart).toString(),
+        body: new URLSearchParams(encodedFormData).toString()
       })
       if (response.ok) {
         router.push(`/thankyou/?name=${formData.name}`)
