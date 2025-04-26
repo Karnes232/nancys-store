@@ -42,18 +42,15 @@ async function getContactPageContent() {
 }
 
 interface PageProps {
-  params: Promise<{ lang: string }>
+  params: { lang: string }
 }
 
-// Add these export configurations
 export const dynamic = "force-static"
-export const revalidate = false // or a number in seconds if you want ISR
+export const revalidate = false
 
 const ContactPage = async ({ params }: PageProps) => {
-  // Await the params first
-  const { lang } = await params
+  const { lang } = params // Direct access, no await needed
 
-  // Then use the resolved lang parameter
   const [pageData, { t }] = await Promise.all([
     getContactPageContent(),
     getTranslation(lang),
@@ -86,11 +83,10 @@ const ContactPage = async ({ params }: PageProps) => {
   )
 }
 
-// Add metadata generation function
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { lang } = await params
+  const { lang } = params // Direct access, no await needed
   const pageData = await getContactPageContent()
 
   const builder = imageUrlBuilder(client)
@@ -134,7 +130,6 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  // Define the supported languages
   return [{ lang: "es" }]
 }
 
