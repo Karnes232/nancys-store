@@ -12,6 +12,10 @@ export default defineType({
       type: "string",
       validation: Rule => Rule.required(),
       description: "Title of the page for internal reference, DO NOT CHANGE",
+      readOnly: ({ document }) => {
+        // If the document exists (has an _id) and title is already set, make it read-only
+        return Boolean(document?._id && document?.title)
+      },
     }),
     defineField({
       name: "slug",
@@ -20,9 +24,26 @@ export default defineType({
       options: {
         source: "title",
         maxLength: 96,
+        // Disable slug auto-generation once it's set
+        isUnique: (slug, context) => {
+          // This prevents the "Generate" button from appearing if slug exists
+          if (
+            context.document?._id &&
+            (context.document?.slug as { current?: string })?.current
+          ) {
+            return Promise.resolve(true)
+          }
+          return context.defaultIsUnique(slug, context)
+        },
       },
       validation: Rule => Rule.required(),
       description: 'The URL path for this page (e.g., "about-us")',
+      readOnly: ({ document }) => {
+        // If the document exists and slug is already set, make it read-only
+        return Boolean(
+          document?._id && (document?.slug as { current?: string })?.current,
+        )
+      },
     }),
     defineField({
       name: "heroImages",

@@ -98,7 +98,7 @@ const ProductPage = async ({ params }: PageProps) => {
       <div className="mt-10 mb-5 md:my-20 lg:my-5 xl:max-w-6xl 2xl:max-w-7xl mx-5 md:mx-auto">
         <ProductPageCard product={product[0]} lang={lang} />
       </div>
-      <div className="my-5 xl:max-w-6xl 2xl:max-w-7xl mx-auto">
+      <div className="my-5 lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
         <BlockContent
           content={{
             _type: "localeBlock",
