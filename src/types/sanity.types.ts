@@ -8,7 +8,15 @@ export interface PageData {
       _type: "reference"
     }
     alt: string
-    caption?: string
+  }>
+  heroImagesLandScape: Array<{
+    _key: string
+    _type: "image"
+    asset: {
+      _ref: string
+      _type: "reference"
+    }
+    alt: string
   }>
   heroHeading: { en: string; es: string }
   heroSubheading?: { en: string; es: string }

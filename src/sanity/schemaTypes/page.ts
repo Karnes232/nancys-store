@@ -63,16 +63,33 @@ export default defineType({
               validation: Rule => Rule.required(),
               description: "Important for SEO and accessibility",
             }),
+          ],
+        },
+      ],
+      description: "Images to display in the hero section in portrait mode",
+    }),
+    defineField({
+      name: "heroImagesLandScape",
+      title: "Hero Images LandScape",
+      type: "array",
+      of: [
+        {
+          type: "image",
+          options: {
+            hotspot: true,
+          },
+          fields: [
             defineField({
-              name: "caption",
-              title: "Caption",
+              name: "alt",
+              title: "Alternative Text",
               type: "string",
-              description: "Optional caption for the image",
+              validation: Rule => Rule.required(),
+              description: "Important for SEO and accessibility",
             }),
           ],
         },
       ],
-      description: "Images to display in the hero section",
+      description: "Images to display in the hero section in landscape mode",
     }),
     defineField({
       name: "heroHeading",

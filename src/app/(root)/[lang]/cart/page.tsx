@@ -18,8 +18,16 @@ async function getCartPageContent() {
                 _ref,
                 url
               },
-              alt,
-              caption
+              alt
+            },
+            heroImagesLandScape[]{
+              _key,
+              _type,
+              asset->{
+                _ref,
+                url
+              },
+              alt
             },
             heroHeading,
             heroSubheading,
@@ -58,6 +66,7 @@ const CartPage = async ({ params }: PageProps) => {
     <main>
       <ToastContainer />
       <HeroSwiper
+        heroImagesLandScape={pageData.heroImagesLandScape}
         heroImages={pageData.heroImages}
         heroHeading={
           pageData.heroHeading

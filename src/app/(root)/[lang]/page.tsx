@@ -19,8 +19,16 @@ async function getHomePageContent() {
             _ref,
             url
           },
-          alt,
-          caption
+          alt
+        },
+        heroImagesLandScape[]{
+          _key,
+          _type,
+          asset->{
+            _ref,
+            url
+          },
+          alt
         },
         heroHeading,
         heroSubheading,
@@ -63,6 +71,7 @@ const HomePage = async ({ params }: PageProps) => {
     <main>
       <HeroSwiper
         heroImages={pageData.heroImages}
+        heroImagesLandScape={pageData.heroImagesLandScape}
         heroHeading={
           pageData.heroHeading
             ? (pageData.heroHeading[

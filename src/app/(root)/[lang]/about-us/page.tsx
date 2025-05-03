@@ -18,8 +18,16 @@ async function getAboutUsPageContent() {
                 _ref,
                 url
               },
-              alt,
-              caption
+              alt
+            },
+            heroImagesLandScape[]{
+              _key,
+              _type,
+              asset->{
+                _ref,
+                url
+              },
+              alt
             },
             heroHeading,
             heroSubheading,
@@ -59,6 +67,7 @@ const AboutUsPage = async ({ params }: PageProps) => {
   return (
     <main>
       <HeroSwiper
+        heroImagesLandScape={pageData.heroImagesLandScape}
         heroImages={pageData.heroImages}
         heroHeading={
           pageData.heroHeading

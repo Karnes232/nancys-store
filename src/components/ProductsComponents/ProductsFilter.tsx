@@ -35,7 +35,8 @@ export function ProductsFilter({
 
   return (
     <div>
-      <nav className="flex flex-row items-center justify-center overflow-x-scroll xl:overflow-x-auto whitespace-nowrap mx-5 xl:justify-center">
+      {/* CHANGE WHEN MORE CATEGORIES ARE ADDED */}
+      <nav className="flex flex-row items-center overflow-x-scroll xl:overflow-x-auto whitespace-nowrap mx-5 lg:justify-center">
         <button
           onClick={handleCategoryFilter}
           value="All"
