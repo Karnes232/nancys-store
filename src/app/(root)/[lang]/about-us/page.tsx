@@ -49,8 +49,11 @@ async function getAboutUsPageContent() {
   return await client.fetch<PageData>(query)
 }
 
+// Correct type definition for Next.js App Router page params
 interface PageProps {
-  params: { lang: string }
+  params: {
+    lang: string
+  }
 }
 
 export const dynamic = "force-static"
@@ -146,7 +149,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  return [{ lang: "es" }]
+  return [{ lang: "en" }, { lang: "es" }]
 }
 
 export default AboutUsPage
