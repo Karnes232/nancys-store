@@ -45,19 +45,11 @@ export default function NextImageLightbox({ slide, offset, rect }) {
       <Image
         alt={slide.alt}
         src={slide.src}
-        loading="lazy"
+        loading="eager"
         draggable={false}
         className="object-cover w-full h-full rounded-lg lg:rounded-3xl"
         fill
         quality={80}
-        // style={{
-        //   objectFit: cover ? "cover" : "contain",
-        //   cursor: click ? "pointer" : undefined,
-        // }}
-        // sizes={`${Math.ceil((width / window.innerWidth) * 100)}vw`}
-        // onClick={
-        //   offset === 0 ? () => click?.({ index: currentIndex }) : undefined
-        // }
       />
     </div>
   )

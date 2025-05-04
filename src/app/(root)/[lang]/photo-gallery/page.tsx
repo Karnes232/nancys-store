@@ -4,8 +4,8 @@ import { getTranslation } from "@/i18n"
 import HeroSwiper from "@/components/HeroComponent/HeroSwiper"
 import { Metadata } from "next"
 import imageUrlBuilder from "@sanity/image-url"
-import { PageData } from "@/types/sanity.types"
-import ContactForm from "@/components/ContactFormComponents/ContactForm"
+import TextComponentParagraph from "@/components/ProductsComponents/TextComponentParagraph"
+import PhotoGallery from "@/components/PhotoGalleryComponents/PhotoGallery"
 
 async function getPhotoGalleryPageContent() {
   const query = `
@@ -29,7 +29,13 @@ async function getPhotoGalleryPageContent() {
       images[]{
         asset->{
           _ref,
-          url
+          url,
+          metadata {
+            dimensions {
+              width,
+              height
+            }
+          }
         },
         alt,
         caption
@@ -85,9 +91,21 @@ const PhotoGalleryPage = async ({ params }: PageProps) => {
         }
         className="hero-swiper"
       />
-      {/*    <div className="bg-white dark:bg-black my-40">
-        <ContactForm selectedLang={lang} />
-      </div> */}
+      <div className="bg-white dark:bg-black my-20 lg:my-40">
+        <TextComponentParagraph
+          paragraph={
+            pageData.description
+              ? (pageData.description[
+                  lang as keyof typeof pageData.description
+                ] ?? "")
+              : ""
+          }
+          ParagraphClassName="text-center"
+        />
+      </div>
+      <div className="bg-white dark:bg-black">
+        <PhotoGallery images={pageData.images} />
+      </div>
     </main>
   )
 }
