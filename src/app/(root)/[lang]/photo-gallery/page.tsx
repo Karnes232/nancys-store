@@ -71,7 +71,7 @@ const PhotoGalleryPage = async ({ params }: PageProps) => {
     getPhotoGalleryPageContent(),
     getTranslation(lang),
   ])
-  console.log(pageData)
+
   return (
     <main>
       <HeroSwiper

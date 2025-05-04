@@ -17,6 +17,7 @@ function renderNextImage(
 ) {
   return (
     <div
+  
       style={{
         width: "100%",
         position: "relative",
@@ -30,6 +31,7 @@ function renderNextImage(
         title={title}
         sizes={sizes}
         placeholder={"blurDataURL" in photo ? "blur" : undefined}
+        className="rounded-lg overflow-hidden"
       />
     </div>
   )
