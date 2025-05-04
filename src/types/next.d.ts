@@ -1,7 +1,7 @@
 // types/next.d.ts
-import { ParsedUrlQuery } from 'querystring'
+import { ParsedUrlQuery } from "querystring"
 
-declare module 'next' {
+declare module "next" {
   export interface PageProps {
     params: {
       [key: string]: string

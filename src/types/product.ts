@@ -17,14 +17,14 @@ export interface Product {
   }
   price: number
   category: Category
-  mainImage: {
-    asset: {
+  imagesList: {
+    image: {
       _ref: string
       url: string
     }
     alt: string
-  }
-  imagesList: {
+  }[]
+  imagesListLandscape: {
     image: {
       _ref: string
       url: string

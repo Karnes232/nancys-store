@@ -16,23 +16,26 @@ type ProductCardSwiperProps = {
     }
     alt: string
   }[]
-  mainImage: {
-    asset: {
+  landscapeImages: {
+    image: {
       _ref: string
       url: string
     }
     alt: string
-  }
+  }[]
   swiperClassName?: string
 }
 
 const ProductCardSwiper = ({
   images,
-  mainImage,
+  landscapeImages,
   swiperClassName,
 }: ProductCardSwiperProps) => {
-  let photoListEdited = [{ url: mainImage.asset.url, alt: mainImage.alt }]
+  let photoListEdited = []
   images.forEach(image => {
+    photoListEdited.push({ url: image.image.url, alt: image.alt })
+  })
+  landscapeImages.forEach(image => {
     photoListEdited.push({ url: image.image.url, alt: image.alt })
   })
 
@@ -41,10 +44,10 @@ const ProductCardSwiper = ({
       <Swiper
         effect={"fade"}
         loop={true}
-        // autoplay={{
-        //   delay: 5000,
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 10000,
+          disableOnInteraction: false,
+        }}
         modules={[Autoplay, EffectFade]}
         className={`mySwiper`}
         fadeEffect={{ crossFade: true }}

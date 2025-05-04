@@ -15,7 +15,7 @@ const ProductPageCard = ({ product, lang }: { product: any; lang: string }) => {
         <div className="w-full max-w-sm mx-auto lg:w-1/2 xl:max-w-lg">
           <ProductCardSwiper
             images={product.imagesList}
-            mainImage={product.mainImage}
+            landscapeImages={product.imagesListLandscape}
             swiperClassName="h-64 md:h-80 xl:h-96 rounded-b-lg"
           />
         </div>

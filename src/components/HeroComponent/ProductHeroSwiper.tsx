@@ -29,10 +29,10 @@ const getMediaContent = async () => {
 
 const ProductHeroSwiper = ({
   images,
-  mainImage,
+  landscapeImages,
 }: {
   images: any
-  mainImage: any
+  landscapeImages: any
 }) => {
   const [effectShapeBlack, setEffectShapeBlack] = useState({
     imageUrl: "",
@@ -60,9 +60,13 @@ const ProductHeroSwiper = ({
     fetchMediaItems()
   }, [])
 
-  let photoListEdited = [{ title: mainImage.alt, image: mainImage.asset.url }]
+  let photoListEdited = []
+  let landscapePhotoListEdited = []
   images.forEach((image: any) => {
     photoListEdited.push({ title: image.alt, image: image.image.url })
+  })
+  landscapeImages.forEach((image: any) => {
+    landscapePhotoListEdited.push({ title: image.alt, image: image.image.url })
   })
   let HeroStyles = {
     backgroundImage:
@@ -83,7 +87,7 @@ const ProductHeroSwiper = ({
             disableOnInteraction: false,
           }}
           modules={[Autoplay, EffectFade]}
-          className={`mySwiper`}
+          className={`mySwiper block! lg:hidden!`}
         >
           {photoListEdited.map((image: any, index: any) => {
             return (
@@ -98,26 +102,53 @@ const ProductHeroSwiper = ({
                   height={1000}
                   className={`w-full object-cover object-center ${height}`}
                 />
-                <div className="absolute inset-0" style={HeroStyles}>
-                  {/* <div
-                  className={`relative max-w-xs lg:max-w-4xl inline-block z-10 top-[60%] md:top-[70%] xl:top-[60%] left-1/2 transform -translate-x-1/2  text-center ${translatePosition}`}
-                >
-                  {heroHeading && (
-                    <TextComponentHeading
-                      heading={heroHeading}
-                      headingNumber="h1"
-                      HeadingClassName={`${playfairDisplay.className} text-white tracking-wider text-4xl md:text-5xl lg:text-6xl text-center 2xl:mb-0 2xl:mt-0`}
-                    />
-                  )}
-                  {heroSubheading && (
-                    <TextComponentHeading
-                      heading={heroSubheading}
-                      headingNumber="h2"
-                      HeadingClassName={`${playfairDisplay.className} text-white tracking-wider text-xl md:text-2xl lg:text-3xl 2xl:mb-2 2xl:mt-5!`}
-                    />
-                  )}
-                </div>*/}
-                </div>
+                <div className="absolute inset-0" style={HeroStyles}></div>
+              </SwiperSlide>
+            )
+          })}
+          {effectShapeWhite.imageUrl && (
+            <Image
+              src={effectShapeWhite.imageUrl}
+              alt={effectShapeWhite.alt}
+              width={1000}
+              height={1000}
+              className={`z-50 !absolute -bottom-[1px] xl:-bottom-[.2rem] 2xl:-bottom-[0.5rem] w-screen dark:hidden`}
+            />
+          )}
+          {effectShapeBlack.imageUrl && (
+            <Image
+              src={effectShapeBlack.imageUrl}
+              alt={effectShapeBlack.alt}
+              width={1000}
+              height={1000}
+              className={`z-50 !absolute -bottom-[1px] w-screen dark:block hidden`}
+            />
+          )}
+        </Swiper>
+        <Swiper
+          effect={"fade"}
+          loop={true}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          modules={[Autoplay, EffectFade]}
+          className={`mySwiper hidden! lg:block!`}
+        >
+          {landscapePhotoListEdited.map((image: any, index: any) => {
+            return (
+              <SwiperSlide
+                className={`relative w-full object-cover object-center ${height}`}
+                key={index}
+              >
+                <Image
+                  src={image.image}
+                  alt={image.title}
+                  width={1000}
+                  height={1000}
+                  className={`w-full object-cover object-center ${height}`}
+                />
+                <div className="absolute inset-0" style={HeroStyles}></div>
               </SwiperSlide>
             )
           })}

@@ -38,14 +38,15 @@ async function getProduct(slug: string) {
       name,
       slug,
       price,
-      mainImage{
-        asset->{
+      imagesList[]{
+        _key,
+        alt,
+        "image": image.asset->{
           _ref,
           url
-        },
-        alt
+        }
       },
-      imagesList[]{
+      imagesListLandscape[]{
         _key,
         alt,
         "image": image.asset->{
@@ -93,7 +94,7 @@ const ProductPage = async ({ params }: PageProps) => {
       <ToastContainer />
       <ProductHeroSwiper
         images={product[0].imagesList}
-        mainImage={product[0].mainImage}
+        landscapeImages={product[0].imagesListLandscape}
       />
       <div className="mt-10 mb-5 md:my-20 lg:my-5 xl:max-w-6xl 2xl:max-w-7xl mx-5 md:mx-auto">
         <ProductPageCard product={product[0]} lang={lang} />

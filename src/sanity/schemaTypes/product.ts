@@ -69,7 +69,32 @@ export default defineType({
     }),
     defineField({
       name: "imagesList",
-      title: "Images",
+      title: "Images Portrait",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({
+              name: "image",
+              type: "image",
+              title: "Image",
+              options: { hotspot: true },
+            }),
+            defineField({
+              name: "alt",
+              title: "Alternative Text",
+              type: "string",
+              validation: Rule => Rule.required(),
+              description: "Important for SEO and accessibility",
+            }),
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: "imagesListLandscape",
+      title: "Images Landscape",
       type: "array",
       of: [
         {

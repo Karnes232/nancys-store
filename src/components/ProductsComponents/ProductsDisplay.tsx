@@ -13,14 +13,15 @@ async function getProducts() {
         name
       },
       price,
-      mainImage{
-        asset->{
+      imagesList[]{
+        _key,
+        alt,
+        "image": image.asset->{
           _ref,
           url
-        },
-        alt
+        }
       },
-      imagesList[]{
+      imagesListLandscape[]{
         _key,
         alt,
         "image": image.asset->{
