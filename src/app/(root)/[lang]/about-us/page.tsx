@@ -20,7 +20,7 @@ async function getAboutUsPageContent() {
               },
               alt
             },
-            heroImagesLandScape[]{
+             heroImagesLandScape[]{
               _key,
               _type,
               asset->{
@@ -28,7 +28,7 @@ async function getAboutUsPageContent() {
                 url
               },
               alt
-            },
+            },            
             heroHeading,
             heroSubheading,
             content,
@@ -49,11 +49,8 @@ async function getAboutUsPageContent() {
   return await client.fetch<PageData>(query)
 }
 
-// Correct type definition for Next.js App Router page params
 interface PageProps {
-  params: {
-    lang: string
-  }
+  params: { lang: string }
 }
 
 export const dynamic = "force-static"
@@ -149,7 +146,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  return [{ lang: "en" }, { lang: "es" }]
+  return [{ lang: "es" }]
 }
 
 export default AboutUsPage
