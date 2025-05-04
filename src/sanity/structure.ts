@@ -14,6 +14,7 @@ export const myStructure = (S: StructureBuilder) =>
             .items([
               S.documentTypeListItem("page").title("Pages"),
               S.documentTypeListItem("generalLayout").title("General Layout"),
+              S.documentTypeListItem("gallery").title("Photo Gallery"),
             ]),
         ),
 
