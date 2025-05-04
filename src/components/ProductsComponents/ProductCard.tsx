@@ -23,6 +23,7 @@ const ProductCard = ({
           images={product.imagesList}
           landscapeImages={product.imagesListLandscape}
           swiperClassName="h-64 lg:h-60"
+          lightbox={false}
         />
         <div className="px-6 py-4 mt-2 mb-5">
           <div

@@ -30,7 +30,8 @@
     "sanity": "^3.83.0",
     "sanity-plugin-media": "^3.0.2",
     "styled-components": "^6.1.17",
-    "swiper": "^11.2.6"
+    "swiper": "^11.2.6",
+    "yet-another-react-lightbox": "^3.23.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

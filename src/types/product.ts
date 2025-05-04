@@ -21,6 +21,12 @@ export interface Product {
     image: {
       _ref: string
       url: string
+      metadata: {
+        dimensions: {
+          width: number
+          height: number
+        }
+      }
     }
     alt: string
   }[]
@@ -28,6 +34,12 @@ export interface Product {
     image: {
       _ref: string
       url: string
+      metadata: {
+        dimensions: {
+          width: number
+          height: number
+        }
+      }
     }
     alt: string
   }[]

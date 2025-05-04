@@ -43,7 +43,13 @@ async function getProduct(slug: string) {
         alt,
         "image": image.asset->{
           _ref,
-          url
+          url,
+          metadata {
+            dimensions {
+              width,
+              height
+            }
+          }
         }
       },
       imagesListLandscape[]{
@@ -51,7 +57,13 @@ async function getProduct(slug: string) {
         alt,
         "image": image.asset->{
           _ref,
-          url
+          url,
+          metadata {
+            dimensions {
+              width,
+              height
+            }
+          }
         }
       },
       shortDescription,

@@ -17,6 +17,7 @@ const ProductPageCard = ({ product, lang }: { product: any; lang: string }) => {
             images={product.imagesList}
             landscapeImages={product.imagesListLandscape}
             swiperClassName="h-64 md:h-80 xl:h-96 rounded-b-lg"
+            lightbox={true}
           />
         </div>
 
