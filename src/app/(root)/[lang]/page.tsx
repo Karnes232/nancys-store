@@ -51,7 +51,7 @@ async function getHomePageContent() {
 }
 
 interface PageProps {
-  params: { lang: string }
+  params: any
 }
 
 // Add these export configurations

@@ -50,7 +50,7 @@ async function getContactPageContent() {
 }
 
 interface PageProps {
-  params: { lang: string }
+  params: any
 }
 
 export const dynamic = "force-static"
