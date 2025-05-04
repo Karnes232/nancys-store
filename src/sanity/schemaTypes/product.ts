@@ -49,24 +49,7 @@ export default defineType({
       type: "number",
       validation: Rule => Rule.required().precision(2),
     }),
-    defineField({
-      name: "mainImage",
-      title: "Main Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        defineField({
-          name: "alt",
-          title: "Alternative Text",
-          type: "string",
-          validation: Rule => Rule.required(),
-          description: "Important for SEO and accessibility",
-        }),
-      ],
-      validation: Rule => Rule.required(),
-    }),
+
     defineField({
       name: "imagesList",
       title: "Images Portrait",
