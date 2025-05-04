@@ -40,6 +40,7 @@ const SideBarInside = ({ footer, setToggled }) => {
             {t("Home")}
           </p>
         </MenuItem>
+
         <MenuItem
           component={
             <Link
@@ -53,6 +54,21 @@ const SideBarInside = ({ footer, setToggled }) => {
             className={`${footer ? "hamburgerSmall" : "hamburger"} relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-current hover:after:w-full after:transition-all after:duration-300`}
           >
             {t("About Us")}
+          </p>
+        </MenuItem>
+        <MenuItem
+          component={
+            <Link
+              href={getLocalizedPath("/photo-gallery")}
+              className="no-underline uppercase text-xl space-x-3 transition-all duration-300 hover:scale-110"
+              onClick={footer ? undefined : () => setToggled(false)}
+            />
+          }
+        >
+          <p
+            className={`${footer ? "hamburgerSmall" : "hamburger"} relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-current hover:after:w-full after:transition-all after:duration-300`}
+          >
+            {t("Photo Gallery")}
           </p>
         </MenuItem>
         <MenuItem

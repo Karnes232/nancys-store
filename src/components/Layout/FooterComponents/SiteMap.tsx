@@ -37,6 +37,13 @@ const SiteMap = () => {
           {t("About Us")}{" "}
         </Link>
         <Link
+          href={getLocalizedPath("/photo-gallery")}
+          className="no-underline uppercase text-sm space-x-3 transition-all duration-300 hover:scale-110"
+        >
+          {" "}
+          {t("Photo Gallery")}{" "}
+        </Link>
+        <Link
           href={getLocalizedPath("/cart")}
           className="no-underline uppercase text-sm space-x-3 transition-all duration-300 hover:scale-110"
         >
@@ -65,6 +72,13 @@ const SiteMap = () => {
         >
           {" "}
           {t("About Us")}{" "}
+        </Link>
+        <Link
+          href={getLocalizedPath("/photo-gallery")}
+          className="no-underline uppercase text-sm space-x-3 transition-all duration-300 hover:scale-110"
+        >
+          {" "}
+          {t("Photo Gallery")}{" "}
         </Link>
         <Link
           href={getLocalizedPath("/cart")}

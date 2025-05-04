@@ -22,7 +22,26 @@ export default defineType({
     }),
     defineField({
       name: "mainImage",
-      title: "Main Image",
+      title: "Main Image Portrait",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Alternative Text",
+          type: "string",
+          validation: Rule => Rule.required(),
+          description: "Important for SEO and accessibility",
+        }),
+      ],
+      validation: Rule => Rule.required(),
+      description: "This image will be used as the gallery cover/thumbnail",
+    }),
+    defineField({
+      name: "mainImageLandscape",
+      title: "Main Image Landscape",
       type: "image",
       options: {
         hotspot: true,
@@ -91,6 +110,13 @@ export default defineType({
           title: "Keywords",
           type: "localeArray",
           description: "Keywords for search engines (comma-separated)",
+        }),
+        defineField({
+          name: "openGraphImage",
+          title: "Open Graph Image",
+          type: "image",
+          description:
+            "Image for sharing on social media (Facebook, Twitter, etc.)",
         }),
       ],
     }),
