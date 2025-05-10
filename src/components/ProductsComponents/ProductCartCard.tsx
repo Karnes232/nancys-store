@@ -15,9 +15,9 @@ const ProductCartCard = ({ product, selectedLang }: ProductCartCardProps) => {
     <div className="flex justify-between mb-5 mt-2">
       <div className="flex gap-10 md:gap-20">
         <Image
-          src={product.mainImage.asset.url}
+          src={product.imagesList[0].image.url}
           className="rounded-md w-32 h-32 md:w-48 md:h-48 object-cover"
-          alt={product.mainImage.alt}
+          alt={product.imagesList[0].alt}
           width={100}
           height={100}
         />

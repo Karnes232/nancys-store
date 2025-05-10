@@ -17,7 +17,6 @@ function renderNextImage(
 ) {
   return (
     <div
-  
       style={{
         width: "100%",
         position: "relative",
