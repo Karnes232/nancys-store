@@ -18,7 +18,7 @@ const ProductCard = ({
 }) => {
   return (
     <Link href={`/${selectedLang}/products/${product.slug.current}`}>
-      <div className="max-w-sm w-[22rem] xl:max-w-xs my-5 mx-2 rounded-lg overflow-hidden shadow-lg dark:shadow-slate-900">
+      <div className="max-w-sm w-[22rem] xl:max-w-xs my-5 mx-2 rounded-lg overflow-hidden shadow-lg dark:shadow-slate-900 h-[27rem] flex flex-col hover:shadow-xl transition-all duration-300">
         <ProductCardSwiper
           images={product.imagesList}
           landscapeImages={product.imagesListLandscape}
@@ -40,7 +40,9 @@ const ProductCard = ({
               {product.price}
             </div>
           </div>
-          <div className={`${playfairDisplay.className} text-gray-500 text-sm`}>
+          <div
+            className={`${playfairDisplay.className} text-gray-500 text-sm line-clamp-5`}
+          >
             {product.shortDescription[selectedLang]}
           </div>
         </div>

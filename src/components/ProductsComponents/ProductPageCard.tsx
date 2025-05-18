@@ -12,7 +12,7 @@ const ProductPageCard = ({ product, lang }: { product: any; lang: string }) => {
   return (
     <section>
       <div className="flex flex-col lg:flex-row gap-4 2xl:gap-20">
-        <div className="w-full max-w-sm mx-auto lg:w-1/2 xl:max-w-lg">
+        <div className="w-full max-w-sm mx-auto lg:w-1/2 xl:max-w-lg hover:shadow-xl transition-all duration-300">
           <ProductCardSwiper
             images={product.imagesList}
             landscapeImages={product.imagesListLandscape}

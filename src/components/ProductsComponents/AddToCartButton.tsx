@@ -82,12 +82,12 @@ const AddToCartButton = ({
   }
 
   return (
-    <div className="flex justify-center items-center mb-5">
+    <div className="flex justify-center items-center mb-5 ">
       {!cartItems.find(item => item.name.en === product.name.en) ? (
         <button
           type="submit"
           onClick={handleClick}
-          className={`bg-black/75 hover:bg-black/50 text-white font-bold py-1 px-4 rounded dark:bg-white dark:text-black hover:dark:bg-white/75`}
+          className={`bg-black/75 hover:bg-black/50 text-white font-bold py-1 px-4 rounded dark:bg-white dark:text-black hover:dark:bg-white/75 transition-all duration-300`}
         >
           {t("addToCart")}
         </button>
