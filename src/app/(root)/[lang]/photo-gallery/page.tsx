@@ -104,7 +104,9 @@ const PhotoGalleryPage = async ({ params }: PageProps) => {
         />
       </div>
       <div className="bg-white dark:bg-black">
-        <PhotoGallery images={pageData.images} />
+        <PhotoGallery
+          images={pageData.images.sort(() => Math.random() - 0.5)}
+        />
       </div>
     </main>
   )

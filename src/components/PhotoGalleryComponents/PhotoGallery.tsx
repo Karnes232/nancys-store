@@ -54,7 +54,6 @@ const PhotoGallery = ({ images }: { images: any }) => {
         render={{ image: renderNextImage }}
         photos={photoList}
         columns={containerWidth => {
-          console.log(containerWidth)
           if (containerWidth < 320) return 1
           if (containerWidth < 780) return 2
           if (containerWidth < 1024) return 3
