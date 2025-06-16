@@ -12,7 +12,7 @@ export default function LanguageSwitcher() {
 
   const languageOptions = [
     { code: "en", display: "English", flag: "🇺🇸" },
-    { code: "es", display: "Español", flag: "🇪🇸" },
+    { code: "es", display: "Español", flag: "🇩🇴" },
   ]
 
   const handleLanguageChange = (newLocale: string) => {
