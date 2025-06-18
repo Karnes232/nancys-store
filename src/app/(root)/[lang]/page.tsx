@@ -61,6 +61,7 @@ interface PageProps {
 const HomePage = async ({ params }: PageProps) => {
   // Await the params first
   const { lang } = params
+  
 
   // Then use the resolved lang parameter
   const [pageData, { t }] = await Promise.all([

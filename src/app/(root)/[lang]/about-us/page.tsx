@@ -53,8 +53,8 @@ interface PageProps {
   params: any
 }
 
-export const dynamic = "force-static"
-export const revalidate = false
+  // export const dynamic = "force-static"
+  // export const revalidate = false
 
 const AboutUsPage = async ({ params }: PageProps) => {
   const { lang } = params // Direct access, no await needed
