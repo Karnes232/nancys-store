@@ -55,8 +55,8 @@ interface PageProps {
 }
 
 // Add these export configurations
-export const dynamic = "force-static"
-export const revalidate = false // or a number in seconds if you want ISR
+// export const dynamic = "force-static"
+// export const revalidate = false // or a number in seconds if you want ISR
 
 const HomePage = async ({ params }: PageProps) => {
   // Await the params first
