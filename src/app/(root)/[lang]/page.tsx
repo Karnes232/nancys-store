@@ -144,7 +144,7 @@ export async function generateMetadata({
       images: ogImage ? [{ url: ogImage }] : undefined,
     },
     alternates: {
-      canonical: lang === "en" ? "/" : `/${lang}`,
+      canonical: lang === "en" ? "https://esenciasbynancy.com/" : "https://esenciasbynancy.com/es",
       languages: {
         en: "/",
         es: "/es",

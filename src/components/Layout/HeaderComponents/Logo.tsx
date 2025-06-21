@@ -29,8 +29,8 @@ const Logo = async ({}) => {
       <Image
         src={data.logo.asset.url}
         alt={data.logo.alt}
-        width={400}
-        height={400}
+        width={250}
+        height={170}
         className="w-full h-full"
         priority
         sizes="(max-width: 640px) 200px,
