@@ -1,7 +1,6 @@
 import React from "react"
 import Image from "next/image"
 import { client } from "@/sanity/lib/client"
-import imageLoader from "@/lib/image-loader"
 
 const Logo = async ({}) => {
   const data = await client.fetch(`
@@ -34,7 +33,6 @@ const Logo = async ({}) => {
   return (
     <div className="flex items-center justify-center py-2">
       <Image
-        loader={imageLoader}
         src={data.logo.asset.url}
         alt={data.logo.alt}
         width={width}
