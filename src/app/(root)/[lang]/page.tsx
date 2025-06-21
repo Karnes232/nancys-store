@@ -1,12 +1,16 @@
+import dynamicImport from "next/dynamic"
 import HeroSwiper from "@/components/HeroComponent/HeroSwiper"
 import { client } from "@/sanity/lib/client"
 import { getTranslation } from "@/i18n"
 import { Metadata } from "next"
 import imageUrlBuilder from "@sanity/image-url"
 import { PageData } from "@/types/sanity.types"
-import BlockContent from "@/components/BlockContent/BlockContent"
+//import BlockContent from "@/components/BlockContent/BlockContent"
 import { LocaleBlockContent } from "@/types/sanity.types"
-import ProductsDisplay from "@/components/ProductsComponents/ProductsDisplay"
+// import ProductsDisplay from "@/components/ProductsComponents/ProductsDisplay"
+const BlockContent = dynamicImport(() => import("@/components/BlockContent/BlockContent"))
+const ProductsDisplay = dynamicImport(() => import("@/components/ProductsComponents/ProductsDisplay"))
+
 
 async function getHomePageContent() {
   const query = `
