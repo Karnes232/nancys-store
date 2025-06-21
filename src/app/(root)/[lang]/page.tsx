@@ -145,10 +145,11 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: lang === "en" ? "https://esenciasbynancy.com/" : "https://esenciasbynancy.com/es",
-      languages: {
-        en: "/",
-        es: "/es",
-      },
+    },
+    other: {
+      "hreflang-en": "https://esenciasbynancy.com/",
+      "hreflang-es": "https://esenciasbynancy.com/es",
+      "hreflang-x-default": "https://esenciasbynancy.com/",
     },
   }
 }

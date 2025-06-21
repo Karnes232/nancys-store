@@ -134,11 +134,12 @@ export async function generateMetadata({
       images: ogImage ? [{ url: ogImage }] : undefined,
     },
     alternates: {
-      canonical: lang === "en" ? "/thankyou" : `/${lang}/thankyou`,
-      languages: {
-        en: "/thankyou",
-        es: "/es/thankyou",
-      },
+      canonical: lang === "en" ? "https://esenciasbynancy.com/thankyou" : `https://esenciasbynancy.com/${lang}/thankyou`,
+    },
+    other: {
+      "hreflang-en": "https://esenciasbynancy.com/thankyou",
+      "hreflang-es": "https://esenciasbynancy.com/es/thankyou",
+      "hreflang-x-default": "https://esenciasbynancy.com/thankyou",
     },
   }
 }

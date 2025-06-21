@@ -170,11 +170,12 @@ export async function generateMetadata({
     },
     alternates: {
       canonical:
-        lang === "en" ? `/products/${slug}` : `/${lang}/products/${slug}`,
-      languages: {
-        en: `/products/${slug}`,
-        es: `/${lang}/products/${slug}`,
-      },
+        lang === "en" ? `https://esenciasbynancy.com/products/${slug}` : `https://esenciasbynancy.com/${lang}/products/${slug}`,
+    },
+    other: {
+      "hreflang-en": `https://esenciasbynancy.com/products/${slug}`,
+      "hreflang-es": `https://esenciasbynancy.com/es/products/${slug}`,
+      "hreflang-x-default": `https://esenciasbynancy.com/products/${slug}`,
     },
   }
 }

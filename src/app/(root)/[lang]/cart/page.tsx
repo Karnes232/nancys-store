@@ -128,11 +128,12 @@ export async function generateMetadata({
       images: ogImage ? [{ url: ogImage }] : undefined,
     },
     alternates: {
-      canonical: lang === "en" ? "/cart" : `/${lang}/cart`,
-      languages: {
-        en: "/cart",
-        es: "/es/cart",
-      },
+      canonical: lang === "en" ? "https://esenciasbynancy.com/cart" : `https://esenciasbynancy.com/${lang}/cart`,
+    },
+    other: {
+      "hreflang-en": "https://esenciasbynancy.com/cart",
+      "hreflang-es": "https://esenciasbynancy.com/es/cart",
+      "hreflang-x-default": "https://esenciasbynancy.com/cart",
     },
   }
 }

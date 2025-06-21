@@ -136,11 +136,12 @@ export async function generateMetadata({
       images: ogImage ? [{ url: ogImage }] : undefined,
     },
     alternates: {
-      canonical: lang === "en" ? "/about-us" : `/${lang}/about-us`,
-      languages: {
-        en: "/about-us",
-        es: "/es/about-us",
-      },
+      canonical: lang === "en" ? "https://esenciasbynancy.com/about-us" : `https://esenciasbynancy.com/${lang}/about-us`,
+    },
+    other: {
+      "hreflang-en": "https://esenciasbynancy.com/about-us",
+      "hreflang-es": "https://esenciasbynancy.com/es/about-us",
+      "hreflang-x-default": "https://esenciasbynancy.com/about-us",
     },
   }
 }

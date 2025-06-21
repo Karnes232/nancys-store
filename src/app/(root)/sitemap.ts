@@ -101,6 +101,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             changeFrequency: "monthly",
             priority: 1,
         },
+        {
+            url: "https://esenciasbynancy.com/thankyou",
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 1,
+        },
+        {
+            url: "https://esenciasbynancy.com/es/thankyou",
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 1,
+        },
         ...pagesUrlsEnglish,
         ...pagesUrlsSpanish,
     ]
