@@ -9,16 +9,8 @@ export default function imageLoader({
 }) {
   // Check if this is a Sanity image
   if (src.startsWith("https://cdn.sanity.io")) {
-    // Apply Sanity's image pipeline parameters with optimizations
-    const params = new URLSearchParams({
-      w: width.toString(),
-      q: (quality || 85).toString(),
-      auto: 'format',
-      fit: 'max',
-      fm: 'webp' // Use WebP for better compression
-    })
-    
-    return `${src}?${params.toString()}`
+    // Apply Sanity's image pipeline parameters
+    return `${src}?w=${width}&q=${quality || 85}&auto=format&fit=max`
   }
   return src
 } 
