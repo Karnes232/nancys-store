@@ -1,28 +1,32 @@
 import React from "react"
 import Image from "next/image"
 import imageLoader from "@/lib/image-loader"
-import { getLogoData } from "@/lib/logo-data"
 
-const Logo = async ({}) => {
-  const data = await getLogoData()
+interface StaticLogoProps {
+  logoData: {
+    url: string
+    alt: string
+    width: number
+    height: number
+    lqip: string
+  }
+}
 
-  if (!data || !data.logo) return null
-
-  const { width, height } = data.logo.asset.metadata.dimensions
-  const lqip = data.logo.asset.metadata.lqip
+const StaticLogo: React.FC<StaticLogoProps> = ({ logoData }) => {
+  if (!logoData) return null
 
   return (
     <div className="flex items-center justify-center py-2">
       <Image
         loader={imageLoader}
-        src={data.logo.asset.url}
-        alt={data.logo.alt}
-        width={width}
-        height={height}
+        src={logoData.url}
+        alt={logoData.alt}
+        width={logoData.width}
+        height={logoData.height}
         className="w-auto h-auto max-w-[250px] max-h-[170px]"
         priority
         placeholder="blur"
-        blurDataURL={lqip}
+        blurDataURL={logoData.lqip}
         sizes="(max-width: 640px) 200px,
                (max-width: 768px) 250px,
                (max-width: 1024px) 200px,
@@ -35,4 +39,4 @@ const Logo = async ({}) => {
   )
 }
 
-export default Logo
+export default StaticLogo 
