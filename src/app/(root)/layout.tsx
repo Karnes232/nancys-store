@@ -4,6 +4,7 @@ import "../globals.css"
 import Header from "@/components/Layout/HeaderComponents/Header"
 import Footer from "@/components/Layout/FooterComponents/Footer"
 import { CartProvider } from "../../context/cart"
+import { preloadLogoData } from "@/lib/logo-data"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,6 +19,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Nancy Store",
   description: "Welcome to Nancy Store",
+}
+
+// Preload logo data at build time
+export async function generateStaticParams() {
+  // Preload logo data to cache it
+  await preloadLogoData()
+  return []
 }
 
 export default function RootLayout({

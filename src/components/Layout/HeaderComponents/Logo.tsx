@@ -1,29 +1,9 @@
 import React from "react"
 import Image from "next/image"
-import { client } from "@/sanity/lib/client"
+import { getLogoData } from "@/lib/logo-data"
 
 const Logo = async ({}) => {
-  const data = await client.fetch(`
-    *[_type == "generalLayout"][0] {
-      logo {
-        asset->{
-          url,
-          metadata {
-            dimensions {
-              width,
-              height
-            },
-            lqip,
-            palette
-          }
-        },
-        alt,
-        hotspot,
-        crop
-      },
-      companyName
-    }
-  `)
+  const data = await getLogoData()
 
   if (!data || !data.logo) return null
 
@@ -45,7 +25,7 @@ const Logo = async ({}) => {
                (max-width: 768px) 250px,
                (max-width: 1024px) 200px,
                250px"
-        quality={85}
+        quality={75}
         loading="eager"
         fetchPriority="high"
       />
