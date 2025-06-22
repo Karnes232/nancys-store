@@ -41,7 +41,7 @@ export default async function RootLayout({
           <Header logoData={logoData} />
           {children}
           <Footer />
-          <PerformanceMonitor />
+          {/* <PerformanceMonitor /> */}
         </body>
       </html>
     </CartProvider>

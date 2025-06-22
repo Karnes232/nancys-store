@@ -1,6 +1,17 @@
 "use client"
 import { useEffect, useState } from 'react'
 
+// Type definitions for performance APIs
+interface PerformanceEventTiming extends PerformanceEntry {
+  processingStart: number
+  startTime: number
+}
+
+interface LayoutShift extends PerformanceEntry {
+  hadRecentInput: boolean
+  value: number
+}
+
 const PerformanceMonitor = () => {
   const [metrics, setMetrics] = useState({
     fcp: 0,
@@ -31,7 +42,7 @@ const PerformanceMonitor = () => {
       // First Input Delay
       const fidObserver = new PerformanceObserver((list) => {
         const entries = list.getEntries()
-        const fid = entries[entries.length - 1]
+        const fid = entries[entries.length - 1] as PerformanceEventTiming
         setMetrics(prev => ({ ...prev, fid: fid.processingStart - fid.startTime }))
       })
       fidObserver.observe({ entryTypes: ['first-input'] })
@@ -40,8 +51,9 @@ const PerformanceMonitor = () => {
       const clsObserver = new PerformanceObserver((list) => {
         let clsValue = 0
         for (const entry of list.getEntries()) {
-          if (!entry.hadRecentInput) {
-            clsValue += (entry as any).value
+          const layoutShift = entry as LayoutShift
+          if (!layoutShift.hadRecentInput) {
+            clsValue += layoutShift.value
           }
         }
         setMetrics(prev => ({ ...prev, cls: clsValue }))
