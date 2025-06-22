@@ -14,21 +14,32 @@ const Logo: React.FC<LogoProps> = ({ logoData }) => {
 
   return (
     <div className="flex items-center justify-center py-2">
-      <Image
-        src={imageUrl}
-        alt={logoData.logo.alt || logoData.companyName || "Company Logo"}
-        width={250}
-        height={170}
-        className="w-auto h-auto max-w-[250px] max-h-[170px]"
-        priority
-        // placeholder="blur"
-        // blurDataURL={logoData.logo.asset.metadata.lqip}
-        // sizes="(max-width: 640px) 200px, (max-width: 768px) 250px, (max-width: 1024px) 200px, 250px"
-        quality={75}
-        loading="eager"
-        fetchPriority="high"
-      />
-    </div>
+    <Image
+      src={imageUrl}
+      alt={logoData.logo.alt || logoData.companyName || "Company Logo"}
+      width={Math.min(width, 300)}
+      height={Math.min(height, 200)}
+      className="w-auto h-auto max-w-[200px] md:max-w-[250px] max-h-[120px] md:max-h-[150px]"
+      priority
+      // Remove these problematic props that cause render delay
+      // placeholder="blur"
+      // blurDataURL={logoData.logo.asset.metadata.lqip}
+      quality={75}
+      loading="eager"
+      fetchPriority="high"
+      // Add these to reduce render delay
+      decoding="sync"
+      unoptimized={false}
+      // Simplified sizes
+      sizes="(max-width: 768px) 200px, 250px"
+      style={{
+        width: 'auto',
+        height: 'auto',
+        maxWidth: '250px',
+        maxHeight: '150px',
+      }}
+    />
+  </div>
   )
 }
 
