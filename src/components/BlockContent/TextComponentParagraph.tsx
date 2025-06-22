@@ -21,8 +21,8 @@ const TextComponentParagraph = ({
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{
-          duration: 3,
-          delay: 0.3,
+          duration: 0.3,
+          delay: 0.1,
         }}
         className="flex flex-col justify-center max-w-5xl mx-5 lg:p-2 xl:mx-auto"
       >

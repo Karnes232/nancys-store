@@ -6,6 +6,7 @@ import Footer from "@/components/Layout/FooterComponents/Footer"
 import { CartProvider } from "../../context/cart"
 import { preloadLogoData } from "@/lib/logo-data"
 import { getLogoData } from "@/lib/getLogo"
+import PerformanceMonitor from "@/components/PerformanceMonitor"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default async function RootLayout({
           <Header logoData={logoData} />
           {children}
           <Footer />
+          <PerformanceMonitor />
         </body>
       </html>
     </CartProvider>

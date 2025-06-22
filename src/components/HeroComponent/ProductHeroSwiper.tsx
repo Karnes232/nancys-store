@@ -1,31 +1,11 @@
 "use client"
-import React, { useEffect, useState } from "react"
+import React, { useState, useEffect } from "react"
+import Image from "next/image"
 import { Swiper, SwiperSlide } from "swiper/react"
-// Import Swiper styles
+import { Autoplay, EffectFade } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/effect-fade"
-import { Autoplay, EffectFade } from "swiper/modules"
-import Image from "next/image"
-import { client } from "@/sanity/lib/client"
-
-const getMediaContent = async () => {
-  try {
-    const titles = ["Effect Shape Black", "Effect Shape White"]
-
-    const query = `*[_type == "media" && title in $titles] {
-        _id,
-        title,
-        "imageUrl": image.asset->url,
-        "alt": image.alt
-      }`
-
-    const result = await client.fetch(query, { titles })
-    return result
-  } catch (error) {
-    console.error("Error fetching from Sanity:", error)
-    throw error
-  }
-}
+import { getMediaContent } from "@/lib/getMediaContent"
 
 const ProductHeroSwiper = ({
   images,
@@ -76,6 +56,7 @@ const ProductHeroSwiper = ({
   const height = "h-[70vh] xl:h-[69vh] 2xl:h-[70vh]"
   const blankDivHeight = "h-[43vh] lg:h-[65vh] xl:h-[65vh] 2xl:h-[65vh]"
   const translatePosition = "-translate-y-2/3"
+
   return (
     <>
       <div className={`absolute top-0 w-full ${height}`}>
@@ -101,6 +82,9 @@ const ProductHeroSwiper = ({
                   width={1000}
                   height={1000}
                   className={`w-full object-cover object-center ${height}`}
+                  priority={index === 0}
+                  quality={85}
+                  sizes="100vw"
                 />
                 <div className="absolute inset-0" style={HeroStyles}></div>
               </SwiperSlide>
@@ -113,6 +97,8 @@ const ProductHeroSwiper = ({
               width={1000}
               height={1000}
               className={`z-50 !absolute -bottom-[1px] xl:-bottom-[.2rem] 2xl:-bottom-[0.5rem] w-screen dark:hidden`}
+              quality={85}
+              sizes="100vw"
             />
           )}
           {effectShapeBlack.imageUrl && (
@@ -122,6 +108,8 @@ const ProductHeroSwiper = ({
               width={1000}
               height={1000}
               className={`z-50 !absolute -bottom-[1px] w-screen dark:block hidden`}
+              quality={85}
+              sizes="100vw"
             />
           )}
         </Swiper>
@@ -147,6 +135,9 @@ const ProductHeroSwiper = ({
                   width={1000}
                   height={1000}
                   className={`w-full object-cover object-center ${height}`}
+                  priority={index === 0}
+                  quality={85}
+                  sizes="100vw"
                 />
                 <div className="absolute inset-0" style={HeroStyles}></div>
               </SwiperSlide>
@@ -159,6 +150,8 @@ const ProductHeroSwiper = ({
               width={1000}
               height={1000}
               className={`z-50 !absolute -bottom-[1px] xl:-bottom-[.2rem] 2xl:-bottom-[0.5rem] w-screen dark:hidden`}
+              quality={85}
+              sizes="100vw"
             />
           )}
           {effectShapeBlack.imageUrl && (
@@ -168,6 +161,8 @@ const ProductHeroSwiper = ({
               width={1000}
               height={1000}
               className={`z-50 !absolute -bottom-[1px] w-screen dark:block hidden`}
+              quality={85}
+              sizes="100vw"
             />
           )}
         </Swiper>

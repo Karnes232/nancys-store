@@ -101,8 +101,8 @@ const components = {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{
-          duration: 3,
-          delay: 0.3,
+          duration: 0.3,
+          delay: 0.1,
         }}
         style={{ listStyleType: "disc" }}
         className={`${playfairDisplay.className} lg:text-lg`}
@@ -118,8 +118,8 @@ const components = {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{
-          duration: 3,
-          delay: 0.3,
+          duration: 0.3,
+          delay: 0.1,
         }}
         style={{ listStyleType: "disc-none" }}
         className={`${playfairDisplay.className} lg:text-lg`}

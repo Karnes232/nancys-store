@@ -1,33 +1,13 @@
 "use client"
-import React, { useEffect, useState } from "react"
+import React, { useState, useEffect } from "react"
+import Image from "next/image"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Playfair_Display } from "next/font/google"
-// Import Swiper styles
+import { Autoplay, EffectFade } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/effect-fade"
-import { Autoplay, EffectFade } from "swiper/modules"
-import Image from "next/image"
-import { client } from "@/sanity/lib/client"
-import TextComponentHeading from "../BlockContent/TextComponentHeading"
-
-const getMediaContent = async () => {
-  try {
-    const titles = ["Effect Shape Black", "Effect Shape White"]
-
-    const query = `*[_type == "media" && title in $titles] {
-      _id,
-      title,
-      "imageUrl": image.asset->url,
-      "alt": image.alt
-    }`
-
-    const result = await client.fetch(query, { titles })
-    return result
-  } catch (error) {
-    console.error("Error fetching from Sanity:", error)
-    throw error
-  }
-}
+import TextComponentHeading from "../ProductsComponents/TextComponentHeading"
+import { Playfair_Display } from "next/font/google"
+import { getMediaContent } from "@/lib/getMediaContent"
 
 const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
@@ -121,7 +101,9 @@ const HeroSwiper: React.FC<{
                   width={500}
                   height={1000}
                   className={`w-full object-cover object-center ${height}`}
-                  priority={true}
+                  priority={index === 0}
+                  quality={85}
+                  sizes="100vw"
                 />
                 <div className="absolute inset-0" style={HeroStyles}>
                   <div
@@ -153,7 +135,8 @@ const HeroSwiper: React.FC<{
               width={500}
               height={200}
               className={`z-50 !absolute -bottom-[1px] w-screen dark:hidden`}
-              priority={true}
+              quality={85}
+              sizes="100vw"
             />
           )}
           {effectShapeBlack.imageUrl && (
@@ -163,7 +146,8 @@ const HeroSwiper: React.FC<{
               width={500}
               height={200}
               className={`z-50 !absolute -bottom-[1px] w-screen dark:block hidden`}
-              priority={true}
+              quality={85}
+              sizes="100vw"
             />
           )}
         </Swiper>
@@ -189,7 +173,9 @@ const HeroSwiper: React.FC<{
                   width={1500}
                   height={1000}
                   className={`w-full object-cover object-center ${height}`}
-                  priority={true}
+                  priority={index === 0}
+                  quality={85}
+                  sizes="100vw"
                 />
                 <div className="absolute inset-0" style={HeroStyles}>
                   <div
@@ -221,7 +207,8 @@ const HeroSwiper: React.FC<{
               width={1500}
               height={200}
               className={`z-50 !absolute -bottom-[1px] w-screen dark:hidden`}
-              priority={true}
+              quality={85}
+              sizes="100vw"
             />
           )}
           {effectShapeBlack.imageUrl && (
@@ -231,7 +218,8 @@ const HeroSwiper: React.FC<{
               width={1500}
               height={200}
               className={`z-50 !absolute -bottom-[1px] w-screen dark:block hidden`}
-              priority={true}
+              quality={85}
+              sizes="100vw"
             />
           )}
         </Swiper>
