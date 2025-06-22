@@ -17,34 +17,37 @@ export interface LogoData {
 }
 
 export async function getLogoData(): Promise<LogoData | null> {
-  try {
-    const data = await client.fetch(`
-      *[_type == "generalLayout"][0] {
-        logo {
-          asset->{
-            url,
-            metadata {
-              dimensions {
-                width,
-                height
-              },
-            }
+    try {
+      const startTime = Date.now()
+      
+      const data = await client.fetch(`
+        *[_type == "generalLayout"][0] {
+          logo {
+            asset->{
+              url,
+              metadata {
+                dimensions {
+                  width,
+                  height
+                }
+              }
+            },
+            alt
           },
-          alt
-        },
-        companyName
-      }
-    `, {}, {
-      // Enable caching for better performance
-      cache: 'force-cache',
-      next: { 
-        revalidate: 3600, // Revalidate every hour
-        tags: ['logo'] // For on-demand revalidation
-      }
-    })
-    return data
-  } catch (error) {
-    console.error('Failed to fetch logo:', error)
-    return null
+          companyName
+        }
+      `, {}, {
+        cache: 'force-cache',
+        next: { 
+          revalidate: 86400, // 24 hours
+          tags: ['logo']
+        }
+      })
+      
+      console.log(`Logo data fetched in ${Date.now() - startTime}ms`)
+      return data
+    } catch (error) {
+      console.error('Failed to fetch logo:', error)
+      return null
+    }
   }
-}

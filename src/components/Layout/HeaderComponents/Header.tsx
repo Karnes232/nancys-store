@@ -14,8 +14,8 @@ const Header = ({ logoData }: { logoData: LogoData }) => {
           <HamburgerMenu />
         </div>
         <div className="flex-1 flex justify-center">
-          {/* <Logo logoData={logoData} /> */}
-          <StaticLogo />
+          <Logo logoData={logoData} />
+          {/* <StaticLogo /> */}
         </div>
         <div className="hidden lg:block absolute right-4">
           <CartButton />
