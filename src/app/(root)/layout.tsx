@@ -5,6 +5,7 @@ import Header from "@/components/Layout/HeaderComponents/Header"
 import Footer from "@/components/Layout/FooterComponents/Footer"
 import { CartProvider } from "../../context/cart"
 import { preloadLogoData } from "@/lib/logo-data"
+import { getLogoData } from "@/lib/getLogo"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,10 +17,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 })
 
-export const metadata: Metadata = {
-  title: "Nancy Store",
-  description: "Welcome to Nancy Store",
-}
+
 
 // Preload logo data at build time
 export async function generateStaticParams() {
@@ -28,18 +26,19 @@ export async function generateStaticParams() {
   return []
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const logoData = await getLogoData()
   return (
     <CartProvider>
       <html lang="en">
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <Header />
+          <Header logoData={logoData} />
           {children}
           <Footer />
         </body>
