@@ -1,5 +1,5 @@
 import React from "react"
-import Logo from "./Logo"
+import StaticLogo from "./StaticLogo"
 import HamburgerMenu from "./HamburgerMenu"
 import CartButton from "./CartButton"
 import NavBar from "./NavBar"
@@ -12,7 +12,7 @@ const Header = () => {
           <HamburgerMenu />
         </div>
         <div className="flex-1 flex justify-center">
-          <Logo />
+          <StaticLogo />
         </div>
         <div className="hidden lg:block absolute right-4">
           <CartButton />
