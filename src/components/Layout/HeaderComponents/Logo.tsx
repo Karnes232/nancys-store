@@ -30,10 +30,26 @@ const Logo = async ({}) => {
   const { width, height } = data.logo.asset.metadata.dimensions
   const lqip = data.logo.asset.metadata.lqip
 
+  let imageUrl = ''
+
+  if (data.logo.asset.url.includes("cdn.sanity.io")) {
+    const params = new URLSearchParams({
+      w: width.toString(),
+      q: (75).toString(), // Lower quality for faster loading
+      auto: 'format',
+      fit: 'max',
+      fm: 'webp', // Force WebP for better compression
+    })
+    imageUrl = `${data.logo.asset.url}?${params.toString()}`
+  } else {
+    imageUrl = data.logo.asset.url
+  }
+  console.log(imageUrl)
+
   return (
     <div className="flex items-center justify-center py-2">
       <Image
-        src={data.logo.asset.url}
+        src={imageUrl}
         alt={data.logo.alt}
         width={width}
         height={height}
