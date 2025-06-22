@@ -17,13 +17,13 @@ const Logo: React.FC<LogoProps> = ({ logoData }) => {
       <Image
         src={imageUrl}
         alt={logoData.logo.alt || logoData.companyName || "Company Logo"}
-        width={width}
-        height={height}
+        width={250}
+        height={170}
         className="w-auto h-auto max-w-[250px] max-h-[170px]"
         priority
-        placeholder="blur"
-        blurDataURL={logoData.logo.asset.metadata.lqip}
-        sizes="(max-width: 640px) 200px, (max-width: 768px) 250px, (max-width: 1024px) 200px, 250px"
+        // placeholder="blur"
+        // blurDataURL={logoData.logo.asset.metadata.lqip}
+        // sizes="(max-width: 640px) 200px, (max-width: 768px) 250px, (max-width: 1024px) 200px, 250px"
         quality={75}
         loading="eager"
         fetchPriority="high"

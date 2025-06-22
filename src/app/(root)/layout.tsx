@@ -32,7 +32,6 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const logoData = await getLogoData()
-  console.log(logoData)
   return (
     <CartProvider>
       <html lang="en">

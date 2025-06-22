@@ -9,7 +9,6 @@ export interface LogoData {
           width: number
           height: number
         }
-        lqip: string
       }
     }
     alt: string
@@ -29,7 +28,6 @@ export async function getLogoData(): Promise<LogoData | null> {
                 width,
                 height
               },
-              lqip
             }
           },
           alt
