@@ -14,8 +14,9 @@ const Header = ({ logoData }: { logoData: LogoData }) => {
           <HamburgerMenu />
         </div>
         <div className="flex-1 flex justify-center">
-          <Logo logoData={logoData} />
-          {/* <StaticLogo /> */}
+          <StaticLogo />
+          {/* Uncomment below and comment StaticLogo above to use dynamic logo */}
+          {/* <Logo logoData={logoData} /> */}
         </div>
         <div className="hidden lg:block absolute right-4">
           <CartButton />

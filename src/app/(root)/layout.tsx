@@ -17,8 +17,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 })
 
-
-
 // Preload logo data at build time
 // export async function generateStaticParams() {
 //   // Preload logo data to cache it
@@ -33,21 +31,9 @@ export default async function RootLayout({
 }>) {
   const logoData = await getLogoData()
 
-  
   return (
     <CartProvider>
       <html lang="en">
-      <head>
-        {/* Preload the logo image for even better LCP */}
-        {logoData?.logo?.asset?.url && (
-          <link
-            rel="preload"
-            as="image"
-            href={logoData.logo.asset.url}
-            fetchPriority="high"
-          />
-        )}
-      </head>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
