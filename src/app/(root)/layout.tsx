@@ -20,11 +20,11 @@ const geistMono = Geist_Mono({
 
 
 // Preload logo data at build time
-export async function generateStaticParams() {
-  // Preload logo data to cache it
-  await preloadLogoData()
-  return []
-}
+// export async function generateStaticParams() {
+//   // Preload logo data to cache it
+//   await preloadLogoData()
+//   return []
+// }
 
 export default async function RootLayout({
   children,
@@ -32,9 +32,21 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const logoData = await getLogoData()
+  console.log(logoData)
   return (
     <CartProvider>
       <html lang="en">
+      <head>
+        {/* Preload the logo image for even better LCP */}
+        {logoData?.logo?.asset?.url && (
+          <link
+            rel="preload"
+            as="image"
+            href={logoData.logo.asset.url}
+            fetchPriority="high"
+          />
+        )}
+      </head>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >

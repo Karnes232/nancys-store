@@ -36,7 +36,14 @@ export async function getLogoData(): Promise<LogoData | null> {
         },
         companyName
       }
-    `)
+    `, {}, {
+      // Enable caching for better performance
+      cache: 'force-cache',
+      next: { 
+        revalidate: 3600, // Revalidate every hour
+        tags: ['logo'] // For on-demand revalidation
+      }
+    })
     return data
   } catch (error) {
     console.error('Failed to fetch logo:', error)
