@@ -4,6 +4,7 @@ import HamburgerMenu from "./HamburgerMenu"
 import CartButton from "./CartButton"
 import NavBar from "./NavBar"
 import { LogoData } from "@/lib/getLogo"
+import StaticLogo from "./StaticLogo"
 
 const Header = ({ logoData }: { logoData: LogoData }) => {
   return (
@@ -13,7 +14,8 @@ const Header = ({ logoData }: { logoData: LogoData }) => {
           <HamburgerMenu />
         </div>
         <div className="flex-1 flex justify-center">
-          <Logo logoData={logoData} />
+          {/* <Logo logoData={logoData} /> */}
+          <StaticLogo />
         </div>
         <div className="hidden lg:block absolute right-4">
           <CartButton />
