@@ -42,7 +42,7 @@ async function getProduct(slug: string) {
         _key,
         alt,
         "image": image.asset->{
-          _ref,
+          _id,
           url,
           metadata {
             dimensions {
@@ -56,6 +56,7 @@ async function getProduct(slug: string) {
         _key,
         alt,
         "image": image.asset->{
+          _id,
           _ref,
           url,
           metadata {
