@@ -58,9 +58,6 @@ const ProductCardSwiper = ({
   // Also, consider which set of images (images vs landscapeImages) you want to prioritize
   // based on screen size, similar to your HeroSwiper
   images.forEach(image => {
-    if (image.image.url.includes('cdn.sanity.io')) {
-      image.image.url = `${image.image.url}?w=400&h=400&q=75&auto=format&fit=max&fm=webp`
-    }
     photoListEdited.push({
       src: image.image.url,
       alt: image.alt,
