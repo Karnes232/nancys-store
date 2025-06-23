@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react"
 
 // Type definitions for performance APIs
 interface PerformanceEventTiming extends PerformanceEntry {
@@ -18,37 +18,40 @@ const PerformanceMonitor = () => {
     lcp: 0,
     fid: 0,
     cls: 0,
-    ttfb: 0
+    ttfb: 0,
   })
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
+    if (typeof window !== "undefined" && "PerformanceObserver" in window) {
       // First Contentful Paint
-      const fcpObserver = new PerformanceObserver((list) => {
+      const fcpObserver = new PerformanceObserver(list => {
         const entries = list.getEntries()
         const fcp = entries[entries.length - 1]
         setMetrics(prev => ({ ...prev, fcp: fcp.startTime }))
       })
-      fcpObserver.observe({ entryTypes: ['paint'] })
+      fcpObserver.observe({ entryTypes: ["paint"] })
 
       // Largest Contentful Paint
-      const lcpObserver = new PerformanceObserver((list) => {
+      const lcpObserver = new PerformanceObserver(list => {
         const entries = list.getEntries()
         const lcp = entries[entries.length - 1]
         setMetrics(prev => ({ ...prev, lcp: lcp.startTime }))
       })
-      lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] })
+      lcpObserver.observe({ entryTypes: ["largest-contentful-paint"] })
 
       // First Input Delay
-      const fidObserver = new PerformanceObserver((list) => {
+      const fidObserver = new PerformanceObserver(list => {
         const entries = list.getEntries()
         const fid = entries[entries.length - 1] as PerformanceEventTiming
-        setMetrics(prev => ({ ...prev, fid: fid.processingStart - fid.startTime }))
+        setMetrics(prev => ({
+          ...prev,
+          fid: fid.processingStart - fid.startTime,
+        }))
       })
-      fidObserver.observe({ entryTypes: ['first-input'] })
+      fidObserver.observe({ entryTypes: ["first-input"] })
 
       // Cumulative Layout Shift
-      const clsObserver = new PerformanceObserver((list) => {
+      const clsObserver = new PerformanceObserver(list => {
         let clsValue = 0
         for (const entry of list.getEntries()) {
           const layoutShift = entry as LayoutShift
@@ -58,18 +61,23 @@ const PerformanceMonitor = () => {
         }
         setMetrics(prev => ({ ...prev, cls: clsValue }))
       })
-      clsObserver.observe({ entryTypes: ['layout-shift'] })
+      clsObserver.observe({ entryTypes: ["layout-shift"] })
 
       // Time to First Byte
-      const navigationEntry = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming
+      const navigationEntry = performance.getEntriesByType(
+        "navigation",
+      )[0] as PerformanceNavigationTiming
       if (navigationEntry) {
-        setMetrics(prev => ({ ...prev, ttfb: navigationEntry.responseStart - navigationEntry.requestStart }))
+        setMetrics(prev => ({
+          ...prev,
+          ttfb: navigationEntry.responseStart - navigationEntry.requestStart,
+        }))
       }
     }
   }, [])
 
   // Only show in development
-  if (process.env.NODE_ENV !== 'development') {
+  if (process.env.NODE_ENV !== "development") {
     return null
   }
 
@@ -87,4 +95,4 @@ const PerformanceMonitor = () => {
   )
 }
 
-export default PerformanceMonitor 
+export default PerformanceMonitor

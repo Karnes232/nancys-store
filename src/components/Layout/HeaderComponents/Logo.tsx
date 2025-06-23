@@ -15,9 +15,12 @@ const Logo: React.FC<LogoProps> = ({ logoData }) => {
 
   useEffect(() => {
     // Only load dynamic logo if we have logo data and it's different from static
-    if (logoData?.logo?.asset?.url && logoData.logo.asset.url !== staticLogoUrl) {
+    if (
+      logoData?.logo?.asset?.url &&
+      logoData.logo.asset.url !== staticLogoUrl
+    ) {
       // Preload the dynamic logo
-      const img = document.createElement('img')
+      const img = document.createElement("img")
       img.onload = () => {
         setDynamicLogoLoaded(true)
         setUseDynamicLogo(true)
@@ -31,7 +34,8 @@ const Logo: React.FC<LogoProps> = ({ logoData }) => {
   }, [logoData?.logo?.asset?.url])
 
   // Use dynamic logo if available and loaded, otherwise use static
-  const shouldUseDynamic = useDynamicLogo && dynamicLogoLoaded && logoData?.logo?.asset?.url
+  const shouldUseDynamic =
+    useDynamicLogo && dynamicLogoLoaded && logoData?.logo?.asset?.url
 
   if (shouldUseDynamic) {
     const { width, height } = logoData.logo.asset.metadata.dimensions

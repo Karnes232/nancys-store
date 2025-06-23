@@ -3,6 +3,15 @@ import { client } from "@/sanity/lib/client"
 export interface LogoData {
   logo: {
     asset: {
+      _ref: string
+      _type: string
+      _key: string
+      _id: string
+      _createdAt: string
+      _updatedAt: string
+      _rev: string
+      assetId: string
+      extension: string
       url: string
       metadata: {
         dimensions: {
@@ -17,13 +26,15 @@ export interface LogoData {
 }
 
 export async function getLogoData(): Promise<LogoData | null> {
-    try {
-      const startTime = Date.now()
-      
-      const data = await client.fetch(`
+  try {
+    const startTime = Date.now()
+
+    const data = await client.fetch(
+      `
         *[_type == "generalLayout"][0] {
           logo {
             asset->{
+              ...,
               url,
               metadata {
                 dimensions {
@@ -36,18 +47,21 @@ export async function getLogoData(): Promise<LogoData | null> {
           },
           companyName
         }
-      `, {}, {
-        cache: 'force-cache',
-        next: { 
+      `,
+      {},
+      {
+        cache: "force-cache",
+        next: {
           revalidate: 86400, // 24 hours
-          tags: ['logo']
-        }
-      })
-      
-      console.log(`Logo data fetched in ${Date.now() - startTime}ms`)
-      return data
-    } catch (error) {
-      console.error('Failed to fetch logo:', error)
-      return null
-    }
+          tags: ["logo"],
+        },
+      },
+    )
+
+    console.log(`Logo data fetched in ${Date.now() - startTime}ms`)
+    return data
+  } catch (error) {
+    console.error("Failed to fetch logo:", error)
+    return null
   }
+}

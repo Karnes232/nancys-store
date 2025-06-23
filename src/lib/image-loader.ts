@@ -13,13 +13,13 @@ export default function imageLoader({
     const params = new URLSearchParams({
       w: width.toString(),
       q: (quality || 75).toString(), // Lower quality for faster loading
-      auto: 'format',
-      fit: 'max',
-      fm: 'webp', // Force WebP for better compression
-      bg: 'transparent' // Transparent background
+      auto: "format",
+      fit: "max",
+      fm: "webp", // Force WebP for better compression
+      bg: "transparent", // Transparent background
     })
-    
+
     return `${src}?${params.toString()}`
   }
   return src
-} 
+}

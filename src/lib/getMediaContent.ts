@@ -19,4 +19,4 @@ const getMediaContent = async () => {
   }
 }
 
-export { getMediaContent } 
+export { getMediaContent }

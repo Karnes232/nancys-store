@@ -15,8 +15,8 @@ export async function generateStaticParams() {
   return [{}] // Empty object as this is the root route
 }
 
-    // export const dynamic = "force-static"
-    // export const revalidate = false
+// export const dynamic = "force-static"
+// export const revalidate = false
 
 export default function RootPage() {
   // Pass the resolved value, not the Promise

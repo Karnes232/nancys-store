@@ -12,6 +12,7 @@ import Image from "next/image" // Make sure this import is correct
 import Lightbox from "yet-another-react-lightbox"
 import "yet-another-react-lightbox/styles.css"
 import NextImageLightbox from "../NextImageLightbox/NextImageLightbox" // Adjust path if necessary
+import { urlFor } from "@/sanity/lib/image"
 
 type ProductCardSwiperProps = {
   images: {
@@ -52,22 +53,29 @@ const ProductCardSwiper = ({
 }: ProductCardSwiperProps) => {
   const [open, setOpen] = useState(false)
   const [index, setIndex] = useState(-1)
-  let photoListEdited: { src: string; alt: string; width: number; height: number }[] = []
+  let photoListEdited: {
+    src: string
+    alt: string
+    width: number
+    height: number
+  }[] = []
 
   // It's generally better to combine these into a single list if they are all displayed in one swiper
   // Also, consider which set of images (images vs landscapeImages) you want to prioritize
   // based on screen size, similar to your HeroSwiper
   images.forEach(image => {
+    const url = urlFor(image.image).width(400).height(300).url()
     photoListEdited.push({
-      src: image.image.url,
+      src: url,
       alt: image.alt,
       width: image.image.metadata.dimensions.width,
       height: image.image.metadata.dimensions.height,
     })
   })
   landscapeImages.forEach(image => {
+    const url = urlFor(image.image).width(400).height(300).url()
     photoListEdited.push({
-      src: image.image.url,
+      src: url,
       alt: image.alt,
       width: image.image.metadata.dimensions.width,
       height: image.image.metadata.dimensions.height,
@@ -83,8 +91,8 @@ const ProductCardSwiper = ({
       <Swiper
         effect={"fade"}
         loop={true} // Be mindful of `loop={true}` with `priority={true}`.
-                    // If the Swiper jumps to a "cloned" slide, that clone might also load eagerly.
-                    // For typical performance, keep priority on the *first actual* slide.
+        // If the Swiper jumps to a "cloned" slide, that clone might also load eagerly.
+        // For typical performance, keep priority on the *first actual* slide.
         autoplay={{
           delay: 10000,
           disableOnInteraction: false,
@@ -94,7 +102,7 @@ const ProductCardSwiper = ({
         fadeEffect={{ crossFade: true }}
       >
         {photoListEdited.map((image, index) => {
-          const isFirstSlide = index === 0; // Identify the first image in the array
+          const isFirstSlide = index === 0 // Identify the first image in the array
 
           return (
             <SwiperSlide

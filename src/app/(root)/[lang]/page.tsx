@@ -8,9 +8,12 @@ import { PageData } from "@/types/sanity.types"
 //import BlockContent from "@/components/BlockContent/BlockContent"
 import { LocaleBlockContent } from "@/types/sanity.types"
 // import ProductsDisplay from "@/components/ProductsComponents/ProductsDisplay"
-const BlockContent = dynamicImport(() => import("@/components/BlockContent/BlockContent"))
-const ProductsDisplay = dynamicImport(() => import("@/components/ProductsComponents/ProductsDisplay"))
-
+const BlockContent = dynamicImport(
+  () => import("@/components/BlockContent/BlockContent"),
+)
+const ProductsDisplay = dynamicImport(
+  () => import("@/components/ProductsComponents/ProductsDisplay"),
+)
 
 async function getHomePageContent() {
   const query = `
@@ -65,7 +68,6 @@ interface PageProps {
 const HomePage = async ({ params }: PageProps) => {
   // Await the params first
   const { lang } = params
-  
 
   // Then use the resolved lang parameter
   const [pageData, { t }] = await Promise.all([
@@ -148,7 +150,10 @@ export async function generateMetadata({
       images: ogImage ? [{ url: ogImage }] : undefined,
     },
     alternates: {
-      canonical: lang === "en" ? "https://esenciasbynancy.com/" : "https://esenciasbynancy.com/es",
+      canonical:
+        lang === "en"
+          ? "https://esenciasbynancy.com/"
+          : "https://esenciasbynancy.com/es",
     },
     other: {
       "hreflang-en": "https://esenciasbynancy.com/",

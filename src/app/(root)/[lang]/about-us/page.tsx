@@ -53,8 +53,8 @@ interface PageProps {
   params: any
 }
 
-  // export const dynamic = "force-static"
-  // export const revalidate = false
+// export const dynamic = "force-static"
+// export const revalidate = false
 
 const AboutUsPage = async ({ params }: PageProps) => {
   const { lang } = params // Direct access, no await needed
@@ -136,7 +136,10 @@ export async function generateMetadata({
       images: ogImage ? [{ url: ogImage }] : undefined,
     },
     alternates: {
-      canonical: lang === "en" ? "https://esenciasbynancy.com/about-us" : `https://esenciasbynancy.com/${lang}/about-us`,
+      canonical:
+        lang === "en"
+          ? "https://esenciasbynancy.com/about-us"
+          : `https://esenciasbynancy.com/${lang}/about-us`,
     },
     other: {
       "hreflang-en": "https://esenciasbynancy.com/about-us",

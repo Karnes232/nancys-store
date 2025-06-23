@@ -18,4 +18,4 @@ const StaticLogo: React.FC = () => (
   </div>
 )
 
-export default StaticLogo 
+export default StaticLogo

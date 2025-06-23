@@ -129,7 +129,10 @@ export async function generateMetadata({
       images: ogImage ? [{ url: ogImage }] : undefined,
     },
     alternates: {
-      canonical: lang === "en" ? "https://esenciasbynancy.com/contact" : `https://esenciasbynancy.com/${lang}/contact`,
+      canonical:
+        lang === "en"
+          ? "https://esenciasbynancy.com/contact"
+          : `https://esenciasbynancy.com/${lang}/contact`,
     },
     other: {
       "hreflang-en": "https://esenciasbynancy.com/contact",

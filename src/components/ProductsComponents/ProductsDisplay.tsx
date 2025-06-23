@@ -17,7 +17,7 @@ async function getProducts() {
         _key,
         alt,
         "image": image.asset->{
-          _ref,
+          _id,
           url,
           metadata {
             dimensions {
@@ -31,7 +31,7 @@ async function getProducts() {
         _key,
         alt,
         "image": image.asset->{
-          _ref,
+          _id,
           url,
           metadata {
             dimensions {
