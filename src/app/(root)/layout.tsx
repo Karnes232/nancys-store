@@ -13,6 +13,10 @@ const Footer = dynamic(() => import('@/components/Layout/FooterComponents/Footer
   loading: () => <div>Loading...</div>,
 });
 
+const ScrollToTop = dynamic(() => import('@/components/ScrollToTop'), {
+  loading: () => null,
+});
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -39,6 +43,7 @@ export default async function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
+          <ScrollToTop />
           <Header logoData={logoData} />
           {children}
           <Footer />

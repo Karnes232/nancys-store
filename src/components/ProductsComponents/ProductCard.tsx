@@ -17,7 +17,7 @@ const ProductCard = ({
   selectedLang: string
 }) => {
   return (
-    <Link href={`/${selectedLang}/products/${product.slug.current}`}>
+    <Link href={`/${selectedLang}/products/${product.slug.current}`} scroll={true}>
       <div className="max-w-sm w-[22rem] xl:max-w-xs my-5 mx-2 rounded-lg overflow-hidden shadow-lg dark:shadow-slate-900 h-[27rem] flex flex-col hover:shadow-xl transition-all duration-300">
         <ProductCardSwiper
           images={product.imagesList}

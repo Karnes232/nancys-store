@@ -23,6 +23,13 @@ const ProductPageCard = dynamicImport(
   }
 )
 
+const ScrollToTop = dynamicImport(
+  () => import("@/components/ScrollToTop"), 
+  {
+    loading: () => null,
+  }
+)
+
 export interface PageProps {
   params: Promise<{
     lang: string
@@ -120,6 +127,7 @@ const ProductPage = async ({ params }: PageProps) => {
 
   return (
     <main>
+      <ScrollToTop />
       <ToastContainer />
       <ProductHeroSwiper
         images={product[0].imagesList}
