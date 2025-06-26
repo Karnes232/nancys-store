@@ -12,10 +12,10 @@ import {
 import * as motion from "motion/react-client"
 import { Playfair_Display } from "next/font/google"
 
-// const playfairDisplay = Playfair_Display({
-//   subsets: ["latin"],
-//   weight: ["400", "700"],
-// })
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+})
 interface LocaleBlockContent {
   _type: string
   en: any[]
@@ -105,8 +105,7 @@ const components = {
           delay: 0.1,
         }}
         style={{ listStyleType: "disc" }}
-        //className={`${playfairDisplay.className} lg:text-lg`}
-        className={`lg:text-lg`}
+        className={`${playfairDisplay.className} lg:text-lg`}
       >
         {children}
       </motion.li>
@@ -123,8 +122,7 @@ const components = {
           delay: 0.1,
         }}
         style={{ listStyleType: "disc-none" }}
-        //className={`${playfairDisplay.className} lg:text-lg`}
-        className={`lg:text-lg`}
+        className={`${playfairDisplay.className} lg:text-lg`}
       >
         ✅ {children}
       </motion.li>

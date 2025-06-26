@@ -6,14 +6,14 @@ import { Autoplay, EffectFade } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/effect-fade"
 import TextComponentHeading from "../ProductsComponents/TextComponentHeading"
-//import { Playfair_Display } from "next/font/google"
+import { Playfair_Display } from "next/font/google"
 import { getMediaContent } from "@/lib/getMediaContent"
 
-// const playfairDisplay = Playfair_Display({
-//   subsets: ["latin"],
-//   weight: ["400", "700"],
-//   display: "swap",
-// })
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+})
 
 const HeroSwiper: React.FC<{
   heroImages: any
@@ -114,16 +114,14 @@ const HeroSwiper: React.FC<{
                       <TextComponentHeading
                         heading={heroHeading}
                         headingNumber="h1"
-                       // HeadingClassName={`${playfairDisplay.className} text-white tracking-wider text-4xl md:text-5xl lg:text-6xl text-center 2xl:mb-0 2xl:mt-0`}
-                        HeadingClassName={`text-white tracking-wider text-4xl md:text-5xl lg:text-6xl text-center 2xl:mb-0 2xl:mt-0`}
+                        HeadingClassName={`${playfairDisplay.className} text-white tracking-wider text-4xl md:text-5xl lg:text-6xl text-center 2xl:mb-0 2xl:mt-0`}
                       />
                     )}
                     {heroSubheading && (
                       <TextComponentHeading
                         heading={heroSubheading}
                         headingNumber="h2"
-                        // HeadingClassName={`${playfairDisplay.className} text-white tracking-wider text-xl md:text-2xl lg:text-3xl 2xl:mb-2 2xl:mt-5!`}
-                        HeadingClassName={`text-white tracking-wider text-xl md:text-2xl lg:text-3xl 2xl:mb-2 2xl:mt-5!`}
+                        HeadingClassName={`${playfairDisplay.className} text-white tracking-wider text-xl md:text-2xl lg:text-3xl 2xl:mb-2 2xl:mt-5!`}
                       />
                     )}
                   </div>
@@ -188,16 +186,14 @@ const HeroSwiper: React.FC<{
                       <TextComponentHeading
                         heading={heroHeading}
                         headingNumber="h1"
-                        // HeadingClassName={`${playfairDisplay.className} text-white tracking-wider text-4xl md:text-5xl lg:text-6xl text-center 2xl:mb-0 2xl:mt-0`}
-                        HeadingClassName={`text-white tracking-wider text-4xl md:text-5xl lg:text-6xl text-center 2xl:mb-0 2xl:mt-0`}
+                        HeadingClassName={`${playfairDisplay.className} text-white tracking-wider text-4xl md:text-5xl lg:text-6xl text-center 2xl:mb-0 2xl:mt-0`}
                       />
                     )}
                     {heroSubheading && (
                       <TextComponentHeading
                         heading={heroSubheading}
                         headingNumber="h2"
-                        // HeadingClassName={`${playfairDisplay.className} text-white tracking-wider text-xl md:text-2xl lg:text-3xl 2xl:mb-2 2xl:mt-5!`}
-                        HeadingClassName={`text-white tracking-wider text-xl md:text-2xl lg:text-3xl 2xl:mb-2 2xl:mt-5!`}
+                        HeadingClassName={`${playfairDisplay.className} text-white tracking-wider text-xl md:text-2xl lg:text-3xl 2xl:mb-2 2xl:mt-5!`}
                       />
                     )}
                   </div>

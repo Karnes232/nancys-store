@@ -2,10 +2,10 @@ import React from "react"
 import * as motion from "motion/react-client"
 import { Playfair_Display } from "next/font/google"
 
-// const playfairDisplay = Playfair_Display({
-//   subsets: ["latin"],
-//   weight: ["400", "700"],
-// })
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+})
 
 const TextComponentParagraph = ({
   paragraph,
@@ -27,8 +27,7 @@ const TextComponentParagraph = ({
         className="flex flex-col justify-center max-w-5xl mx-5 lg:p-2 xl:mx-auto"
       >
         <p
-          //className={`${playfairDisplay.className} lg:text-lg text-gray-700 dark:text-white ${ParagraphClassName}`}
-          className={`lg:text-lg text-gray-700 dark:text-white ${ParagraphClassName}`}
+          className={`${playfairDisplay.className} lg:text-lg text-gray-700 dark:text-white ${ParagraphClassName}`}
         >
           {paragraph}
         </p>
