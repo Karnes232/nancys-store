@@ -1,5 +1,5 @@
 import dynamicImport from "next/dynamic"
-import HeroSwiper from "@/components/HeroComponent/HeroSwiper"
+//import HeroSwiper from "@/components/HeroComponent/HeroSwiper"
 import { client } from "@/sanity/lib/client"
 import { getTranslation } from "@/i18n"
 import { Metadata } from "next"
@@ -7,6 +7,7 @@ import imageUrlBuilder from "@sanity/image-url"
 import { PageData } from "@/types/sanity.types"
 //import BlockContent from "@/components/BlockContent/BlockContent"
 import { LocaleBlockContent } from "@/types/sanity.types"
+import HeroSwiperOptimized from "@/components/HeroComponent/HeroSwiperOptimized"
 // import ProductsDisplay from "@/components/ProductsComponents/ProductsDisplay"
 const BlockContent = dynamicImport(
   () => import("@/components/BlockContent/BlockContent"), 
@@ -16,6 +17,13 @@ const BlockContent = dynamicImport(
 )
 const ProductsDisplay = dynamicImport(
   () => import("@/components/ProductsComponents/ProductsDisplay"),
+  {
+    loading: () => <div>Loading...</div>,
+  }
+)
+
+const HeroSwiper = dynamicImport(
+  () => import("@/components/HeroComponent/HeroSwiper"),
   {
     loading: () => <div>Loading...</div>,
   }
@@ -82,7 +90,7 @@ const HomePage = async ({ params }: PageProps) => {
   ])
   return (
     <main>
-      <HeroSwiper
+      <HeroSwiperOptimized
         heroImages={pageData.heroImages}
         heroImagesLandScape={pageData.heroImagesLandScape}
         heroHeading={
