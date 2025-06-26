@@ -4,10 +4,10 @@ import { Playfair_Display } from "next/font/google"
 import { Product } from "@/types/product"
 import Link from "next/link"
 
-const playfairDisplay = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-})
+// const playfairDisplay = Playfair_Display({
+//   subsets: ["latin"],
+//   weight: ["400", "700"],
+// })
 
 const ProductCard = ({
   product,
@@ -27,7 +27,8 @@ const ProductCard = ({
         />
         <div className="px-6 py-4 mt-2 mb-5">
           <div
-            className={`${playfairDisplay.className} font-bold text-lg mb-5 items-center flex justify-between`}
+            //className={`${playfairDisplay.className} font-bold text-lg mb-5 items-center flex justify-between`}
+            className={`font-bold text-lg mb-5 items-center flex justify-between`}
           >
             <div className="truncate mr-3" translate="no">
               {product.name[selectedLang]}
@@ -41,7 +42,8 @@ const ProductCard = ({
             </div>
           </div>
           <div
-            className={`${playfairDisplay.className} text-gray-500 text-sm line-clamp-5`}
+            //className={`${playfairDisplay.className} text-gray-500 text-sm line-clamp-5`}
+            className={`text-gray-500 text-sm line-clamp-5`}
           >
             {product.shortDescription[selectedLang]}
           </div>
