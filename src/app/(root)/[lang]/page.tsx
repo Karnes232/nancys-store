@@ -9,10 +9,16 @@ import { PageData } from "@/types/sanity.types"
 import { LocaleBlockContent } from "@/types/sanity.types"
 // import ProductsDisplay from "@/components/ProductsComponents/ProductsDisplay"
 const BlockContent = dynamicImport(
-  () => import("@/components/BlockContent/BlockContent"),
+  () => import("@/components/BlockContent/BlockContent"), 
+  {
+    loading: () => <div>Loading...</div>,
+  }
 )
 const ProductsDisplay = dynamicImport(
   () => import("@/components/ProductsComponents/ProductsDisplay"),
+  {
+    loading: () => <div>Loading...</div>,
+  }
 )
 
 async function getHomePageContent() {

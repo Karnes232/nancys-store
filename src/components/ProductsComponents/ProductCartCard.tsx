@@ -20,6 +20,7 @@ const ProductCartCard = ({ product, selectedLang }: ProductCartCardProps) => {
           alt={product.imagesList[0].alt}
           width={100}
           height={100}
+          loading="lazy"
         />
         <div className="flex flex-col items-center gap-2 md:gap-5 mx-auto">
           <h3 className="text-lg md:text-2xl font-bold truncate">

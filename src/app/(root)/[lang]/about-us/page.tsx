@@ -5,7 +5,15 @@ import { PageData } from "@/types/sanity.types"
 import { Metadata } from "next"
 import imageUrlBuilder from "@sanity/image-url"
 import React from "react"
-import BlockContent from "@/components/BlockContent/BlockContent"
+// import BlockContent from "@/components/BlockContent/BlockContent"
+import dynamicImport from "next/dynamic"
+
+const BlockContent = dynamicImport(
+  () => import("@/components/BlockContent/BlockContent"), 
+  {
+    loading: () => <div>Loading...</div>,
+  }
+)
 
 async function getAboutUsPageContent() {
   const query = `

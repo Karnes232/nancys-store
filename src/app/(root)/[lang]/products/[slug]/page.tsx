@@ -1,12 +1,28 @@
-import BlockContent from "@/components/ProductsComponents/BlockContent"
+// import BlockContent from "@/components/ProductsComponents/BlockContent"
 import ProductHeroSwiper from "@/components/HeroComponent/ProductHeroSwiper"
-import ProductPageCard from "@/components/ProductsComponents/ProductPageCard"
+//import ProductPageCard from "@/components/ProductsComponents/ProductPageCard"
 import { getTranslation } from "@/i18n"
 import { client } from "@/sanity/lib/client"
 import React from "react"
 import imageUrlBuilder from "@sanity/image-url"
 import { Metadata } from "next"
 import { ToastContainer } from "react-toastify"
+import dynamicImport from "next/dynamic"
+
+const BlockContent = dynamicImport(
+  () => import("@/components/BlockContent/BlockContent"), 
+  {
+    loading: () => <div>Loading...</div>,
+  }
+)
+
+const ProductPageCard = dynamicImport(
+  () => import("@/components/ProductsComponents/ProductPageCard"), 
+  {
+    loading: () => <div>Loading...</div>,
+  }
+)
+
 export interface PageProps {
   params: Promise<{
     lang: string
@@ -109,7 +125,7 @@ const ProductPage = async ({ params }: PageProps) => {
         images={product[0].imagesList}
         landscapeImages={product[0].imagesListLandscape}
       />
-      <div className="mt-10 mb-5 md:my-20 lg:my-5 xl:max-w-6xl 2xl:max-w-7xl mx-5 md:mx-auto">
+      <div className="mt-20 mb-5 md:mt-36 lg:my-5 xl:max-w-6xl 2xl:max-w-7xl mx-5 md:mx-auto">
         <ProductPageCard product={product[0]} lang={lang} />
       </div>
       <div className="my-5 lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">

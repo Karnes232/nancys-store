@@ -116,7 +116,8 @@ const ProductCardSwiper = ({
                 width={image.width} // Use actual image dimensions from metadata for better optimization
                 height={image.height} // Use actual image dimensions from metadata
                 className={`w-full object-cover ${swiperClassName}`}
-                priority={isFirstSlide} // Apply priority only to the first image
+                priority={false} 
+                loading="lazy"
               />
             </SwiperSlide>
           )

@@ -5,7 +5,15 @@ import HeroSwiper from "@/components/HeroComponent/HeroSwiper"
 import { Metadata } from "next"
 import imageUrlBuilder from "@sanity/image-url"
 import TextComponentParagraph from "@/components/ProductsComponents/TextComponentParagraph"
-import PhotoGallery from "@/components/PhotoGalleryComponents/PhotoGallery"
+//import PhotoGallery from "@/components/PhotoGalleryComponents/PhotoGallery"
+import dynamicImport from "next/dynamic"
+
+const PhotoGallery = dynamicImport(
+  () => import("@/components/PhotoGalleryComponents/PhotoGallery"), 
+  {
+    loading: () => <div>Loading...</div>,
+  }
+)
 
 async function getPhotoGalleryPageContent() {
   const query = `
@@ -91,7 +99,7 @@ const PhotoGalleryPage = async ({ params }: PageProps) => {
         }
         className="hero-swiper"
       />
-      <div className="bg-white dark:bg-black my-20 lg:my-40">
+      <div className="bg-white dark:bg-black my-20 md:mt-36 lg:my-40">
         <TextComponentParagraph
           paragraph={
             pageData.description

@@ -2,11 +2,16 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "../globals.css"
 import Header from "@/components/Layout/HeaderComponents/Header"
-import Footer from "@/components/Layout/FooterComponents/Footer"
+// import Footer from "@/components/Layout/FooterComponents/Footer"
 import { CartProvider } from "../../context/cart"
-import { preloadLogoData } from "@/lib/logo-data"
 import { getLogoData } from "@/lib/getLogo"
 import PerformanceMonitor from "@/components/PerformanceMonitor"
+import { GoogleAnalytics } from "@next/third-parties/google"
+import dynamic from 'next/dynamic';
+
+const Footer = dynamic(() => import('@/components/Layout/FooterComponents/Footer'), {
+  loading: () => <div>Loading...</div>,
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,12 +23,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 })
 
-// Preload logo data at build time
-// export async function generateStaticParams() {
-//   // Preload logo data to cache it
-//   await preloadLogoData()
-//   return []
-// }
+
 
 export default async function RootLayout({
   children,
@@ -35,6 +35,7 @@ export default async function RootLayout({
   return (
     <CartProvider>
       <html lang="en">
+      <GoogleAnalytics gaId="G-HZ2D75V42H" />
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
