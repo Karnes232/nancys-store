@@ -7,7 +7,7 @@ import imageUrlBuilder from "@sanity/image-url"
 import { PageData } from "@/types/sanity.types"
 //import BlockContent from "@/components/BlockContent/BlockContent"
 import { LocaleBlockContent } from "@/types/sanity.types"
-import HeroSwiperOptimized from "@/components/HeroComponent/HeroSwiperOptimized"
+//import HeroSwiperOptimized from "@/components/HeroComponent/HeroSwiperOptimized"
 // import ProductsDisplay from "@/components/ProductsComponents/ProductsDisplay"
 const BlockContent = dynamicImport(
   () => import("@/components/BlockContent/BlockContent"), 
@@ -24,6 +24,13 @@ const ProductsDisplay = dynamicImport(
 
 const HeroSwiper = dynamicImport(
   () => import("@/components/HeroComponent/HeroSwiper"),
+  {
+    loading: () => <div>Loading...</div>,
+  }
+)
+
+const HeroSwiperOptimized = dynamicImport(
+  () => import("@/components/HeroComponent/HeroSwiperOptimized"),
   {
     loading: () => <div>Loading...</div>,
   }
