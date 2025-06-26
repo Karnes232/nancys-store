@@ -6,6 +6,12 @@ const nextConfig: NextConfig = {
   images: {
     // Optimize images from Sanity
     domains: ["cdn.sanity.io"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+      },
+    ],
     // Enable modern formats
     formats: ["image/webp", "image/avif"],
     // Optimize for different device sizes

@@ -14,7 +14,7 @@ const TextComponentHeading = dynamicImport(
   () => import("@/components/BlockContent/TextComponentHeading"),
   {
     loading: () => <div>Loading...</div>,
-  }
+  },
 )
 
 const playfairDisplay = Playfair_Display({
@@ -50,11 +50,11 @@ const HeroSwiper: React.FC<{
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 1024) // lg breakpoint
     }
-    
+
     checkScreenSize()
-    window.addEventListener('resize', checkScreenSize)
-    
-    return () => window.removeEventListener('resize', checkScreenSize)
+    window.addEventListener("resize", checkScreenSize)
+
+    return () => window.removeEventListener("resize", checkScreenSize)
   }, [])
 
   useEffect(() => {

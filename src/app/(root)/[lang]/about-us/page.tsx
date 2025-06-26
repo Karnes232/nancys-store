@@ -9,10 +9,10 @@ import React from "react"
 import dynamicImport from "next/dynamic"
 
 const BlockContent = dynamicImport(
-  () => import("@/components/BlockContent/BlockContent"), 
+  () => import("@/components/BlockContent/BlockContent"),
   {
     loading: () => <div>Loading...</div>,
-  }
+  },
 )
 
 async function getAboutUsPageContent() {

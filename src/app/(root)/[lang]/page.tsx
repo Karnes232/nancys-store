@@ -10,30 +10,30 @@ import { LocaleBlockContent } from "@/types/sanity.types"
 //import HeroSwiperOptimized from "@/components/HeroComponent/HeroSwiperOptimized"
 // import ProductsDisplay from "@/components/ProductsComponents/ProductsDisplay"
 const BlockContent = dynamicImport(
-  () => import("@/components/BlockContent/BlockContent"), 
+  () => import("@/components/BlockContent/BlockContent"),
   {
     loading: () => <div>Loading...</div>,
-  }
+  },
 )
 const ProductsDisplay = dynamicImport(
   () => import("@/components/ProductsComponents/ProductsDisplay"),
   {
     loading: () => <div>Loading...</div>,
-  }
+  },
 )
 
 const HeroSwiper = dynamicImport(
   () => import("@/components/HeroComponent/HeroSwiper"),
   {
     loading: () => <div>Loading...</div>,
-  }
+  },
 )
 
 const HeroSwiperOptimized = dynamicImport(
   () => import("@/components/HeroComponent/HeroSwiperOptimized"),
   {
     loading: () => <div>Loading...</div>,
-  }
+  },
 )
 
 async function getHomePageContent() {

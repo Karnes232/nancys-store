@@ -9,10 +9,10 @@ import TextComponentParagraph from "@/components/ProductsComponents/TextComponen
 import dynamicImport from "next/dynamic"
 
 const PhotoGallery = dynamicImport(
-  () => import("@/components/PhotoGalleryComponents/PhotoGallery"), 
+  () => import("@/components/PhotoGalleryComponents/PhotoGallery"),
   {
     loading: () => <div>Loading...</div>,
-  }
+  },
 )
 
 async function getPhotoGalleryPageContent() {

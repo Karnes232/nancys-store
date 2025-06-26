@@ -6,16 +6,19 @@ import Header from "@/components/Layout/HeaderComponents/Header"
 import { CartProvider } from "../../context/cart"
 import { getLogoData } from "@/lib/getLogo"
 import PerformanceMonitor from "@/components/PerformanceMonitor"
-import { GoogleAnalytics } from "@next/third-parties/google"
-import dynamic from 'next/dynamic';
+//import { GoogleAnalytics } from "@next/third-parties/google"
+import dynamic from "next/dynamic"
+import Script from "next/script"
+const Footer = dynamic(
+  () => import("@/components/Layout/FooterComponents/Footer"),
+  {
+    loading: () => <div>Loading...</div>,
+  },
+)
 
-const Footer = dynamic(() => import('@/components/Layout/FooterComponents/Footer'), {
-  loading: () => <div>Loading...</div>,
-});
-
-const ScrollToTop = dynamic(() => import('@/components/ScrollToTop'), {
+const ScrollToTop = dynamic(() => import("@/components/ScrollToTop"), {
   loading: () => null,
-});
+})
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,8 +30,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 })
 
-
-
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -39,7 +40,19 @@ export default async function RootLayout({
   return (
     <CartProvider>
       <html lang="en">
-      <GoogleAnalytics gaId="G-HZ2D75V42H" />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-HZ2D75V42H`}
+          strategy="lazyOnload"
+        />
+        <Script id="ga-setup" strategy="lazyOnload">
+          {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HZ2D75V42H');
+  `}
+        </Script>
+        {/* <GoogleAnalytics gaId="G-HZ2D75V42H" /> */}
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >

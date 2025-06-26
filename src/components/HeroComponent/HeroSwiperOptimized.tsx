@@ -13,7 +13,7 @@ const TextComponentHeading = dynamicImport(
   () => import("@/components/BlockContent/TextComponentHeading"),
   {
     loading: () => <div>Loading...</div>,
-  }
+  },
 )
 
 const playfairDisplay = Playfair_Display({
@@ -35,6 +35,8 @@ const HeroSwiperOptimized: React.FC<{
   heroSubheading,
   className,
 }) => {
+  const [showAllSlides, setShowAllSlides] = useState(false)
+
   const [effectShapeBlack, setEffectShapeBlack] = useState({
     imageUrl: "",
     alt: "",
@@ -43,6 +45,13 @@ const HeroSwiperOptimized: React.FC<{
     imageUrl: "",
     alt: "",
   })
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowAllSlides(true)
+    }, 3000) // Delay of 3 seconds; tweak as needed
+    return () => clearTimeout(timeout)
+  }, [])
 
   useEffect(() => {
     const fetchMediaItems = async () => {
@@ -95,6 +104,8 @@ const HeroSwiperOptimized: React.FC<{
           className={`mySwiper ${className}`}
         >
           {combinedImages.map((image: any, index: any) => {
+            const isFirstSlide = index === 0
+            if (!showAllSlides && !isFirstSlide) return null //
             return (
               <SwiperSlide
                 className={`relative w-full object-cover object-center ${height}`}
@@ -107,12 +118,12 @@ const HeroSwiperOptimized: React.FC<{
                   width={500}
                   height={1000}
                   className={`w-full object-cover object-center ${height} lg:hidden`}
-                  priority={index === 0}
-                  loading={index === 0 ? "eager" : "lazy"}
+                  priority={isFirstSlide}
+                  loading={isFirstSlide ? "eager" : "lazy"}
                   quality={85}
                   sizes="100vw"
                 />
-                
+
                 {/* Desktop Image */}
                 <Image
                   src={image.desktopImage}
@@ -120,12 +131,12 @@ const HeroSwiperOptimized: React.FC<{
                   width={1500}
                   height={1000}
                   className={`w-full object-cover object-center ${height} hidden lg:block`}
-                  priority={index === 0}
-                  loading={index === 0 ? "eager" : "lazy"}
+                  priority={isFirstSlide}
+                  loading={isFirstSlide ? "eager" : "lazy"}
                   quality={85}
                   sizes="(min-width: 1024px) 100vw"
                 />
-                
+
                 <div className="absolute inset-0" style={HeroStyles}>
                   <div
                     className={`relative max-w-xs lg:max-w-4xl inline-block z-10 top-[60%] md:top-[70%] xl:top-[60%] left-1/2 transform -translate-x-1/2  text-center ${translatePosition}`}
@@ -149,7 +160,7 @@ const HeroSwiperOptimized: React.FC<{
               </SwiperSlide>
             )
           })}
-          
+
           {/* Effect Images */}
           {effectShapeWhite.imageUrl && (
             <>
@@ -203,4 +214,4 @@ const HeroSwiperOptimized: React.FC<{
   )
 }
 
-export default HeroSwiperOptimized 
+export default HeroSwiperOptimized

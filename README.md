@@ -5,6 +5,7 @@ A modern, bilingual e-commerce website for Esencias By Nancy, specializing in pr
 ## 🌟 Features
 
 ### 🛍️ E-commerce Functionality
+
 - **Product Catalog**: Browse and search through essential oils and natural products
 - **Product Details**: Detailed product pages with image galleries and descriptions
 - **Shopping Cart**: Add products to cart with quantity management
@@ -12,11 +13,13 @@ A modern, bilingual e-commerce website for Esencias By Nancy, specializing in pr
 - **Product Categories**: Organized product browsing by categories
 
 ### 🌍 Internationalization
+
 - **Bilingual Support**: Full English and Spanish language support
 - **SEO Optimized**: Proper hreflang tags and localized meta data
 - **URL Structure**: Clean URL routing with language prefixes (`/es/` for Spanish)
 
 ### 🎨 User Experience
+
 - **Responsive Design**: Mobile-first design with Tailwind CSS
 - **Image Optimization**: Next.js Image component with Sanity CDN
 - **Photo Gallery**: Interactive image galleries with lightbox functionality
@@ -24,6 +27,7 @@ A modern, bilingual e-commerce website for Esencias By Nancy, specializing in pr
 - **Dark Mode**: Built-in dark/light theme support
 
 ### 📱 Performance & SEO
+
 - **Static Generation**: Pre-rendered pages for optimal performance
 - **SEO Optimized**: Meta tags, Open Graph, and structured data
 - **Sitemap**: Automated XML sitemap generation
@@ -31,6 +35,7 @@ A modern, bilingual e-commerce website for Esencias By Nancy, specializing in pr
 - **Performance Monitoring**: Built-in performance tracking
 
 ### 🛠️ Content Management
+
 - **Sanity Studio**: Headless CMS for content management
 - **Media Management**: Advanced image and media handling
 - **Rich Text**: Portable Text for flexible content editing
@@ -39,6 +44,7 @@ A modern, bilingual e-commerce website for Esencias By Nancy, specializing in pr
 ## 🚀 Technology Stack
 
 ### Frontend
+
 - **Next.js 15**: React framework with App Router
 - **TypeScript**: Type-safe development
 - **Tailwind CSS 4**: Utility-first CSS framework
@@ -46,11 +52,13 @@ A modern, bilingual e-commerce website for Esencias By Nancy, specializing in pr
 - **Motion**: Animation library for smooth transitions
 
 ### Backend & CMS
+
 - **Sanity.io**: Headless CMS with real-time collaboration
 - **GROQ**: Query language for Sanity
 - **Portable Text**: Rich text content handling
 
 ### E-commerce & UI
+
 - **React Icons**: Comprehensive icon library
 - **Swiper**: Touch slider for mobile-friendly interactions
 - **React Photo Album**: Optimized image galleries
@@ -58,11 +66,13 @@ A modern, bilingual e-commerce website for Esencias By Nancy, specializing in pr
 - **Yet Another React Lightbox**: Image lightbox functionality
 
 ### Internationalization
+
 - **i18next**: Internationalization framework
 - **next-i18next**: Next.js integration for i18next
 - **react-i18next**: React bindings for i18next
 
 ### Development Tools
+
 - **ESLint**: Code linting and quality
 - **Prettier**: Code formatting
 - **TypeScript**: Static type checking
@@ -108,19 +118,22 @@ nancy-store-nextjs/
 ## 🛠️ Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - npm, yarn, pnpm, or bun
 - Sanity account (for CMS)
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd nancy-store-nextjs
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    # or
@@ -133,6 +146,7 @@ nancy-store-nextjs/
 
 3. **Environment Setup**
    Create a `.env.local` file with your Sanity configuration:
+
    ```env
    NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
    NEXT_PUBLIC_SANITY_DATASET=production
@@ -140,6 +154,7 @@ nancy-store-nextjs/
    ```
 
 4. **Start the development server**
+
    ```bash
    npm run dev
    # or
@@ -159,6 +174,7 @@ nancy-store-nextjs/
    Navigate to [http://localhost:3000/studio](http://localhost:3000/studio)
 
 2. **Configure Content Types**
+
    - Set up product schemas
    - Configure image assets
    - Set up page content types
@@ -180,14 +196,18 @@ nancy-store-nextjs/
 ## 🌐 Deployment
 
 ### Netlify Deployment
+
 The project is configured for Netlify deployment with:
+
 - Automatic builds from Git
 - Next.js plugin integration
 - Optimized caching headers
 - Image optimization
 
 ### Environment Variables for Production
+
 Ensure these are set in your deployment platform:
+
 - `NEXT_PUBLIC_SANITY_PROJECT_ID`
 - `NEXT_PUBLIC_SANITY_DATASET`
 - `SANITY_API_TOKEN`
@@ -195,16 +215,19 @@ Ensure these are set in your deployment platform:
 ## 🎨 Customization
 
 ### Styling
+
 - **Tailwind CSS**: Modify `tailwind.config.js` for theme customization
 - **Global Styles**: Edit `src/app/globals.css` for custom CSS
 - **Component Styles**: Use Tailwind classes or styled-components
 
 ### Content Management
+
 - **Sanity Schemas**: Modify `src/sanity/schemaTypes/` for content structure
 - **Translations**: Update `src/i18n/locales/` for new languages
 - **SEO**: Configure meta tags in page components
 
 ### Features
+
 - **Products**: Add new product types in Sanity schemas
 - **Pages**: Create new page types and routes
 - **Components**: Extend component library in `src/components/`
@@ -247,6 +270,7 @@ This project is private and proprietary. All rights reserved.
 ## 🆘 Support
 
 For support and questions:
+
 - Check the [Next.js documentation](https://nextjs.org/docs)
 - Review [Sanity documentation](https://www.sanity.io/docs)
 - Contact the development team

@@ -10,25 +10,22 @@ import { ToastContainer } from "react-toastify"
 import dynamicImport from "next/dynamic"
 
 const BlockContent = dynamicImport(
-  () => import("@/components/BlockContent/BlockContent"), 
+  () => import("@/components/BlockContent/BlockContent"),
   {
     loading: () => <div>Loading...</div>,
-  }
+  },
 )
 
 const ProductPageCard = dynamicImport(
-  () => import("@/components/ProductsComponents/ProductPageCard"), 
+  () => import("@/components/ProductsComponents/ProductPageCard"),
   {
     loading: () => <div>Loading...</div>,
-  }
+  },
 )
 
-const ScrollToTop = dynamicImport(
-  () => import("@/components/ScrollToTop"), 
-  {
-    loading: () => null,
-  }
-)
+const ScrollToTop = dynamicImport(() => import("@/components/ScrollToTop"), {
+  loading: () => null,
+})
 
 export interface PageProps {
   params: Promise<{
