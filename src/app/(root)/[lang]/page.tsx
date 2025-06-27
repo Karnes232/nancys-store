@@ -4,7 +4,7 @@ import { client } from "@/sanity/lib/client"
 import { getTranslation } from "@/i18n"
 import { Metadata } from "next"
 import imageUrlBuilder from "@sanity/image-url"
-import { PageData } from "@/types/sanity.types"
+import { EffectShapeData, PageData } from "@/types/sanity.types"
 //import BlockContent from "@/components/BlockContent/BlockContent"
 import { LocaleBlockContent } from "@/types/sanity.types"
 //import HeroSwiperOptimized from "@/components/HeroComponent/HeroSwiperOptimized"
@@ -78,6 +78,28 @@ async function getHomePageContent() {
   return await client.fetch<PageData>(query)
 }
 
+async function getEffectShape() {
+  const query = `
+    *[_type == "effectShape"][0] {
+      title,
+      effectShapeWhite{
+        asset->{
+          _ref,
+          url
+        }
+      },
+      effectShapeBlack{
+        asset->{
+          _ref,
+          url
+        }
+      }
+    }
+  `
+
+  return await client.fetch<EffectShapeData>(query)
+}
+
 interface PageProps {
   params: any
 }
@@ -91,10 +113,12 @@ const HomePage = async ({ params }: PageProps) => {
   const { lang } = params
 
   // Then use the resolved lang parameter
-  const [pageData, { t }] = await Promise.all([
+  const [pageData, { t }, effectShape] = await Promise.all([
     getHomePageContent(),
     getTranslation(lang),
+    getEffectShape(),
   ])
+  console.log(effectShape)
   return (
     <main>
       <HeroSwiperOptimized
@@ -115,6 +139,8 @@ const HomePage = async ({ params }: PageProps) => {
             : ""
         }
         className="hero-swiper"
+        effectShapeBlack={effectShape.effectShapeBlack}
+        effectShapeWhite={effectShape.effectShapeWhite}
       />
       <div className="my-5">
         <BlockContent

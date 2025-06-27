@@ -51,3 +51,9 @@ export type LocaleBlockContent = Array<{
   }>
   style?: string
 }>
+
+export interface EffectShapeData {
+  title: string
+  effectShapeWhite: string
+  effectShapeBlack: string
+}

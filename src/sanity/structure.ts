@@ -37,7 +37,10 @@ export const myStructure = (S: StructureBuilder) =>
         .child(
           S.list()
             .title("Media")
-            .items([S.documentTypeListItem("media").title("Media")]),
+            .items([
+              S.documentTypeListItem("media").title("Media"),
+              S.documentTypeListItem("effectShape").title("Effect Shape"),
+            ]),
         ),
 
       // Object types group (optional - for reference)

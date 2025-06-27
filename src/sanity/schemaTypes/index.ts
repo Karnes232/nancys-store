@@ -10,6 +10,7 @@ import productCategory from "./productCategory"
 import product from "./product"
 import localeArray from "./localeArray"
 import gallery from "./gallery"
+import effectShape from "./effectShape"
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -23,5 +24,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     productCategory,
     product,
     gallery,
+    effectShape,
   ],
 }

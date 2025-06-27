@@ -28,23 +28,27 @@ const HeroSwiperOptimized: React.FC<{
   heroHeading: string
   heroSubheading: string
   className: string
+  effectShapeBlack: any
+  effectShapeWhite: any
 }> = ({
   heroImages,
   heroImagesLandScape,
   heroHeading,
   heroSubheading,
   className,
+  effectShapeBlack,
+  effectShapeWhite,
 }) => {
   const [showAllSlides, setShowAllSlides] = useState(false)
-
-  const [effectShapeBlack, setEffectShapeBlack] = useState({
-    imageUrl: "",
-    alt: "",
-  })
-  const [effectShapeWhite, setEffectShapeWhite] = useState({
-    imageUrl: "",
-    alt: "",
-  })
+  console.log(effectShapeBlack, effectShapeWhite)
+  // const [effectShapeBlack, setEffectShapeBlack] = useState({
+  //   imageUrl: "",
+  //   alt: "",
+  // })
+  // const [effectShapeWhite, setEffectShapeWhite] = useState({
+  //   imageUrl: "",
+  //   alt: "",
+  // })
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -53,23 +57,23 @@ const HeroSwiperOptimized: React.FC<{
     return () => clearTimeout(timeout)
   }, [])
 
-  useEffect(() => {
-    const fetchMediaItems = async () => {
-      try {
-        const media = await getMediaContent()
-        media.forEach((item: any) => {
-          if (item.title === "Effect Shape Black") {
-            setEffectShapeBlack(item)
-          } else if (item.title === "Effect Shape White") {
-            setEffectShapeWhite(item)
-          }
-        })
-      } catch (error) {
-        console.error("Error fetching media items:", error)
-      }
-    }
-    fetchMediaItems()
-  }, [])
+  // useEffect(() => {
+  //   const fetchMediaItems = async () => {
+  //     try {
+  //       const media = await getMediaContent()
+  //       media.forEach((item: any) => {
+  //         if (item.title === "Effect Shape Black") {
+  //           setEffectShapeBlack(item)
+  //         } else if (item.title === "Effect Shape White") {
+  //           setEffectShapeWhite(item)
+  //         }
+  //       })
+  //     } catch (error) {
+  //       console.error("Error fetching media items:", error)
+  //     }
+  //   }
+  //   fetchMediaItems()
+  // }, [])
 
   // Combine images with responsive sources
   const combinedImages = heroImages.map((image: any, index: any) => {
@@ -162,11 +166,11 @@ const HeroSwiperOptimized: React.FC<{
           })}
 
           {/* Effect Images */}
-          {effectShapeWhite.imageUrl && (
-            <>
+          {effectShapeWhite.asset.url && (
+            <div className="dark:hidden">
               <Image
-                src={effectShapeWhite.imageUrl}
-                alt={effectShapeWhite.alt}
+                src={effectShapeWhite.asset.url}
+                alt={effectShapeWhite.title}
                 width={500}
                 height={200}
                 className={`z-50 !absolute -bottom-[1px] w-screen dark:hidden lg:hidden`}
@@ -174,37 +178,38 @@ const HeroSwiperOptimized: React.FC<{
                 sizes="100vw"
               />
               <Image
-                src={effectShapeWhite.imageUrl}
-                alt={effectShapeWhite.alt}
+                src={effectShapeWhite.asset.url}
+                alt={effectShapeWhite.title}
                 width={1500}
                 height={200}
                 className={`z-50 !absolute -bottom-[1px] w-screen dark:hidden hidden lg:block`}
                 quality={85}
                 sizes="(min-width: 1024px) 100vw"
               />
-            </>
+            </div>
           )}
-          {effectShapeBlack.imageUrl && (
-            <>
+          
+          {effectShapeBlack.asset.url && (
+            <div className="hidden dark:block">
               <Image
-                src={effectShapeBlack.imageUrl}
+                src={effectShapeBlack.asset.url}
                 alt={effectShapeBlack.alt}
                 width={500}
                 height={200}
-                className={`z-50 !absolute -bottom-[1px] w-screen dark:block hidden lg:hidden`}
+                className={`z-50 !absolute -bottom-[1px] w-screen hidden lg:hidden`}
                 quality={50}
                 sizes="100vw"
               />
               <Image
-                src={effectShapeBlack.imageUrl}
-                alt={effectShapeBlack.alt}
+                src={effectShapeBlack.asset.url}
+                alt={effectShapeBlack.title}
                 width={1500}
                 height={200}
-                className={`z-50 !absolute -bottom-[1px] w-screen dark:block hidden lg:block`}
+                className={`z-50 !absolute -bottom-[1px] w-screen hidden lg:block`}
                 quality={85}
                 sizes="(min-width: 1024px) 100vw"
               />
-            </>
+            </div>
           )}
         </Swiper>
       </div>
