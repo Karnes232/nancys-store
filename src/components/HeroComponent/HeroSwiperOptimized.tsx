@@ -170,7 +170,7 @@ const HeroSwiperOptimized: React.FC<{
             <div className="dark:hidden">
               <Image
                 src={effectShapeWhite.asset.url}
-                alt={effectShapeWhite.title}
+                alt='effect shape white'
                 width={500}
                 height={200}
                 className={`z-50 !absolute -bottom-[1px] w-screen dark:hidden lg:hidden`}
@@ -179,7 +179,7 @@ const HeroSwiperOptimized: React.FC<{
               />
               <Image
                 src={effectShapeWhite.asset.url}
-                alt={effectShapeWhite.title}
+                alt='effect shape white'
                 width={1500}
                 height={200}
                 className={`z-50 !absolute -bottom-[1px] w-screen dark:hidden hidden lg:block`}
@@ -193,7 +193,7 @@ const HeroSwiperOptimized: React.FC<{
             <div className="hidden dark:block">
               <Image
                 src={effectShapeBlack.asset.url}
-                alt={effectShapeBlack.alt}
+                alt='effect shape black'
                 width={500}
                 height={200}
                 className={`z-50 !absolute -bottom-[1px] w-screen hidden lg:hidden`}
@@ -202,7 +202,7 @@ const HeroSwiperOptimized: React.FC<{
               />
               <Image
                 src={effectShapeBlack.asset.url}
-                alt={effectShapeBlack.title}
+                alt='effect shape black'
                 width={1500}
                 height={200}
                 className={`z-50 !absolute -bottom-[1px] w-screen hidden lg:block`}
