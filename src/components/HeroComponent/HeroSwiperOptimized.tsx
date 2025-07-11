@@ -40,7 +40,7 @@ const HeroSwiperOptimized: React.FC<{
   effectShapeWhite,
 }) => {
   const [showAllSlides, setShowAllSlides] = useState(false)
-  console.log(effectShapeBlack, effectShapeWhite)
+
   // const [effectShapeBlack, setEffectShapeBlack] = useState({
   //   imageUrl: "",
   //   alt: "",

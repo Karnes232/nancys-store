@@ -118,7 +118,7 @@ const HomePage = async ({ params }: PageProps) => {
     getTranslation(lang),
     getEffectShape(),
   ])
-  console.log(effectShape)
+
   return (
     <main>
       <HeroSwiperOptimized
