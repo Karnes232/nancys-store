@@ -21,6 +21,15 @@
   "search": {
     "products": "Buscar Productos..."
   },
+  "pagination": {
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "showing": "Mostrando",
+    "of": "de",
+    "products": "productos",
+    "perPage": "por página",
+    "showAll": "Mostrar todos"
+  },
   "cart": {
     "title": "Carrito de Compras",
     "unitPrice": "Precio Unitario",

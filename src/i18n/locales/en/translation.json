@@ -21,6 +21,15 @@
   "search": {
     "products": "Search Products..."
   },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "showing": "Showing",
+    "of": "of",
+    "products": "products",
+    "perPage": "per page",
+    "showAll": "Show all"
+  },
   "cart": {
     "title": "Shopping Cart",
     "unitPrice": "Unit Price",

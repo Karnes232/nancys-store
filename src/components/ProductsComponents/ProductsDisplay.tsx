@@ -72,6 +72,7 @@ const ProductsDisplay = async ({ lang }: { lang: string }) => {
         categories={categories}
         lang={lang}
         translations={{ all: t("common.all") }}
+        defaultItemsPerPage={12}
       />
     </div>
   )
