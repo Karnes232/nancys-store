@@ -44,5 +44,11 @@
     "message": "Your message",
     "placeholder": "Leave a comment...",
     "submit": "Submit"
+  },
+  "dimensions": {
+    "title": "📏 Dimensions",
+    "height": "Height",
+    "width": "Width",
+    "weight": "Weight"
   }
 }

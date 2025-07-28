@@ -51,6 +51,35 @@ export default defineType({
     }),
 
     defineField({
+      name: "dimensions",
+      title: "Dimensions & Weight",
+      type: "object",
+      fields: [
+        defineField({
+          name: "height",
+          title: "Height (cm)",
+          type: "number",
+          validation: Rule => Rule.positive(),
+          description: "Height in centimeters",
+        }),
+        defineField({
+          name: "width",
+          title: "Width (cm)",
+          type: "number",
+          validation: Rule => Rule.positive(),
+          description: "Width in centimeters",
+        }),
+        defineField({
+          name: "weight",
+          title: "Weight (grams)",
+          type: "number",
+          validation: Rule => Rule.positive(),
+          description: "Weight in grams",
+        }),
+      ],
+    }),
+
+    defineField({
       name: "imagesList",
       title: "Images Portrait",
       type: "array",
@@ -112,6 +141,7 @@ export default defineType({
       type: "localeBlockContent",
       description: "Main content of the page",
     }),
+
     defineField({
       name: "seo",
       title: "SEO & Metadata",

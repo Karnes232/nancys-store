@@ -50,7 +50,8 @@ const Pagination = ({
     <div className="flex flex-col items-center justify-center my-8 px-5">
       {/* Items info */}
       <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-        {t("pagination.showing")} {startItem}-{endItem} {t("pagination.of")} {totalItems} {t("pagination.products")}
+        {t("pagination.showing")} {startItem}-{endItem} {t("pagination.of")}{" "}
+        {totalItems} {t("pagination.products")}
       </div>
 
       {/* Pagination controls */}
@@ -102,4 +103,4 @@ const Pagination = ({
   )
 }
 
-export default Pagination 
+export default Pagination

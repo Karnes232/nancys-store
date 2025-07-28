@@ -8,6 +8,7 @@ import imageUrlBuilder from "@sanity/image-url"
 import { Metadata } from "next"
 import { ToastContainer } from "react-toastify"
 import dynamicImport from "next/dynamic"
+import DimensionsComponent from "@/components/ProductsComponents/DimensionsComponent"
 
 const BlockContent = dynamicImport(
   () => import("@/components/BlockContent/BlockContent"),
@@ -58,6 +59,11 @@ async function getProduct(slug: string) {
       name,
       slug,
       price,
+      dimensions{
+        height,
+        width,
+        weight
+      },
       imagesList[]{
         _key,
         alt,
@@ -143,6 +149,11 @@ const ProductPage = async ({ params }: PageProps) => {
           language={lang as "en" | "es"}
         />
       </div>
+      {product[0].dimensions && (
+        <div className="my-5 lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto">
+          <DimensionsComponent dimensions={product[0].dimensions} lang={lang} />
+        </div>
+      )}
     </main>
   )
 }

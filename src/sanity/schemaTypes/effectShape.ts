@@ -52,7 +52,6 @@ export default defineType({
       validation: Rule => Rule.required(),
       description: "This image will be used as the effect shape black",
     }),
-   
   ],
   preview: {
     select: {

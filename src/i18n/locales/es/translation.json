@@ -44,5 +44,11 @@
     "message": "Tu mensaje",
     "placeholder": "Deja un comentario...",
     "submit": "Enviar"
+  },
+  "dimensions": {
+    "title": "📏 Dimensiones",
+    "height": "Altura",
+    "width": "Ancho",
+    "weight": "Peso"
   }
 }

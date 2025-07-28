@@ -27,7 +27,7 @@ const ProductsPerPageSelector = ({
       </label>
       <select
         value={itemsPerPage}
-        onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
+        onChange={e => onItemsPerPageChange(Number(e.target.value))}
         className="px-3 py-1 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
       >
         {options.map(option => (
@@ -40,4 +40,4 @@ const ProductsPerPageSelector = ({
   )
 }
 
-export default ProductsPerPageSelector 
+export default ProductsPerPageSelector

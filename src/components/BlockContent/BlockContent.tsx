@@ -4,6 +4,11 @@ import imageUrlBuilder from "@sanity/image-url"
 import TextComponentParagraph from "./TextComponentParagraph"
 import TextComponentHeading from "./TextComponentHeading"
 import Image from "next/image"
+import { PortableTextComponentProps } from "@portabletext/react"
+import {
+  ToolkitPortableTextList,
+  ToolkitPortableTextListItem,
+} from "@portabletext/toolkit"
 interface LocaleBlockContent {
   _type: string
   en: any[]
@@ -58,6 +63,40 @@ const components = {
         </a>
       )
     },
+  },
+  list: {
+    bullet: ({
+      children,
+    }: PortableTextComponentProps<ToolkitPortableTextList>) => (
+      <ul className="mb-4 ml-4 space-y-2">{children}</ul>
+    ),
+    number: ({
+      children,
+    }: PortableTextComponentProps<ToolkitPortableTextList>) => (
+      <ol className="mb-4 ml-4 space-y-2">{children}</ol>
+    ),
+  },
+  listItem: {
+    bullet: ({
+      children,
+    }: PortableTextComponentProps<ToolkitPortableTextListItem>) => (
+      <li className="mb-2 ml-4 flex items-start gap-2">
+        <span className="flex-shrink-0 mt-1">
+          <span className="w-3 h-3 bg-black rounded-full block"></span>
+        </span>
+        <span className="flex-1">{children}</span>
+      </li>
+    ),
+    number: ({
+      children,
+    }: PortableTextComponentProps<ToolkitPortableTextListItem>) => (
+      <li className="mb-2 ml-4 flex items-start gap-2">
+        <span className="flex-shrink-0 mt-1">
+          <span className="text-black font-bold text-lg">•</span>
+        </span>
+        <span className="flex-1">{children}</span>
+      </li>
+    ),
   },
   block: {
     // normal: ({ children }: any) => <p className="mb-4">{children}</p>,
@@ -114,6 +153,7 @@ const BlockContent: React.FC<Props> = ({ content, language = "en" }) => {
     return null
   }
   const blockContent = content[language][language]
+
   return (
     <>
       <div className="flex flex-col max-w-5xl mx-5 lg:p-2 lg:mx-auto">

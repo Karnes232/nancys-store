@@ -34,12 +34,13 @@ export function ProductsFilter({
   }
 
   const filteredProducts = useMemo(() => {
-    const filtered = selectedCategory === "All"
-      ? searchFilteredProducts
-      : searchFilteredProducts.filter(
-          product => product.category._id === selectedCategory,
-        )
-    
+    const filtered =
+      selectedCategory === "All"
+        ? searchFilteredProducts
+        : searchFilteredProducts.filter(
+            product => product.category._id === selectedCategory,
+          )
+
     // Reset to first page when filtered products change
     setCurrentPage(1)
     return filtered
@@ -55,13 +56,13 @@ export function ProductsFilter({
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
     // Scroll to ProductSearch component with offset
-    const searchElement = document.querySelector('.product-navbar')
+    const searchElement = document.querySelector(".product-navbar")
     if (searchElement) {
       const elementPosition = searchElement.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - 200 // 100px offset
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       })
     }
   }
